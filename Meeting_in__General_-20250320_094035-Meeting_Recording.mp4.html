@@ -375,24 +375,60 @@ window.Quarto = {
 </section>
 <section id="matrix-decomposition" class="level1">
 <h1>Matrix Decomposition</h1>
-<p>Matrix decomposition is a fundamental concept in linear algebra and numerical analysis, involving the factorization of a matrix into a product of matrices with specific structures and properties. These decompositions are not merely mathematical exercises; they are powerful tools that simplify matrix operations, reveal underlying structures, and are essential for solving various problems in science and engineering, including quantum mechanics and quantum computing. Decomposing a matrix can simplify computations, such as solving linear systems, computing determinants and inverses, and analyzing eigenvalues and eigenvectors. In quantum mechanics, matrix decompositions are crucial for understanding the structure of quantum states, analyzing quantum operations, and developing quantum algorithms.</p>
+<p>Matrix decomposition is a fundamental concept in linear algebra and numerical analysis, involving the factorization of a matrix into a product of matrices with specific structures and properties. These decompositions reveal the intrinsic geometric and algebraic characteristics of linear transformations, providing powerful tools for theoretical analysis and practical computations in quantum mechanics and quantum computing.</p>
+<p>The study of matrix decompositions offers multiple advantages:</p>
+<ul>
+<li><p><strong>Computational efficiency:</strong> Matrix decompositions often simplify complex calculations such as solving linear systems, computing determinants, finding inverses, and determining eigenvalues.</p></li>
+<li><p><strong>Geometric interpretation:</strong> They provide insights into the geometric actions of matrices (rotations, reflections, scaling).</p></li>
+<li><p><strong>Dimensional reduction:</strong> Some decompositions allow for approximation by lower-dimensional representations, preserving the most significant features of the data.</p></li>
+<li><p><strong>Analysis of quantum systems:</strong> In quantum mechanics, decompositions help analyze states, operations, and especially entanglement properties.</p></li>
+</ul>
+<p>In this section, we will explore three important matrix decompositions:</p>
+<ol type="1">
+<li><p><strong>Diagonalization and Spectral Decomposition:</strong> Representing an operator in terms of its eigenvalues and eigenvectors</p></li>
+<li><p><strong>Polar Decomposition:</strong> Factoring a matrix into a product of a unitary operator and a positive semi-definite operator</p></li>
+<li><p><strong>Singular Value Decomposition (SVD):</strong> Generalizing diagonalization to arbitrary matrices, with powerful applications in entanglement detection</p></li>
+</ol>
 <section id="diagonalization-and-spectral-decomposition" class="level2">
 <h2 class="anchored" data-anchor-id="diagonalization-and-spectral-decomposition">Diagonalization and Spectral Decomposition</h2>
-<p>Diagonalization is a specific type of matrix decomposition that transforms a square matrix into a diagonal form. It is particularly relevant for normal matrices, which include Hermitian (self-adjoint) and unitary matrices—types of matrices frequently encountered in quantum mechanics representing observables and quantum operations, respectively.</p>
+<p>Diagonalization is a specific type of matrix decomposition that transforms a square matrix into a diagonal form. It is particularly relevant for normal matrices (matrices that commute with their adjoints, <span class="math inline">\(AA^\dagger = A^\dagger A\)</span>), which include Hermitian (self-adjoint) and unitary matrices—types frequently encountered in quantum mechanics.</p>
 <div class="tcolorbox">
 <div class="theorem">
 <p><strong>Theorem 2</strong> (Spectral Theorem for Normal Matrices). <em>For any normal matrix <span class="math inline">\(A\)</span> of size <span class="math inline">\(n \times n\)</span>, there exists a unitary matrix <span class="math inline">\(R\)</span> of size <span class="math inline">\(n \times n\)</span> and a diagonal matrix <span class="math inline">\(D\)</span> of size <span class="math inline">\(n \times n\)</span> such that <span class="math display">\[R^\dagger A R = D,\]</span> where <span class="math inline">\(D\)</span> is a diagonal matrix whose diagonal entries are the eigenvalues of <span class="math inline">\(A\)</span>. Equivalently, this decomposition can be written as <span class="math display">\[A = R D R^\dagger.\]</span> This is known as the spectral decomposition or eigendecomposition of <span class="math inline">\(A\)</span>. The columns of <span class="math inline">\(R\)</span> are the eigenvectors of <span class="math inline">\(A\)</span>, and the diagonal matrix <span class="math inline">\(D\)</span> contains the corresponding eigenvalues.</em></p>
 </div>
 </div>
-<p>For Hermitian matrices, the eigenvalues in <span class="math inline">\(D\)</span> are real, and for unitary matrices, the eigenvalues have absolute value 1. For a general normal matrix, the eigenvalues can be complex.</p>
-<section id="applications-in-quantum-mechanics" class="level4">
-<h4 class="anchored" data-anchor-id="applications-in-quantum-mechanics">Applications in Quantum Mechanics</h4>
+<p>If we explicitly write out the spectral decomposition, we get: <span class="math display">\[A = \sum_{i} \lambda_i \ensuremath{\left|{d_i}\middle\rangle\middle\langle{d_i}\right|}\]</span> where <span class="math inline">\(\lambda_i\)</span> are the eigenvalues and <span class="math inline">\(\ensuremath{\left|{d_i}\right\rangle}\)</span> are the corresponding eigenvectors (columns of <span class="math inline">\(R\)</span>). Each term <span class="math inline">\(\ensuremath{\left|{d_i}\middle\rangle\middle\langle{d_i}\right|}\)</span> represents a projection operator onto the eigenspace corresponding to <span class="math inline">\(\lambda_i\)</span>.</p>
+<p>This form is particularly illuminating in quantum mechanics, as it expresses the operator as a sum of projection operators weighted by the eigenvalues. For a Hermitian operator representing an observable, these eigenvalues correspond to possible measurement outcomes, and the projectors indicate the quantum states that yield those outcomes.</p>
+<figure class="figure">
+<figcaption>
+Spectral decomposition of a normal matrix <span class="math inline">(A)</span>
+</figcaption>
+</figure>
+<section id="geometric-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-interpretation">Geometric Interpretation</h3>
+<p>The spectral decomposition has a clear geometric interpretation:</p>
+<ol type="1">
+<li><p><span class="math inline">\(R\)</span> represents a change of basis to the eigenvector basis</p></li>
+<li><p><span class="math inline">\(D\)</span> represents a stretching or scaling along the eigenvector directions</p></li>
+<li><p><span class="math inline">\(R^\dagger\)</span> represents a change back to the original basis</p></li>
+</ol>
+<p>Therefore, any normal operator can be understood as a rotation to a special basis (the eigenbasis), followed by stretching along the principal axes, and then rotating back to the original basis.</p>
+</section>
+<section id="applications-in-quantum-mechanics" class="level3">
+<h3 class="anchored" data-anchor-id="applications-in-quantum-mechanics">Applications in Quantum Mechanics</h3>
 <p>In quantum mechanics, diagonalization is intrinsically linked to finding the energy spectrum and eigenstates of a system. If <span class="math inline">\(A\)</span> represents a Hamiltonian operator <span class="math inline">\(H\)</span>, the eigenvalues in <span class="math inline">\(D\)</span> correspond to the energy levels of the system, and the columns of <span class="math inline">\(R\)</span> are the corresponding energy eigenstates. The spectral decomposition is used to:</p>
 <ul>
 <li><p><strong>Solve the time-independent Schrödinger equation:</strong> Finding the eigenvalues and eigenvectors of the Hamiltonian directly gives the stationary states and their energies.</p></li>
 <li><p><strong>Calculate time evolution:</strong> The time evolution operator <span class="math inline">\(U(t) = e^{-iHt/\hbar}\)</span> can be easily computed using the spectral decomposition of <span class="math inline">\(H\)</span>. If <span class="math inline">\(H = R D R^\dagger\)</span>, then <span class="math inline">\(U(t) = R e^{-iDt/\hbar} R^\dagger\)</span>, where <span class="math inline">\(e^{-iDt/\hbar}\)</span> is easily computed by exponentiating the diagonal elements of <span class="math inline">\(D\)</span>.</p></li>
 <li><p><strong>Analyze quantum observables:</strong> For any observable represented by a Hermitian operator, its spectral decomposition provides the possible outcomes of a measurement (eigenvalues) and the corresponding states (eigenvectors).</p></li>
+<li><p><strong>Function evaluation:</strong> As shown earlier in our discussion of functions of operators, the spectral decomposition allows us to easily evaluate functions of operators: <span class="math inline">\(f(A) = \sum_i f(\lambda_i)\ensuremath{\left|{d_i}\middle\rangle\middle\langle{d_i}\right|}\)</span>.</p></li>
 </ul>
+<div class="example">
+<p><strong>Example 1</strong>. <em>Consider the Pauli-X matrix <span class="math inline">\(\sigma_X = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\)</span> that we analyzed earlier when discussing functions of operators.</em></p>
+<p><em>We found that its eigenvalues are <span class="math inline">\(\lambda_1 = 1\)</span> and <span class="math inline">\(\lambda_2 = -1\)</span> with corresponding eigenvectors <span class="math inline">\(\ensuremath{\left|{+}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{0}\right\rangle} + \ensuremath{\left|{1}\right\rangle})\)</span> and <span class="math inline">\(\ensuremath{\left|{-}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{0}\right\rangle} - \ensuremath{\left|{1}\right\rangle})\)</span>.</em></p>
+<p><em>The spectral decomposition of <span class="math inline">\(\sigma_X\)</span> is: <span class="math display">\[\sigma_X = 1 \cdot \ensuremath{\left|{+}\middle\rangle\middle\langle{+}\right|} + (-1) \cdot \ensuremath{\left|{-}\middle\rangle\middle\langle{-}\right|}\]</span></em></p>
+<p><em>This expresses the bit-flip operation as a difference between projections onto the <span class="math inline">\(\ensuremath{\left|{+}\right\rangle}\)</span> and <span class="math inline">\(\ensuremath{\left|{-}\right\rangle}\)</span> states, providing insight into its action in the Hadamard basis.</em></p>
+</div>
 </section>
 </section>
 <section id="polar-decomposition" class="level2">
@@ -406,7 +442,7 @@ window.Quarto = {
 <p><strong>Definition 3</strong> (Positive Semi-Definite Operator). <em>A Hermitian operator <span class="math inline">\(J\)</span> on a Hilbert space <span class="math inline">\(H\)</span> is called positive semi-definite (or positive for short) if for all vectors <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle} \in H\)</span>, <span class="math display">\[\ensuremath{\left\langle{\psi}\middle|{J\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} \ge 0.\]</span> If, in addition, <span class="math inline">\(\ensuremath{\left\langle{\psi}\middle|{J\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} &gt; 0\)</span> for all non-zero vectors <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle} \neq 0\)</span>, then <span class="math inline">\(J\)</span> is called positive definite.</em></p>
 </div>
 </div>
-<p>For any linear operator <span class="math inline">\(A\)</span>, the operator <span class="math inline">\(A^\dagger A\)</span> is always positive semi-definite. This is because for any vector <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle}\)</span>, <span class="math display">\[\ensuremath{\left\langle{\psi}\middle|{A^\dagger A \ensuremath{\left|{\psi}\right\rangle}}\right\rangle} = \ensuremath{\left\langle{A\ensuremath{\left|{\psi}\right\rangle}}\middle|{A\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} = \|A\ensuremath{\left|{\psi}\right\rangle}\|^2 \ge 0,\]</span> where <span class="math inline">\(\|A\ensuremath{\left|{\psi}\right\rangle}\|\)</span> is the norm of the vector <span class="math inline">\(A\ensuremath{\left|{\psi}\right\rangle}\)</span>, which is always non-negative.</p>
+<p>For any linear operator <span class="math inline">\(A\)</span>, the operator <span class="math inline">\(A^\dagger A\)</span> is always positive semi-definite. This is because for any vector <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle}\)</span>, <span class="math display">\[\ensuremath{\left\langle{\psi}\middle|{A^\dagger A \ensuremath{\left|{\psi}\right\rangle}}\right\rangle} = \ensuremath{\left\langle{A\ensuremath{\left|{\psi}\right\rangle}}\middle|{A\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} = \|A\ensuremath{\left|{\psi}\right\rangle}\|^2 \ge 0,\]</span> where <span class="math inline">\(\|A\ensuremath{\left|{\psi}\right\rangle}\|\)</span> is the norm of the vector <span class="math inline">\(A\ensuremath{\left|{\psi}\right\rangle}\)</span>, which is always non-negative. This property is essential for the construction of the positive semi-definite part in the polar decomposition.</p>
 </section>
 <section id="polar-decomposition-theorem" class="level3">
 <h3 class="anchored" data-anchor-id="polar-decomposition-theorem">Polar Decomposition Theorem</h3>
@@ -415,17 +451,44 @@ window.Quarto = {
 <p><strong>Theorem 3</strong> (Polar Decomposition Theorem). <em>Let <span class="math inline">\(A\)</span> be a linear operator on a finite-dimensional Hilbert space. Then there exists a unitary operator <span class="math inline">\(U\)</span> and a positive semi-definite operator <span class="math inline">\(J\)</span> such that <span class="math display">\[A = UJ.\]</span> This is called the left polar decomposition. Similarly, there exists a positive semi-definite operator <span class="math inline">\(K\)</span> and a unitary operator <span class="math inline">\(V\)</span> such that <span class="math display">\[A = KV.\]</span> This is called the right polar decomposition. Furthermore, the positive semi-definite operators are uniquely determined as <span class="math inline">\(J = \sqrt{A^\dagger A}\)</span> and <span class="math inline">\(K = \sqrt{A A^\dagger}\)</span>. If <span class="math inline">\(A\)</span> is invertible, then the unitary operators <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are also unique.</em></p>
 </div>
 </div>
-<p>The positive semi-definite operator <span class="math inline">\(J = \sqrt{A^\dagger A}\)</span> is often referred to as the magnitude part, and <span class="math inline">\(U\)</span> is the unitary "phase" part. Similarly, for the right polar decomposition, <span class="math inline">\(K = \sqrt{A A^\dagger}\)</span> is the magnitude part, and <span class="math inline">\(V\)</span> is the unitary phase part.</p>
-<section id="computation-of-polar-decomposition" class="level4">
-<h4 class="anchored" data-anchor-id="computation-of-polar-decomposition">Computation of Polar Decomposition</h4>
-<p>To compute the polar decomposition <span class="math inline">\(A = UJ\)</span> (left polar decomposition):</p>
-<ol type="1">
-<li><p>Calculate <span class="math inline">\(A^\dagger A\)</span>.</p></li>
-<li><p>Compute <span class="math inline">\(J = \sqrt{A^\dagger A}\)</span>. This can be done using the spectral decomposition of <span class="math inline">\(A^\dagger A = R D R^\dagger\)</span>, where <span class="math inline">\(D\)</span> is a diagonal matrix of non-negative eigenvalues. Then <span class="math inline">\(\sqrt{A^\dagger A} = R \sqrt{D} R^\dagger\)</span>, where <span class="math inline">\(\sqrt{D}\)</span> is obtained by taking the square root of each diagonal element of <span class="math inline">\(D\)</span>.</p></li>
-<li><p>If <span class="math inline">\(A\)</span> is invertible, then <span class="math inline">\(U = A J^{-1} = A (\sqrt{A^\dagger A})^{-1}\)</span>. If <span class="math inline">\(A\)</span> is not invertible, <span class="math inline">\(U\)</span> is not unique, and one way to find a suitable <span class="math inline">\(U\)</span> is to use the singular value decomposition of <span class="math inline">\(A\)</span> (discussed next).</p></li>
-</ol>
-<p>A similar procedure can be used to find the right polar decomposition <span class="math inline">\(A = KV\)</span>.</p>
+<p>To understand the polar decomposition more intuitively, let’s break down its components:</p>
+<figure class="figure">
+<figcaption>
+Geometric interpretation of polar decomposition
+</figcaption>
+</figure>
 </section>
+<section id="proof-sketch-for-the-polar-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="proof-sketch-for-the-polar-decomposition">Proof Sketch for the Polar Decomposition</h3>
+<p>Let’s sketch a proof of the left polar decomposition <span class="math inline">\(A = UJ\)</span>:</p>
+<ol type="1">
+<li><p>Define <span class="math inline">\(J = \sqrt{A^\dagger A}\)</span>, which exists because <span class="math inline">\(A^\dagger A\)</span> is positive semi-definite.</p></li>
+<li><p>We need to find a unitary operator <span class="math inline">\(U\)</span> such that <span class="math inline">\(A = UJ\)</span>. If <span class="math inline">\(J\)</span> is invertible, then <span class="math inline">\(U = AJ^{-1}\)</span> would be the candidate.</p></li>
+<li><p>To prove that this <span class="math inline">\(U\)</span> is indeed unitary, we need to show that <span class="math inline">\(U^\dagger U = I\)</span>: <span class="math display">\[\begin{aligned}    U^\dagger U &amp;= (AJ^{-1})^\dagger (AJ^{-1}) \\    &amp;= (J^{-1})^\dagger A^\dagger A J^{-1} \\    &amp;= J^{-1} A^\dagger A J^{-1} \quad \text{(since $J$ is Hermitian)} \\    &amp;= J^{-1} J^2 J^{-1} \quad \text{(since $J^2 = A^\dagger A$)} \\    &amp;= I    \end{aligned}\]</span></p></li>
+<li><p>If <span class="math inline">\(J\)</span> is not invertible, the construction is more complex. One approach is to:</p>
+<ul>
+<li><p>Consider the orthogonal decomposition of the Hilbert space <span class="math inline">\(H = \text{Ker}(J) \oplus \text{Im}(J)\)</span> where <span class="math inline">\(\text{Ker}(J)\)</span> is the kernel (nullspace) of <span class="math inline">\(J\)</span> and <span class="math inline">\(\text{Im}(J)\)</span> is its image (range).</p></li>
+<li><p>Note that <span class="math inline">\(\text{Ker}(J) = \text{Ker}(A)\)</span> since <span class="math inline">\(J^2 = A^\dagger A\)</span>.</p></li>
+<li><p>Define <span class="math inline">\(U\)</span> to act as <span class="math inline">\(AJ^{-1}\)</span> on <span class="math inline">\(\text{Im}(J)\)</span> and as any unitary mapping on <span class="math inline">\(\text{Ker}(J)\)</span>.</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="relationship-with-eigenbasis" class="level3">
+<h3 class="anchored" data-anchor-id="relationship-with-eigenbasis">Relationship with Eigenbasis</h3>
+<p>To understand the connection between polar decomposition and the spectral decomposition, let’s express <span class="math inline">\(J = \sqrt{A^\dagger A}\)</span> in terms of the eigenbasis of <span class="math inline">\(A^\dagger A\)</span>.</p>
+<p>Let <span class="math inline">\(A^\dagger A = \sum_j \lambda_j^2 \ensuremath{\left|{j}\middle\rangle\middle\langle{j}\right|}\)</span> where <span class="math inline">\(\lambda_j^2\)</span> are the eigenvalues of <span class="math inline">\(A^\dagger A\)</span> and <span class="math inline">\(\ensuremath{\left|{j}\right\rangle}\)</span> are the corresponding eigenvectors. The square root of <span class="math inline">\(A^\dagger A\)</span> is: <span class="math display">\[J = \sqrt{A^\dagger A} = \sum_j \lambda_j \ensuremath{\left|{j}\middle\rangle\middle\langle{j}\right|}\]</span></p>
+<p>For each eigenvector <span class="math inline">\(\ensuremath{\left|{j}\right\rangle}\)</span> with non-zero eigenvalue, define <span class="math inline">\(\ensuremath{\left|{\psi_j}\right\rangle} = \frac{1}{\lambda_j}A\ensuremath{\left|{j}\right\rangle}\)</span>. We can verify that these vectors form an orthonormal set (for non-zero <span class="math inline">\(\lambda_j\)</span>).</p>
+<p>The unitary operator <span class="math inline">\(U\)</span> can then be constructed as: <span class="math display">\[U = \sum_j \ensuremath{\left|{\psi_j}\middle\rangle\middle\langle{j}\right|}\]</span> extended to a complete unitary operator by defining its action on the kernel of <span class="math inline">\(A\)</span>.</p>
+</section>
+<section id="applications-of-polar-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="applications-of-polar-decomposition">Applications of Polar Decomposition</h3>
+<p>Polar decomposition has various applications in quantum mechanics and quantum information:</p>
+<ul>
+<li><p><strong>Analysis of quantum channels:</strong> Quantum operations can be decomposed into a unitary component and a positive component, helping to distinguish between reversible and irreversible parts of the dynamics.</p></li>
+<li><p><strong>Quantum state preparation:</strong> Determining how to transform one state into another by separating the transformation into rotation and scaling components.</p></li>
+<li><p><strong>Connection to SVD:</strong> Polar decomposition is closely related to the Singular Value Decomposition (SVD), which we’ll explore next, providing insights into bipartite quantum systems.</p></li>
+<li><p><strong>Quantum circuit decomposition:</strong> Breaking down complex quantum gates into simpler components for implementation.</p></li>
+</ul>
 </section>
 </section>
 <section id="singular-value-decomposition-svd" class="level2">
@@ -444,59 +507,120 @@ window.Quarto = {
 <p><em>such that <span class="math display">\[A = U \Sigma V^\dagger.\]</span> The diagonal entries <span class="math inline">\(\sigma_i = \Sigma_{ii}\)</span> for <span class="math inline">\(i = 1, 2, \dots, p = \min(M, N)\)</span> are the singular values of <span class="math inline">\(A\)</span>, and are typically arranged in descending order: <span class="math inline">\(\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_p \ge 0\)</span>. The columns of <span class="math inline">\(U\)</span> are called left singular vectors, and the columns of <span class="math inline">\(V\)</span> are called right singular vectors.</em></p>
 </div>
 </div>
-<p>The singular values <span class="math inline">\(\sigma_i\)</span> are the square roots of the non-zero eigenvalues of both <span class="math inline">\(A^\dagger A\)</span> (which is <span class="math inline">\(N \times N\)</span>) and <span class="math inline">\(A A^\dagger\)</span> (which is <span class="math inline">\(M \times M\)</span>). The right singular vectors (columns of <span class="math inline">\(V\)</span>) are the eigenvectors of <span class="math inline">\(A^\dagger A\)</span>, and the left singular vectors(columns of <span class="math inline">\(U\)</span>) are the eigenvectors of <span class="math inline">\(A A^\dagger\)</span>.</p>
-<section id="algorithm-for-computing-svd" class="level4">
-<h4 class="anchored" data-anchor-id="algorithm-for-computing-svd">Algorithm for Computing SVD</h4>
+<figure class="figure">
+<figcaption>
+Singular Value Decomposition of an <span class="math inline">(M N)</span> matrix
+</figcaption>
+</figure>
+</section>
+<section id="relationship-to-polar-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="relationship-to-polar-decomposition">Relationship to Polar Decomposition</h3>
+<p>The SVD and polar decomposition are closely related. If <span class="math inline">\(A = U \Sigma V^\dagger\)</span> is the SVD of <span class="math inline">\(A\)</span>, then:</p>
+<ul>
+<li><p><span class="math inline">\(A = (U V^\dagger)(V \Sigma V^\dagger)\)</span> gives the right polar decomposition, where <span class="math inline">\(K = V \Sigma V^\dagger = \sqrt{A A^\dagger}\)</span> and the unitary component is <span class="math inline">\(U V^\dagger\)</span>.</p></li>
+<li><p><span class="math inline">\(A = (U \Sigma U^\dagger)(U V^\dagger)\)</span> gives the left polar decomposition, where <span class="math inline">\(J = U \Sigma U^\dagger = \sqrt{A^\dagger A}\)</span> and the unitary component is <span class="math inline">\(U V^\dagger\)</span>.</p></li>
+</ul>
+</section>
+<section id="construction-of-svd-from-polar-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="construction-of-svd-from-polar-decomposition">Construction of SVD from Polar Decomposition</h3>
+<p>Given the polar decomposition <span class="math inline">\(A = UJ\)</span>, where <span class="math inline">\(J = \sqrt{A^\dagger A}\)</span>, we can derive the SVD as follows:</p>
+<ol type="1">
+<li><p>Diagonalize <span class="math inline">\(J = R S R^\dagger\)</span>, where <span class="math inline">\(S\)</span> is diagonal containing the singular values, and <span class="math inline">\(R\)</span> is unitary.</p></li>
+<li><p>Define <span class="math inline">\(V = R\)</span> (the right singular vectors).</p></li>
+<li><p>Substitute into the polar decomposition: <span class="math inline">\(A = U R S R^\dagger = (U R) S R^\dagger\)</span>.</p></li>
+<li><p>Define <span class="math inline">\(U' = U R\)</span> (which is unitary as a product of unitaries).</p></li>
+<li><p>The SVD is then <span class="math inline">\(A = U' S V^\dagger\)</span>, where <span class="math inline">\(U'\)</span> contains the left singular vectors.</p></li>
+</ol>
+<p>This construction highlights why the singular values of <span class="math inline">\(A\)</span> are the square roots of the eigenvalues of <span class="math inline">\(A^\dagger A\)</span> (or equivalently, <span class="math inline">\(A A^\dagger\)</span>).</p>
+</section>
+<section id="geometric-interpretation-of-svd" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-interpretation-of-svd">Geometric Interpretation of SVD</h3>
+<p>The SVD provides a powerful geometric interpretation of how a matrix transforms vectors:</p>
+<ol type="1">
+<li><p><span class="math inline">\(V^\dagger\)</span> rotates the input space to align with the principal directions.</p></li>
+<li><p><span class="math inline">\(\Sigma\)</span> scales each principal direction by the corresponding singular value.</p></li>
+<li><p><span class="math inline">\(U\)</span> rotates the scaled vectors to the output orientation.</p></li>
+</ol>
+<p>This interpretation makes clear that a matrix stretches space along orthogonal directions (the right singular vectors) by amounts equal to the singular values, and then rotates these stretched directions to new orientations (the left singular vectors).</p>
+<figure class="figure">
+<figcaption>
+Geometric interpretation of SVD as sequence of transformations
+</figcaption>
+</figure>
+</section>
+<section id="algorithm-for-computing-svd" class="level3">
+<h3 class="anchored" data-anchor-id="algorithm-for-computing-svd">Algorithm for Computing SVD</h3>
 <div class="tcolorbox">
 <div class="algorithm">
 <p><strong>Input:</strong> An <span class="math inline">\(M \times N\)</span> matrix <span class="math inline">\(A\)</span><br>
 <strong>Output:</strong> Unitary matrices <span class="math inline">\(U\)</span>, <span class="math inline">\(V\)</span> and diagonal matrix <span class="math inline">\(\Sigma\)</span> such that <span class="math inline">\(A = U \Sigma V^\dagger\)</span></p>
 <div class="algorithmic">
-<p>Compute the matrix <span class="math inline">\(B = A^\dagger A\)</span>. Find the eigenvalues <span class="math inline">\(\lambda_1, \lambda_2, \dots, \lambda_N\)</span> and eigenvectors <span class="math inline">\(\ensuremath{\left|{v_1}\right\rangle}, \ensuremath{\left|{v_2}\right\rangle}, \dots, \ensuremath{\left|{v_N}\right\rangle}\)</span> of <span class="math inline">\(B\)</span>. Orthonormalize the eigenvectors to obtain an orthonormal set <span class="math inline">\(\{\ensuremath{\left|{v'_1}\right\rangle}, \ensuremath{\left|{v'_2}\right\rangle}, \dots, \ensuremath{\left|{v'_N}\right\rangle}\}\)</span>. Form the unitary matrix <span class="math inline">\(V\)</span> with columns as <span class="math inline">\(\ensuremath{\left|{v'_1}\right\rangle}, \ensuremath{\left|{v'_2}\right\rangle}, \dots, \ensuremath{\left|{v'_N}\right\rangle}\)</span>. Calculate the singular values <span class="math inline">\(\sigma_i = \sqrt{\lambda_i}\)</span> for <span class="math inline">\(i = 1, 2, \dots, N\)</span>. Construct the <span class="math inline">\(M \times N\)</span> diagonal matrix <span class="math inline">\(\Sigma\)</span> with singular values <span class="math inline">\(\sigma_1, \sigma_2, \dots, \sigma_p\)</span> (where <span class="math inline">\(p = \min(M, N)\)</span>) on the diagonal, in descending order, and zeros elsewhere. For each non-zero singular value <span class="math inline">\(\sigma_i\)</span>, compute the left singular vector <span class="math inline">\(\ensuremath{\left|{u_i}\right\rangle} = \frac{1}{\sigma_i} A \ensuremath{\left|{v'_i}\right\rangle}\)</span>. Orthonormally complete the set <span class="math inline">\(\{\ensuremath{\left|{u_i}\right\rangle}\}\)</span> to form a basis for <span class="math inline">\(\mathbb{C}^M\)</span> to get <span class="math inline">\(\{\ensuremath{\left|{u'_1}\right\rangle}, \ensuremath{\left|{u'_2}\right\rangle}, \dots, \ensuremath{\left|{u'_M}\right\rangle}\}\)</span>. Form the unitary matrix <span class="math inline">\(U\)</span> with columns as <span class="math inline">\(\ensuremath{\left|{u'_1}\right\rangle}, \ensuremath{\left|{u'_2}\right\rangle}, \dots, \ensuremath{\left|{u'_M}\right\rangle}\)</span>. <strong>return</strong> <span class="math inline">\(U, \Sigma, V\)</span></p>
-</div>
-<p><strong>Complexity Analysis:</strong> The dominant computational cost comes from eigenvalue decomposition of <span class="math inline">\(A^\dagger A\)</span>, which is typically <span class="math inline">\(O(N^3)\)</span>. Matrix multiplications are of lower order complexity. Thus, the overall complexity is approximately <span class="math inline">\(O(\max(M, N)^3)\)</span>.</p>
+<p>Compute the matrix <span class="math inline">\(B = A^\dagger A\)</span> Find the eigenvalues <span class="math inline">\(\lambda_1, \lambda_2, \dots, \lambda_N\)</span> and eigenvectors <span class="math inline">\(\ensuremath{\left|{v_1}\right\rangle}, \ensuremath{\left|{v_2}\right\rangle}, \dots, \ensuremath{\left|{v_N}\right\rangle}\)</span> of <span class="math inline">\(B\)</span> Sort the eigenvalues in descending order: <span class="math inline">\(\lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_N \geq 0\)</span> Rearrange the eigenvectors to correspond to the sorted eigenvalues Calculate the singular values <span class="math inline">\(\sigma_i = \sqrt{\lambda_i}\)</span> for <span class="math inline">\(i = 1, 2, \dots, N\)</span> Form the unitary matrix <span class="math inline">\(V\)</span> with columns as the eigenvectors <span class="math inline">\(\ensuremath{\left|{v_1}\right\rangle}, \ensuremath{\left|{v_2}\right\rangle}, \dots, \ensuremath{\left|{v_N}\right\rangle}\)</span> Construct the <span class="math inline">\(M \times N\)</span> diagonal matrix <span class="math inline">\(\Sigma\)</span> with singular values <span class="math inline">\(\sigma_1, \sigma_2, \dots, \sigma_{\min(M,N)}\)</span> on the diagonal For each non-zero singular value <span class="math inline">\(\sigma_i\)</span>, compute the left singular vector <span class="math inline">\(\ensuremath{\left|{u_i}\right\rangle} = \frac{1}{\sigma_i} A \ensuremath{\left|{v_i}\right\rangle}\)</span> Orthonormally complete the set <span class="math inline">\(\{\ensuremath{\left|{u_i}\right\rangle}\}\)</span> if necessary to form a basis for <span class="math inline">\(\mathbb{C}^M\)</span> Form the unitary matrix <span class="math inline">\(U\)</span> with columns as the vectors <span class="math inline">\(\ensuremath{\left|{u_1}\right\rangle}, \ensuremath{\left|{u_2}\right\rangle}, \dots, \ensuremath{\left|{u_M}\right\rangle}\)</span> <strong>return</strong> <span class="math inline">\(U, \Sigma, V\)</span></p>
 </div>
 </div>
+</div>
+<p>The complexity of computing the SVD is dominated by the eigenvalue decomposition of <span class="math inline">\(A^\dagger A\)</span>, which is typically <span class="math inline">\(O(N^3)\)</span> for an <span class="math inline">\(N \times N\)</span> matrix. The algorithm above is conceptual; in practice, more efficient and numerically stable algorithms such as QR iteration or divide-and-conquer strategies are used.</p>
 </section>
-<section id="applications-of-svd" class="level4">
-<h4 class="anchored" data-anchor-id="applications-of-svd">Applications of SVD</h4>
-<p>SVD is an incredibly versatile tool with applications in numerous fields:</p>
+<section id="low-rank-approximation-and-dimensionality-reduction" class="level3">
+<h3 class="anchored" data-anchor-id="low-rank-approximation-and-dimensionality-reduction">Low-Rank Approximation and Dimensionality Reduction</h3>
+<p>One of the most powerful applications of SVD is in low-rank approximation and dimensionality reduction. If we truncate the SVD to keep only the first <span class="math inline">\(k &lt; p = \min(M,N)\)</span> singular values and vectors, we get an approximation: <span class="math display">\[\begin{aligned}A_k = \sum_{i=1}^k \sigma_i \ensuremath{\left|{u_i}\right\rangle}\ensuremath{\left\langle{v_i}\right|} = U_k \Sigma_k V_k^\dagger\end{aligned}\]</span> where <span class="math inline">\(U_k\)</span> consists of the first <span class="math inline">\(k\)</span> columns of <span class="math inline">\(U\)</span>, <span class="math inline">\(\Sigma_k\)</span> is a <span class="math inline">\(k \times k\)</span> diagonal matrix with the top <span class="math inline">\(k\)</span> singular values, and <span class="math inline">\(V_k\)</span> consists of the first <span class="math inline">\(k\)</span> columns of <span class="math inline">\(V\)</span>.</p>
+<div class="theorem">
+<p><strong>Theorem 5</strong> (Eckart-Young-Mirsky Theorem). <em>The matrix <span class="math inline">\(A_k\)</span> obtained by truncating the SVD to the <span class="math inline">\(k\)</span> largest singular values is the best rank-<span class="math inline">\(k\)</span> approximation to <span class="math inline">\(A\)</span> in both the Frobenius norm and the spectral norm: <span class="math display">\[\begin{aligned}A_k = \arg\min_{rank(B) \leq k} \|A - B\|_F = \arg\min_{rank(B) \leq k} \|A - B\|_2\end{aligned}\]</span></em></p>
+</div>
+<p>This optimal approximation property makes SVD extremely valuable for dimensionality reduction, data compression, noise filtering, and feature extraction.</p>
+<figure class="figure">
+<figcaption>
+Low-rank approximation using truncated SVD
+</figcaption>
+</figure>
+</section>
+<section id="applications-of-svd-in-quantum-information-theory" class="level3">
+<h3 class="anchored" data-anchor-id="applications-of-svd-in-quantum-information-theory">Applications of SVD in Quantum Information Theory</h3>
+<p>SVD has numerous applications in quantum information theory and quantum computing:</p>
 <ul>
-<li><p><strong>Dimensionality Reduction and Low-Rank Approximation:</strong> By keeping only the first <span class="math inline">\(k\)</span> largest singular values and corresponding singular vectors, we can obtain a rank-<span class="math inline">\(k\)</span> approximation <span class="math inline">\(A_k = U_k \Sigma_k V_k^\dagger\)</span> of the original matrix <span class="math inline">\(A\)</span>, where <span class="math inline">\(U_k\)</span> consists of the first <span class="math inline">\(k\)</span> columns of <span class="math inline">\(U\)</span>, <span class="math inline">\(\Sigma_k\)</span> is a <span class="math inline">\(k \times k\)</span> diagonal matrix with the top <span class="math inline">\(k\)</span> singular values, and <span class="math inline">\(V_k\)</span> consists of the first <span class="math inline">\(k\)</span> columns of <span class="math inline">\(V\)</span>. This low-rank approximation is optimal in the Frobenius norm and is widely used in data compression, feature extraction, and Principal Component Analysis (PCA).</p></li>
-<li><p><strong>Noise Reduction and Signal Processing:</strong> In signal processing, SVD can be used to separate signal from noise. If the signal is dominant and low-rank, it will be captured by the larger singular values, while noise tends to be distributed across all singular values. By truncating the SVD to keep only the significant singular values, we can filter out noise and enhance the signal.</p></li>
-<li><p><strong>Quantum Entanglement Detection and Schmidt Decomposition:</strong> In quantum information theory, SVD is directly related to the Schmidt decomposition of bipartite quantum states. For a bipartite state <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle} \in H_A \otimes H_B\)</span>, SVD allows us to write it as <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle} = \sum_{i} \sigma_i \ensuremath{\left|{u_i}\right\rangle} \otimes \ensuremath{\left|{v_i}\right\rangle}\)</span>, where <span class="math inline">\(\{\ensuremath{\left|{u_i}\right\rangle}\}\)</span> and <span class="math inline">\(\{\ensuremath{\left|{v_i}\right\rangle}\}\)</span> are orthonormal bases for <span class="math inline">\(H_A\)</span> and <span class="math inline">\(H_B\)</span>, respectively, and <span class="math inline">\(\sigma_i\)</span> are the Schmidt coefficients (singular values). The number of non-zero Schmidt coefficients is the Schmidt rank, which is a measure of entanglement. If the Schmidt rank is greater than 1, the state is entangled. SVD provides a direct method to detect and quantify entanglement in pure bipartite quantum states.</p></li>
-<li><p><strong>Recommender Systems and Collaborative Filtering:</strong> SVD is used in recommender systems to predict user preferences. The user-item interaction matrix can be decomposed using SVD to find latent features, which are then used to make recommendations.</p></li>
-<li><p><strong>Image Compression:</strong> SVD can be used for image compression by approximating an image matrix with a lower-rank matrix obtained from SVD truncation, significantly reducing the storage space while maintaining acceptable image quality.</p></li>
+<li><p><strong>Schmidt Decomposition:</strong> For a pure bipartite quantum state <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle} \in H_A \otimes H_B\)</span>, the Schmidt decomposition is a direct application of SVD to the coefficient matrix of the state. If we write <span class="math display">\[\ensuremath{\left|{\psi}\right\rangle} = \sum_{i,j} c_{ij} \ensuremath{\left|{i}\right\rangle}_A \otimes \ensuremath{\left|{j}\right\rangle}_B\]</span> where <span class="math inline">\(\{\ensuremath{\left|{i}\right\rangle}_A\}\)</span> and <span class="math inline">\(\{\ensuremath{\left|{j}\right\rangle}_B\}\)</span> are orthonormal bases for <span class="math inline">\(H_A\)</span> and <span class="math inline">\(H_B\)</span>, then the SVD of matrix <span class="math inline">\(C = (c_{ij})\)</span> gives us <span class="math display">\[\ensuremath{\left|{\psi}\right\rangle} = \sum_{k=1}^r \sigma_k \ensuremath{\left|{u_k}\right\rangle}_A \otimes \ensuremath{\left|{v_k}\right\rangle}_B\]</span> where <span class="math inline">\(r\)</span> is the Schmidt rank of <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle}\)</span>, <span class="math inline">\(\sigma_k\)</span> are the Schmidt coefficients (singular values), and <span class="math inline">\(\{\ensuremath{\left|{u_k}\right\rangle}_A\}\)</span> and <span class="math inline">\(\{\ensuremath{\left|{v_k}\right\rangle}_B\}\)</span> are orthonormal bases for subsystems <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p></li>
+<li><p><strong>Entanglement Detection:</strong> A pure bipartite state is entangled if and only if it has Schmidt rank greater than 1 (equivalently, if it has more than one non-zero singular value). The degree of entanglement can be quantified by measures derived from the singular values, such as the entanglement entropy <span class="math inline">\(S = -\sum_k \lambda_k \log_2 \lambda_k\)</span> where <span class="math inline">\(\lambda_k = \sigma_k^2\)</span> are the eigenvalues of the reduced density matrix.</p></li>
+<li><p><strong>Quantum Process Tomography:</strong> SVD is used in process tomography to reconstruct quantum operations from experimental data, helping identify the principal components of quantum channels.</p></li>
+<li><p><strong>Quantum Machine Learning:</strong> In quantum machine learning algorithms, SVD is used for dimensionality reduction, feature extraction, and data compression, similar to its role in classical machine learning.</p></li>
+<li><p><strong>Tensor Network Contractions:</strong> SVD is a key component in tensor network methods such as Matrix Product States (MPS) and the Density Matrix Renormalization Group (DMRG), which are widely used for simulating many-body quantum systems.</p></li>
 </ul>
+<div class="example">
+<p><strong>Example 2</strong> (Schmidt Decomposition of an Entangled State). <em>Consider the two-qubit Bell state <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{00}\right\rangle} + \ensuremath{\left|{11}\right\rangle})\)</span>. We can write this as <span class="math display">\[\ensuremath{\left|{\psi}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{0}\right\rangle} \otimes \ensuremath{\left|{0}\right\rangle} + \ensuremath{\left|{1}\right\rangle} \otimes \ensuremath{\left|{1}\right\rangle})\]</span> The coefficient matrix is <span class="math display">\[C = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\]</span> The SVD of <span class="math inline">\(C\)</span> is trivial since it’s already diagonal (up to a constant factor): <span class="math inline">\(C = U \Sigma V^\dagger\)</span> where <span class="math inline">\(U = V = I\)</span> and <span class="math inline">\(\Sigma = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\)</span>.</em></p>
+<p><em>Thus, the Schmidt decomposition of <span class="math inline">\(\ensuremath{\left|{\psi}\right\rangle}\)</span> is <span class="math display">\[\ensuremath{\left|{\psi}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{0}\right\rangle} \otimes \ensuremath{\left|{0}\right\rangle} + \ensuremath{\left|{1}\right\rangle} \otimes \ensuremath{\left|{1}\right\rangle})\]</span> with Schmidt coefficients <span class="math inline">\(\sigma_1 = \sigma_2 = \frac{1}{\sqrt{2}}\)</span>.</em></p>
+<p><em>The fact that there are two non-zero Schmidt coefficients confirms that this is an entangled state, and since the coefficients are equal, it’s maximally entangled.</em></p>
+</div>
 <div class="tcolorbox">
 <div class="proof remark">
-<p><span class="proof-title"><em>Remark</em>. </span><strong>Remark 1</strong> (Summary of Matrix Decompositions). <em>This remark summarizes the key properties and applications of the matrix decompositions discussed in this lecture.</em></p>
+<p><span class="proof-title"><em>Remark</em>. </span><strong>Remark 1</strong> (Summary of Matrix Decompositions). <em>We have examined three fundamental matrix decompositions, each with distinct properties and applications:</em></p>
 <ul>
 <li><p><strong><em>Diagonalization (Spectral Decomposition):</em></strong></p>
 <ul>
-<li><p><em><strong>Form:</strong> <span class="math inline">\(A = R D R^\dagger\)</span>, where <span class="math inline">\(D\)</span> is diagonal, <span class="math inline">\(R\)</span> is unitary.</em></p></li>
-<li><p><em><strong>Applicable to:</strong> Normal matrices (Hermitian, Unitary).</em></p></li>
-<li><p><em><strong>Components:</strong> Eigenvalues (in <span class="math inline">\(D\)</span>), Eigenvectors (columns of <span class="math inline">\(R\)</span>).</em></p></li>
-<li><p><em><strong>Applications:</strong> Solving Schrödinger equation, time evolution, spectral analysis.</em></p></li>
+<li><p><em><strong>Form:</strong> <span class="math inline">\(A = R D R^\dagger\)</span>, where <span class="math inline">\(D\)</span> is diagonal, <span class="math inline">\(R\)</span> is unitary</em></p></li>
+<li><p><em><strong>Applicable to:</strong> Normal matrices (including Hermitian, Unitary matrices)</em></p></li>
+<li><p><em><strong>Components:</strong> Eigenvalues (in <span class="math inline">\(D\)</span>), Eigenvectors (columns of <span class="math inline">\(R\)</span>)</em></p></li>
+<li><p><em><strong>Key property:</strong> Expresses an operator in terms of its eigenbasis</em></p></li>
+<li><p><em><strong>Applications:</strong> Solving the Schrödinger equation, computing time evolution, evaluating functions of operators</em></p></li>
 </ul></li>
 <li><p><strong><em>Polar Decomposition:</em></strong></p>
 <ul>
-<li><p><em><strong>Form:</strong> <span class="math inline">\(A = UJ\)</span> (left) or <span class="math inline">\(A = KV\)</span> (right), where <span class="math inline">\(U, V\)</span> are unitary, <span class="math inline">\(J, K\)</span> are positive semi-definite.</em></p></li>
-<li><p><em><strong>Applicable to:</strong> Any square matrix.</em></p></li>
-<li><p><em><strong>Components:</strong> Unitary part (rotation), Positive semi-definite part (magnitude).</em></p></li>
-<li><p><em><strong>Applications:</strong> Analogous to polar form of complex numbers, theoretical tool.</em></p></li>
+<li><p><em><strong>Form:</strong> <span class="math inline">\(A = UJ\)</span> (left) or <span class="math inline">\(A = KV\)</span> (right), where <span class="math inline">\(U, V\)</span> are unitary, <span class="math inline">\(J, K\)</span> are positive semi-definite</em></p></li>
+<li><p><em><strong>Applicable to:</strong> Any square matrix</em></p></li>
+<li><p><em><strong>Components:</strong> Unitary part (rotation), Positive semi-definite part (magnitude)</em></p></li>
+<li><p><em><strong>Key property:</strong> Separates rotational and scaling aspects of a transformation</em></p></li>
+<li><p><em><strong>Applications:</strong> Analogous to polar form of complex numbers, analyzing quantum channels</em></p></li>
 </ul></li>
 <li><p><strong><em>Singular Value Decomposition (SVD):</em></strong></p>
 <ul>
-<li><p><em><strong>Form:</strong> <span class="math inline">\(A = U \Sigma V^\dagger\)</span>, where <span class="math inline">\(U, V\)</span> are unitary, <span class="math inline">\(\Sigma\)</span> is diagonal (rectangular).</em></p></li>
-<li><p><em><strong>Applicable to:</strong> Any <span class="math inline">\(M \times N\)</span> matrix.</em></p></li>
-<li><p><em><strong>Components:</strong> Singular values (in <span class="math inline">\(\Sigma\)</span>), Left singular vectors (columns of <span class="math inline">\(U\)</span>), Right singular vectors (columns of <span class="math inline">\(V\)</span>).</em></p></li>
-<li><p><em><strong>Applications:</strong> Dimensionality reduction, noise reduction, entanglement detection, recommender systems, image compression.</em></p></li>
+<li><p><em><strong>Form:</strong> <span class="math inline">\(A = U \Sigma V^\dagger\)</span>, where <span class="math inline">\(U, V\)</span> are unitary, <span class="math inline">\(\Sigma\)</span> is diagonal with non-negative entries</em></p></li>
+<li><p><em><strong>Applicable to:</strong> Any matrix (square or rectangular)</em></p></li>
+<li><p><em><strong>Components:</strong> Singular values (in <span class="math inline">\(\Sigma\)</span>), Left singular vectors (columns of <span class="math inline">\(U\)</span>), Right singular vectors (columns of <span class="math inline">\(V\)</span>)</em></p></li>
+<li><p><em><strong>Key property:</strong> Provides optimal low-rank approximations</em></p></li>
+<li><p><em><strong>Applications:</strong> Dimensionality reduction, Schmidt decomposition of quantum states, entanglement detection, quantum process tomography</em></p></li>
 </ul></li>
 </ul>
+<p><em>These decompositions offer complementary perspectives on linear transformations and enable a deeper understanding of the structure and properties of operators, particularly in quantum mechanics and quantum information theory.</em></p>
 </div>
 </div>
-</section>
 </section>
 </section>
 </section>
@@ -1279,352 +1403,608 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>Matrix decomposition is a fundamental concept in linear algebra and</span>
 <span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>numerical analysis, involving the factorization of a matrix into a</span>
 <span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>product of matrices with specific structures and properties. These</span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>decompositions are not merely mathematical exercises; they are powerful</span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>tools that simplify matrix operations, reveal underlying structures, and</span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>are essential for solving various problems in science and engineering,</span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>including quantum mechanics and quantum computing. Decomposing a matrix</span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>can simplify computations, such as solving linear systems, computing</span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>determinants and inverses, and analyzing eigenvalues and eigenvectors.</span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>In quantum mechanics, matrix decompositions are crucial for</span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>understanding the structure of quantum states, analyzing quantum</span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>operations, and developing quantum algorithms.</span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diagonalization and Spectral Decomposition</span></span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>Diagonalization is a specific type of matrix decomposition that</span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>transforms a square matrix into a diagonal form. It is particularly</span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>relevant for normal matrices, which include Hermitian (self-adjoint) and</span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>unitary matrices---types of matrices frequently encountered in quantum</span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>mechanics representing observables and quantum operations, respectively.</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>decompositions reveal the intrinsic geometric and algebraic</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>characteristics of linear transformations, providing powerful tools for</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>theoretical analysis and practical computations in quantum mechanics and</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>quantum computing.</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>The study of matrix decompositions offers multiple advantages:</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Computational efficiency:** Matrix decompositions often simplify</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>    complex calculations such as solving linear systems, computing</span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>    determinants, finding inverses, and determining eigenvalues.</span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Geometric interpretation:** They provide insights into the</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>    geometric actions of matrices (rotations, reflections, scaling).</span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Dimensional reduction:** Some decompositions allow for</span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>    approximation by lower-dimensional representations, preserving the</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>    most significant features of the data.</span>
 <span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>::: theorem</span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>**Theorem 2** (Spectral Theorem for Normal Matrices). *For any normal</span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>matrix $A$ of size $n \times n$, there exists a unitary matrix $R$ of</span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>size $n \times n$ and a diagonal matrix $D$ of size $n \times n$ such</span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>that $$R^\dagger A R = D,$$ where $D$ is a diagonal matrix whose</span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>diagonal entries are the eigenvalues of $A$. Equivalently, this</span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>decomposition can be written as $$A = R D R^\dagger.$$ This is known as</span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>the spectral decomposition or eigendecomposition of $A$. The columns of</span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>$R$ are the eigenvectors of $A$, and the diagonal matrix $D$ contains</span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>the corresponding eigenvalues.*</span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>For Hermitian matrices, the eigenvalues in $D$ are real, and for unitary</span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>matrices, the eigenvalues have absolute value 1. For a general normal</span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>matrix, the eigenvalues can be complex.</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Analysis of quantum systems:** In quantum mechanics,</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>    decompositions help analyze states, operations, and especially</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>    entanglement properties.</span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>In this section, we will explore three important matrix decompositions:</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Diagonalization and Spectral Decomposition:** Representing an</span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>    operator in terms of its eigenvalues and eigenvectors</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Polar Decomposition:** Factoring a matrix into a product of a</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>    unitary operator and a positive semi-definite operator</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Singular Value Decomposition (SVD):** Generalizing diagonalization</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>    to arbitrary matrices, with powerful applications in entanglement</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>    detection</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diagonalization and Spectral Decomposition</span></span>
 <span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Applications in Quantum Mechanics</span></span>
-<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>In quantum mechanics, diagonalization is intrinsically linked to finding</span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>the energy spectrum and eigenstates of a system. If $A$ represents a</span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>Hamiltonian operator $H$, the eigenvalues in $D$ correspond to the</span>
-<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>energy levels of the system, and the columns of $R$ are the</span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>corresponding energy eigenstates. The spectral decomposition is used to:</span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Solve the time-independent Schrödinger equation:** Finding the</span>
-<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>    eigenvalues and eigenvectors of the Hamiltonian directly gives the</span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>    stationary states and their energies.</span>
-<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Calculate time evolution:** The time evolution operator</span>
-<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>    $U(t) = e^{-iHt/\hbar}$ can be easily computed using the spectral</span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>    decomposition of $H$. If $H = R D R^\dagger$, then</span>
-<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>    $U(t) = R e^{-iDt/\hbar} R^\dagger$, where $e^{-iDt/\hbar}$ is</span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>    easily computed by exponentiating the diagonal elements of $D$.</span>
-<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Analyze quantum observables:** For any observable represented by a</span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>    Hermitian operator, its spectral decomposition provides the possible</span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>    outcomes of a measurement (eigenvalues) and the corresponding states</span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>    (eigenvectors).</span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a><span class="fu">## Polar Decomposition</span></span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>Polar decomposition provides a way to express any linear operator in</span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>terms of a product of a unitary operator and a positive semi-definite</span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>operator. This decomposition is analogous to the polar form of complex</span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>numbers, $z = re^{i\theta}$, where $r = |z| \ge 0$ is a non-negative</span>
-<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>real number and $e^{i\theta}$ is a complex number on the unit circle</span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>(unitary in 1D). In matrix terms, the unitary part represents a rotation</span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>(or change of basis), and the positive semi-definite part represents a</span>
-<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>scaling or magnitude.</span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a><span class="fu">### Positive Semi-Definite Operators</span></span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>Before discussing polar decomposition, we formally define positive</span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>semi-definite operators.</span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>::: definition</span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>**Definition 3** (Positive Semi-Definite Operator). *A Hermitian</span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>operator $J$ on a Hilbert space $H$ is called positive semi-definite (or</span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>positive for short) if for all vectors</span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{\psi}\right\rangle} \in H$,</span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>$$\ensuremath{\left\langle{\psi}\middle|{J\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} \ge 0.$$</span>
-<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>If, in addition,</span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left\langle{\psi}\middle|{J\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} &gt; 0$</span>
-<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>for all non-zero vectors</span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{\psi}\right\rangle} \neq 0$, then $J$ is called</span>
-<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>positive definite.*</span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>For any linear operator $A$, the operator $A^\dagger A$ is always</span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>positive semi-definite. This is because for any vector</span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{\psi}\right\rangle}$,</span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>$$\ensuremath{\left\langle{\psi}\middle|{A^\dagger A \ensuremath{\left|{\psi}\right\rangle}}\right\rangle} = \ensuremath{\left\langle{A\ensuremath{\left|{\psi}\right\rangle}}\middle|{A\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} = \|A\ensuremath{\left|{\psi}\right\rangle}\|^2 \ge 0,$$</span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>where $\|A\ensuremath{\left|{\psi}\right\rangle}\|$ is the norm of the</span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>vector $A\ensuremath{\left|{\psi}\right\rangle}$, which is always</span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>non-negative.</span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a><span class="fu">### Polar Decomposition Theorem</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>Diagonalization is a specific type of matrix decomposition that</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>transforms a square matrix into a diagonal form. It is particularly</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>relevant for normal matrices (matrices that commute with their adjoints,</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>$AA^\dagger = A^\dagger A$), which include Hermitian (self-adjoint) and</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>unitary matrices---types frequently encountered in quantum mechanics.</span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>::: theorem</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>**Theorem 2** (Spectral Theorem for Normal Matrices). *For any normal</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>matrix $A$ of size $n \times n$, there exists a unitary matrix $R$ of</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>size $n \times n$ and a diagonal matrix $D$ of size $n \times n$ such</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>that $$R^\dagger A R = D,$$ where $D$ is a diagonal matrix whose</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>diagonal entries are the eigenvalues of $A$. Equivalently, this</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>decomposition can be written as $$A = R D R^\dagger.$$ This is known as</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>the spectral decomposition or eigendecomposition of $A$. The columns of</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>$R$ are the eigenvectors of $A$, and the diagonal matrix $D$ contains</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>the corresponding eigenvalues.*</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>If we explicitly write out the spectral decomposition, we get:</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>$$A = \sum_{i} \lambda_i \ensuremath{\left|{d_i}\middle\rangle\middle\langle{d_i}\right|}$$</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>where $\lambda_i$ are the eigenvalues and</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{d_i}\right\rangle}$ are the corresponding</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>eigenvectors (columns of $R$). Each term</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{d_i}\middle\rangle\middle\langle{d_i}\right|}$</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>represents a projection operator onto the eigenspace corresponding to</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>$\lambda_i$.</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>This form is particularly illuminating in quantum mechanics, as it</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>expresses the operator as a sum of projection operators weighted by the</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>eigenvalues. For a Hermitian operator representing an observable, these</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>eigenvalues correspond to possible measurement outcomes, and the</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>projectors indicate the quantum states that yield those outcomes.</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>&lt;figure&gt;</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>&lt;figcaption&gt;Spectral decomposition of a normal matrix &lt;span</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>class="math inline"&gt;<span class="sc">\(</span>A<span class="sc">\)</span>&lt;/span&gt;&lt;/figcaption&gt;</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>&lt;/figure&gt;</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a><span class="fu">### Geometric Interpretation</span></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>The spectral decomposition has a clear geometric interpretation:</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>$R$ represents a change of basis to the eigenvector basis</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>$D$ represents a stretching or scaling along the eigenvector</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>    directions</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>$R^\dagger$ represents a change back to the original basis</span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>Therefore, any normal operator can be understood as a rotation to a</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>special basis (the eigenbasis), followed by stretching along the</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>principal axes, and then rotating back to the original basis.</span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="fu">### Applications in Quantum Mechanics</span></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>In quantum mechanics, diagonalization is intrinsically linked to finding</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>the energy spectrum and eigenstates of a system. If $A$ represents a</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>Hamiltonian operator $H$, the eigenvalues in $D$ correspond to the</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>energy levels of the system, and the columns of $R$ are the</span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>corresponding energy eigenstates. The spectral decomposition is used to:</span>
 <span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>::: theorem</span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>**Theorem 3** (Polar Decomposition Theorem). *Let $A$ be a linear</span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>operator on a finite-dimensional Hilbert space. Then there exists a</span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>unitary operator $U$ and a positive semi-definite operator $J$ such that</span>
-<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>$$A = UJ.$$ This is called the left polar decomposition. Similarly,</span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>there exists a positive semi-definite operator $K$ and a unitary</span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>operator $V$ such that $$A = KV.$$ This is called the right polar</span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>decomposition. Furthermore, the positive semi-definite operators are</span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>uniquely determined as $J = \sqrt{A^\dagger A}$ and</span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>$K = \sqrt{A A^\dagger}$. If $A$ is invertible, then the unitary</span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>operators $U$ and $V$ are also unique.*</span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Solve the time-independent Schrödinger equation:** Finding the</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>    eigenvalues and eigenvectors of the Hamiltonian directly gives the</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>    stationary states and their energies.</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Calculate time evolution:** The time evolution operator</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>    $U(t) = e^{-iHt/\hbar}$ can be easily computed using the spectral</span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>    decomposition of $H$. If $H = R D R^\dagger$, then</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>    $U(t) = R e^{-iDt/\hbar} R^\dagger$, where $e^{-iDt/\hbar}$ is</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>    easily computed by exponentiating the diagonal elements of $D$.</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Analyze quantum observables:** For any observable represented by a</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>    Hermitian operator, its spectral decomposition provides the possible</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>    outcomes of a measurement (eigenvalues) and the corresponding states</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>    (eigenvectors).</span>
 <span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>The positive semi-definite operator $J = \sqrt{A^\dagger A}$ is often</span>
-<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>referred to as the magnitude part, and $U$ is the unitary \"phase\"</span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>part. Similarly, for the right polar decomposition,</span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>$K = \sqrt{A A^\dagger}$ is the magnitude part, and $V$ is the unitary</span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>phase part.</span>
-<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Computation of Polar Decomposition</span></span>
-<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>To compute the polar decomposition $A = UJ$ (left polar decomposition):</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Function evaluation:** As shown earlier in our discussion of</span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>    functions of operators, the spectral decomposition allows us to</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>    easily evaluate functions of operators:</span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>    $f(A) = \sum_i f(\lambda_i)\ensuremath{\left|{d_i}\middle\rangle\middle\langle{d_i}\right|}$.</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>::: example</span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>**Example 1**. *Consider the Pauli-X matrix</span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>$\sigma_X = \begin{pmatrix} 0 &amp; 1 <span class="sc">\\</span> 1 &amp; 0 \end{pmatrix}$ that we</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>analyzed earlier when discussing functions of operators.*</span>
 <span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Calculate $A^\dagger A$.</span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Compute $J = \sqrt{A^\dagger A}$. This can be done using the</span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>    spectral decomposition of $A^\dagger A = R D R^\dagger$, where $D$</span>
-<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>    is a diagonal matrix of non-negative eigenvalues. Then</span>
-<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>    $\sqrt{A^\dagger A} = R \sqrt{D} R^\dagger$, where $\sqrt{D}$ is</span>
-<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>    obtained by taking the square root of each diagonal element of $D$.</span>
-<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>If $A$ is invertible, then</span>
-<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>    $U = A J^{-1} = A (\sqrt{A^\dagger A})^{-1}$. If $A$ is not</span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>    invertible, $U$ is not unique, and one way to find a suitable $U$ is</span>
-<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>    to use the singular value decomposition of $A$ (discussed next).</span>
-<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>A similar procedure can be used to find the right polar decomposition</span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>$A = KV$.</span>
-<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a><span class="fu">## Singular Value Decomposition (SVD)</span></span>
-<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>Singular Value Decomposition (SVD) is an exceptionally versatile and</span>
-<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>powerful matrix decomposition technique that generalizes diagonalization</span>
-<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>to non-square matrices and provides valuable insights into the structure</span>
-<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>and properties of linear transformations. Unlike diagonalization, SVD</span>
-<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>applies to any $M \times N$ matrix, regardless of whether it is square</span>
-<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>or normal.</span>
-<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="fu">### Singular Value Decomposition Theorem</span></span>
-<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>::: theorem</span>
-<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>**Theorem 4** (Singular Value Decomposition (SVD) Theorem). *For any</span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>$M \times N$ matrix $A$, there exist:*</span>
-<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*A unitary matrix $U$ of size $M \times M$.*</span>
-<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*A diagonal matrix $\Sigma$ of size $M \times N$ with non-negative</span>
-<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>    real numbers on the diagonal, called singular values.*</span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*A unitary matrix $V$ of size $N \times N$.*</span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>*such that $$A = U \Sigma V^\dagger.$$ The diagonal entries</span>
-<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>$\sigma_i = \Sigma_{ii}$ for $i = 1, 2, \dots, p = \min(M, N)$ are the</span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>singular values of $A$, and are typically arranged in descending order:</span>
-<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>$\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_p \ge 0$. The columns of $U$</span>
-<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>are called left singular vectors, and the columns of $V$ are called</span>
-<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>right singular vectors.*</span>
-<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>The singular values $\sigma_i$ are the square roots of the non-zero</span>
-<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>eigenvalues of both $A^\dagger A$ (which is $N \times N$) and</span>
-<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>$A A^\dagger$ (which is $M \times M$). The right singular vectors</span>
-<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>(columns of $V$) are the eigenvectors of $A^\dagger A$, and the left</span>
-<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>singular vectors(columns of $U$) are the eigenvectors of $A A^\dagger$.</span>
-<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Algorithm for Computing SVD</span></span>
-<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>::::: tcolorbox</span>
-<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>:::: algorithm</span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>**Input:** An $M \times N$ matrix $A$\</span>
-<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>**Output:** Unitary matrices $U$, $V$ and diagonal matrix $\Sigma$ such</span>
-<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a>that $A = U \Sigma V^\dagger$</span>
-<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a>::: algorithmic</span>
-<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>Compute the matrix $B = A^\dagger A$. Find the eigenvalues</span>
-<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>$\lambda_1, \lambda_2, \dots, \lambda_N$ and eigenvectors</span>
-<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{v_1}\right\rangle}, \ensuremath{\left|{v_2}\right\rangle}, \dots, \ensuremath{\left|{v_N}\right\rangle}$</span>
-<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>of $B$. Orthonormalize the eigenvectors to obtain an orthonormal set</span>
-<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a>$<span class="sc">\{</span>\ensuremath{\left|{v'_1}\right\rangle}, \ensuremath{\left|{v'_2}\right\rangle}, \dots, \ensuremath{\left|{v'_N}\right\rangle}<span class="sc">\}</span>$.</span>
-<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>Form the unitary matrix $V$ with columns as</span>
-<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{v'_1}\right\rangle}, \ensuremath{\left|{v'_2}\right\rangle}, \dots, \ensuremath{\left|{v'_N}\right\rangle}$.</span>
-<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>Calculate the singular values $\sigma_i = \sqrt{\lambda_i}$ for</span>
-<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>$i = 1, 2, \dots, N$. Construct the $M \times N$ diagonal matrix</span>
-<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>$\Sigma$ with singular values $\sigma_1, \sigma_2, \dots, \sigma_p$</span>
-<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>(where $p = \min(M, N)$) on the diagonal, in descending order, and zeros</span>
-<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>elsewhere. For each non-zero singular value $\sigma_i$, compute the left</span>
-<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>singular vector</span>
-<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{u_i}\right\rangle} = \frac{1}{\sigma_i} A \ensuremath{\left|{v'_i}\right\rangle}$.</span>
-<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>Orthonormally complete the set</span>
-<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>$<span class="sc">\{</span>\ensuremath{\left|{u_i}\right\rangle}<span class="sc">\}</span>$ to form a basis for</span>
-<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>$\mathbb{C}^M$ to get</span>
-<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a>$<span class="sc">\{</span>\ensuremath{\left|{u'_1}\right\rangle}, \ensuremath{\left|{u'_2}\right\rangle}, \dots, \ensuremath{\left|{u'_M}\right\rangle}<span class="sc">\}</span>$.</span>
-<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>Form the unitary matrix $U$ with columns as</span>
-<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{u'_1}\right\rangle}, \ensuremath{\left|{u'_2}\right\rangle}, \dots, \ensuremath{\left|{u'_M}\right\rangle}$.</span>
-<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>**return** $U, \Sigma, V$</span>
-<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>**Complexity Analysis:** The dominant computational cost comes from</span>
-<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>eigenvalue decomposition of $A^\dagger A$, which is typically $O(N^3)$.</span>
-<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>Matrix multiplications are of lower order complexity. Thus, the overall</span>
-<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>complexity is approximately $O(\max(M, N)^3)$.</span>
-<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>:::::</span>
-<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Applications of SVD</span></span>
-<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>SVD is an incredibly versatile tool with applications in numerous</span>
-<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>fields:</span>
-<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Dimensionality Reduction and Low-Rank Approximation:** By keeping</span>
-<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>    only the first $k$ largest singular values and corresponding</span>
-<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>    singular vectors, we can obtain a rank-$k$ approximation</span>
-<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>    $A_k = U_k \Sigma_k V_k^\dagger$ of the original matrix $A$, where</span>
-<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>    $U_k$ consists of the first $k$ columns of $U$, $\Sigma_k$ is a</span>
-<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>    $k \times k$ diagonal matrix with the top $k$ singular values, and</span>
-<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>    $V_k$ consists of the first $k$ columns of $V$. This low-rank</span>
-<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>    approximation is optimal in the Frobenius norm and is widely used in</span>
-<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>    data compression, feature extraction, and Principal Component</span>
-<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a>    Analysis (PCA).</span>
-<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Noise Reduction and Signal Processing:** In signal processing, SVD</span>
-<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>    can be used to separate signal from noise. If the signal is dominant</span>
-<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>    and low-rank, it will be captured by the larger singular values,</span>
-<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>    while noise tends to be distributed across all singular values. By</span>
-<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>    truncating the SVD to keep only the significant singular values, we</span>
-<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>    can filter out noise and enhance the signal.</span>
-<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Quantum Entanglement Detection and Schmidt Decomposition:** In</span>
-<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>    quantum information theory, SVD is directly related to the Schmidt</span>
-<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>    decomposition of bipartite quantum states. For a bipartite state</span>
-<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>    $\ensuremath{\left|{\psi}\right\rangle} \in H_A \otimes H_B$, SVD</span>
-<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>    allows us to write it as</span>
-<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>    $\ensuremath{\left|{\psi}\right\rangle} = \sum_{i} \sigma_i \ensuremath{\left|{u_i}\right\rangle} \otimes \ensuremath{\left|{v_i}\right\rangle}$,</span>
-<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>    where $<span class="sc">\{</span>\ensuremath{\left|{u_i}\right\rangle}<span class="sc">\}</span>$ and</span>
-<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>    $<span class="sc">\{</span>\ensuremath{\left|{v_i}\right\rangle}<span class="sc">\}</span>$ are orthonormal bases</span>
-<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>    for $H_A$ and $H_B$, respectively, and $\sigma_i$ are the Schmidt</span>
-<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>    coefficients (singular values). The number of non-zero Schmidt</span>
-<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>    coefficients is the Schmidt rank, which is a measure of</span>
-<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a>    entanglement. If the Schmidt rank is greater than 1, the state is</span>
-<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a>    entangled. SVD provides a direct method to detect and quantify</span>
-<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a>    entanglement in pure bipartite quantum states.</span>
-<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Recommender Systems and Collaborative Filtering:** SVD is used in</span>
-<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a>    recommender systems to predict user preferences. The user-item</span>
-<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>    interaction matrix can be decomposed using SVD to find latent</span>
-<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a>    features, which are then used to make recommendations.</span>
-<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Image Compression:** SVD can be used for image compression by</span>
-<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a>    approximating an image matrix with a lower-rank matrix obtained from</span>
-<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a>    SVD truncation, significantly reducing the storage space while</span>
-<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a>    maintaining acceptable image quality.</span>
-<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
-<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>::: remark</span>
-<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>**Remark 1** (Summary of Matrix Decompositions). *This remark summarizes</span>
-<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>the key properties and applications of the matrix decompositions</span>
-<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>discussed in this lecture.*</span>
-<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>***Diagonalization (Spectral Decomposition):***</span>
-<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Form:** $A = R D R^\dagger$, where $D$ is diagonal, $R$ is</span>
-<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a>        unitary.*</span>
-<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applicable to:** Normal matrices (Hermitian, Unitary).*</span>
-<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Components:** Eigenvalues (in $D$), Eigenvectors (columns of</span>
-<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a>        $R$).*</span>
-<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applications:** Solving Schrödinger equation, time evolution,</span>
-<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>        spectral analysis.*</span>
-<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>***Polar Decomposition:***</span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>*We found that its eigenvalues are $\lambda_1 = 1$ and $\lambda_2 = -1$</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>with corresponding eigenvectors</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{+}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{0}\right\rangle} + \ensuremath{\left|{1}\right\rangle})$</span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>and</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{-}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{0}\right\rangle} - \ensuremath{\left|{1}\right\rangle})$.*</span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>*The spectral decomposition of $\sigma_X$ is:</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>$$\sigma_X = 1 \cdot \ensuremath{\left|{+}\middle\rangle\middle\langle{+}\right|} + (-1) \cdot \ensuremath{\left|{-}\middle\rangle\middle\langle{-}\right|}$$*</span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>*This expresses the bit-flip operation as a difference between</span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>projections onto the $\ensuremath{\left|{+}\right\rangle}$ and</span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{-}\right\rangle}$ states, providing insight into its</span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>action in the Hadamard basis.*</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a><span class="fu">## Polar Decomposition</span></span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>Polar decomposition provides a way to express any linear operator in</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>terms of a product of a unitary operator and a positive semi-definite</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>operator. This decomposition is analogous to the polar form of complex</span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>numbers, $z = re^{i\theta}$, where $r = |z| \ge 0$ is a non-negative</span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>real number and $e^{i\theta}$ is a complex number on the unit circle</span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>(unitary in 1D). In matrix terms, the unitary part represents a rotation</span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>(or change of basis), and the positive semi-definite part represents a</span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>scaling or magnitude.</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a><span class="fu">### Positive Semi-Definite Operators</span></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>Before discussing polar decomposition, we formally define positive</span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>semi-definite operators.</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>::: definition</span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>**Definition 3** (Positive Semi-Definite Operator). *A Hermitian</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>operator $J$ on a Hilbert space $H$ is called positive semi-definite (or</span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>positive for short) if for all vectors</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{\psi}\right\rangle} \in H$,</span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>$$\ensuremath{\left\langle{\psi}\middle|{J\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} \ge 0.$$</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>If, in addition,</span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left\langle{\psi}\middle|{J\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} &gt; 0$</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>for all non-zero vectors</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{\psi}\right\rangle} \neq 0$, then $J$ is called</span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>positive definite.*</span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>For any linear operator $A$, the operator $A^\dagger A$ is always</span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>positive semi-definite. This is because for any vector</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{\psi}\right\rangle}$,</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>$$\ensuremath{\left\langle{\psi}\middle|{A^\dagger A \ensuremath{\left|{\psi}\right\rangle}}\right\rangle} = \ensuremath{\left\langle{A\ensuremath{\left|{\psi}\right\rangle}}\middle|{A\ensuremath{\left|{\psi}\right\rangle}}\right\rangle} = \|A\ensuremath{\left|{\psi}\right\rangle}\|^2 \ge 0,$$</span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>where $\|A\ensuremath{\left|{\psi}\right\rangle}\|$ is the norm of the</span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>vector $A\ensuremath{\left|{\psi}\right\rangle}$, which is always</span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>non-negative. This property is essential for the construction of the</span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>positive semi-definite part in the polar decomposition.</span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a><span class="fu">### Polar Decomposition Theorem</span></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>::: theorem</span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>**Theorem 3** (Polar Decomposition Theorem). *Let $A$ be a linear</span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a>operator on a finite-dimensional Hilbert space. Then there exists a</span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>unitary operator $U$ and a positive semi-definite operator $J$ such that</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a>$$A = UJ.$$ This is called the left polar decomposition. Similarly,</span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>there exists a positive semi-definite operator $K$ and a unitary</span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>operator $V$ such that $$A = KV.$$ This is called the right polar</span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>decomposition. Furthermore, the positive semi-definite operators are</span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>uniquely determined as $J = \sqrt{A^\dagger A}$ and</span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a>$K = \sqrt{A A^\dagger}$. If $A$ is invertible, then the unitary</span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>operators $U$ and $V$ are also unique.*</span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>To understand the polar decomposition more intuitively, let's break down</span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>its components:</span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>&lt;figure&gt;</span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>&lt;figcaption&gt;Geometric interpretation of polar decomposition&lt;/figcaption&gt;</span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>&lt;/figure&gt;</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a><span class="fu">### Proof Sketch for the Polar Decomposition</span></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a>Let's sketch a proof of the left polar decomposition $A = UJ$:</span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Define $J = \sqrt{A^\dagger A}$, which exists because $A^\dagger A$</span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>    is positive semi-definite.</span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>We need to find a unitary operator $U$ such that $A = UJ$. If $J$ is</span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>    invertible, then $U = AJ^{-1}$ would be the candidate.</span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>To prove that this $U$ is indeed unitary, we need to show that</span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>    $U^\dagger U = I$:</span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>    $$\begin{aligned}    U^\dagger U &amp;= (AJ^{-1})^\dagger (AJ^{-1}) <span class="sc">\\</span>    &amp;= (J^{-1})^\dagger A^\dagger A J^{-1} <span class="sc">\\</span>    &amp;= J^{-1} A^\dagger A J^{-1} \quad \text{(since $J$ is Hermitian)} <span class="sc">\\</span>    &amp;= J^{-1} J^2 J^{-1} \quad \text{(since $J^2 = A^\dagger A$)} <span class="sc">\\</span>    &amp;= I    \end{aligned}$$</span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>If $J$ is not invertible, the construction is more complex. One</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>    approach is to:</span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Consider the orthogonal decomposition of the Hilbert space</span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>        $H = \text{Ker}(J) \oplus \text{Im}(J)$ where $\text{Ker}(J)$ is</span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>        the kernel (nullspace) of $J$ and $\text{Im}(J)$ is its image</span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>        (range).</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Note that $\text{Ker}(J) = \text{Ker}(A)$ since</span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>        $J^2 = A^\dagger A$.</span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Define $U$ to act as $AJ^{-1}$ on $\text{Im}(J)$ and as any</span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>        unitary mapping on $\text{Ker}(J)$.</span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a><span class="fu">### Relationship with Eigenbasis</span></span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>To understand the connection between polar decomposition and the</span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>spectral decomposition, let's express $J = \sqrt{A^\dagger A}$ in terms</span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>of the eigenbasis of $A^\dagger A$.</span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>Let</span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a>$A^\dagger A = \sum_j \lambda_j^2 \ensuremath{\left|{j}\middle\rangle\middle\langle{j}\right|}$</span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>where $\lambda_j^2$ are the eigenvalues of $A^\dagger A$ and</span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{j}\right\rangle}$ are the corresponding</span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>eigenvectors. The square root of $A^\dagger A$ is:</span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>$$J = \sqrt{A^\dagger A} = \sum_j \lambda_j \ensuremath{\left|{j}\middle\rangle\middle\langle{j}\right|}$$</span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>For each eigenvector $\ensuremath{\left|{j}\right\rangle}$ with non-zero</span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>eigenvalue, define</span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{\psi_j}\right\rangle} = \frac{1}{\lambda_j}A\ensuremath{\left|{j}\right\rangle}$.</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>We can verify that these vectors form an orthonormal set (for non-zero</span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>$\lambda_j$).</span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a>The unitary operator $U$ can then be constructed as:</span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a>$$U = \sum_j \ensuremath{\left|{\psi_j}\middle\rangle\middle\langle{j}\right|}$$</span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a>extended to a complete unitary operator by defining its action on the</span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a>kernel of $A$.</span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="fu">### Applications of Polar Decomposition</span></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a>Polar decomposition has various applications in quantum mechanics and</span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a>quantum information:</span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Analysis of quantum channels:** Quantum operations can be</span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a>    decomposed into a unitary component and a positive component,</span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a>    helping to distinguish between reversible and irreversible parts of</span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a>    the dynamics.</span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Quantum state preparation:** Determining how to transform one</span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>    state into another by separating the transformation into rotation</span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>    and scaling components.</span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Connection to SVD:** Polar decomposition is closely related to the</span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a>    Singular Value Decomposition (SVD), which we'll explore next,</span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>    providing insights into bipartite quantum systems.</span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Quantum circuit decomposition:** Breaking down complex quantum</span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a>    gates into simpler components for implementation.</span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a><span class="fu">## Singular Value Decomposition (SVD)</span></span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a>Singular Value Decomposition (SVD) is an exceptionally versatile and</span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>powerful matrix decomposition technique that generalizes diagonalization</span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a>to non-square matrices and provides valuable insights into the structure</span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>and properties of linear transformations. Unlike diagonalization, SVD</span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a>applies to any $M \times N$ matrix, regardless of whether it is square</span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>or normal.</span>
 <span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Form:** $A = UJ$ (left) or $A = KV$ (right), where $U, V$ are</span>
-<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>        unitary, $J, K$ are positive semi-definite.*</span>
-<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applicable to:** Any square matrix.*</span>
-<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Components:** Unitary part (rotation), Positive semi-definite</span>
-<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a>        part (magnitude).*</span>
-<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applications:** Analogous to polar form of complex numbers,</span>
-<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a>        theoretical tool.*</span>
-<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>***Singular Value Decomposition (SVD):***</span>
-<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Form:** $A = U \Sigma V^\dagger$, where $U, V$ are unitary,</span>
-<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>        $\Sigma$ is diagonal (rectangular).*</span>
-<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applicable to:** Any $M \times N$ matrix.*</span>
-<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Components:** Singular values (in $\Sigma$), Left singular</span>
-<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>        vectors (columns of $U$), Right singular vectors (columns of</span>
-<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a>        $V$).*</span>
-<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applications:** Dimensionality reduction, noise reduction,</span>
-<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a>        entanglement detection, recommender systems, image compression.*</span>
-<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a><span class="fu">### Singular Value Decomposition Theorem</span></span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a>::: theorem</span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>**Theorem 4** (Singular Value Decomposition (SVD) Theorem). *For any</span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>$M \times N$ matrix $A$, there exist:*</span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*A unitary matrix $U$ of size $M \times M$.*</span>
+<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*A diagonal matrix $\Sigma$ of size $M \times N$ with non-negative</span>
+<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a>    real numbers on the diagonal, called singular values.*</span>
+<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*A unitary matrix $V$ of size $N \times N$.*</span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>*such that $$A = U \Sigma V^\dagger.$$ The diagonal entries</span>
+<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a>$\sigma_i = \Sigma_{ii}$ for $i = 1, 2, \dots, p = \min(M, N)$ are the</span>
+<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>singular values of $A$, and are typically arranged in descending order:</span>
+<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>$\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_p \ge 0$. The columns of $U$</span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>are called left singular vectors, and the columns of $V$ are called</span>
+<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>right singular vectors.*</span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a>&lt;figure&gt;</span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a>&lt;figcaption&gt;Singular Value Decomposition of an &lt;span</span>
+<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a>class="math inline"&gt;<span class="sc">\(</span>M \times N<span class="sc">\)</span>&lt;/span&gt; matrix&lt;/figcaption&gt;</span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a>&lt;/figure&gt;</span>
 <span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a>This lecture has provided an overview of essential mathematical tools</span>
-<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a>and concepts related to operators and matrix decompositions, which are</span>
-<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a>fundamental in quantum mechanics and quantum computing. We discussed the</span>
-<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a>trace operator and its cyclic properties, functions of operators defined</span>
-<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a>through eigenbasis expansion, and the tensor product for composite</span>
-<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a>systems. Furthermore, we explored matrix decomposition techniques,</span>
-<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a>including diagonalization, polar decomposition, and singular value</span>
-<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a>decomposition (SVD). These tools are crucial for understanding and</span>
-<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a>manipulating quantum systems, analyzing quantum algorithms, and</span>
-<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a>exploring advanced topics in quantum information theory.</span>
-<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a>In the next sessions, we will engage in exercises to solidify these</span>
-<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a>concepts and further explore their applications in quantum mechanics and</span>
-<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a>quantum computing. We will also delve into how singular value</span>
-<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a>decomposition can be applied to detect and quantify entanglement in</span>
-<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a>quantum systems, a key concept in quantum information science.</span>
-<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a>**Follow-up Questions and Topics for Next Lecture:**</span>
-<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How can the trace operator be used to calculate expectation values</span>
-<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a>    in quantum mechanics?</span>
-<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Can we extend the concept of functions of operators to more complex</span>
-<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a>    functions beyond power series?</span>
-<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How does singular value decomposition help in understanding</span>
-<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a>    entanglement in bipartite quantum states?</span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a><span class="fu">### Relationship to Polar Decomposition</span></span>
+<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a>The SVD and polar decomposition are closely related. If</span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a>$A = U \Sigma V^\dagger$ is the SVD of $A$, then:</span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$A = (U V^\dagger)(V \Sigma V^\dagger)$ gives the right polar</span>
+<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a>    decomposition, where $K = V \Sigma V^\dagger = \sqrt{A A^\dagger}$</span>
+<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a>    and the unitary component is $U V^\dagger$.</span>
+<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$A = (U \Sigma U^\dagger)(U V^\dagger)$ gives the left polar</span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a>    decomposition, where $J = U \Sigma U^\dagger = \sqrt{A^\dagger A}$</span>
+<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a>    and the unitary component is $U V^\dagger$.</span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a><span class="fu">### Construction of SVD from Polar Decomposition</span></span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a>Given the polar decomposition $A = UJ$, where $J = \sqrt{A^\dagger A}$,</span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>we can derive the SVD as follows:</span>
+<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Diagonalize $J = R S R^\dagger$, where $S$ is diagonal containing</span>
+<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a>    the singular values, and $R$ is unitary.</span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Define $V = R$ (the right singular vectors).</span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Substitute into the polar decomposition:</span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a>    $A = U R S R^\dagger = (U R) S R^\dagger$.</span>
+<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Define $U' = U R$ (which is unitary as a product of unitaries).</span>
 <span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What are some practical algorithms for computing singular value</span>
-<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a>    decomposition, and what are their computational complexities?</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>The SVD is then $A = U' S V^\dagger$, where $U'$ contains the left</span>
+<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a>    singular vectors.</span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a>This construction highlights why the singular values of $A$ are the</span>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a>square roots of the eigenvalues of $A^\dagger A$ (or equivalently,</span>
+<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a>$A A^\dagger$).</span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a><span class="fu">### Geometric Interpretation of SVD</span></span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a>The SVD provides a powerful geometric interpretation of how a matrix</span>
+<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a>transforms vectors:</span>
+<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>$V^\dagger$ rotates the input space to align with the principal</span>
+<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a>    directions.</span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>$\Sigma$ scales each principal direction by the corresponding</span>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a>    singular value.</span>
+<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>$U$ rotates the scaled vectors to the output orientation.</span>
+<span id="cb1-657"><a href="#cb1-657" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a>This interpretation makes clear that a matrix stretches space along</span>
+<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a>orthogonal directions (the right singular vectors) by amounts equal to</span>
+<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a>the singular values, and then rotates these stretched directions to new</span>
+<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a>orientations (the left singular vectors).</span>
+<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a>&lt;figure&gt;</span>
+<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a>&lt;figcaption&gt;Geometric interpretation of SVD as sequence of</span>
+<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a>transformations&lt;/figcaption&gt;</span>
+<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a>&lt;/figure&gt;</span>
+<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algorithm for Computing SVD</span></span>
+<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a>::::: tcolorbox</span>
+<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a>:::: algorithm</span>
+<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a>**Input:** An $M \times N$ matrix $A$\</span>
+<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a>**Output:** Unitary matrices $U$, $V$ and diagonal matrix $\Sigma$ such</span>
+<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a>that $A = U \Sigma V^\dagger$</span>
+<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a>::: algorithmic</span>
+<span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a>Compute the matrix $B = A^\dagger A$ Find the eigenvalues</span>
+<span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a>$\lambda_1, \lambda_2, \dots, \lambda_N$ and eigenvectors</span>
+<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{v_1}\right\rangle}, \ensuremath{\left|{v_2}\right\rangle}, \dots, \ensuremath{\left|{v_N}\right\rangle}$</span>
+<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a>of $B$ Sort the eigenvalues in descending order:</span>
+<span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a>$\lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_N \geq 0$ Rearrange</span>
+<span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a>the eigenvectors to correspond to the sorted eigenvalues Calculate the</span>
+<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a>singular values $\sigma_i = \sqrt{\lambda_i}$ for $i = 1, 2, \dots, N$</span>
+<span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a>Form the unitary matrix $V$ with columns as the eigenvectors</span>
+<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{v_1}\right\rangle}, \ensuremath{\left|{v_2}\right\rangle}, \dots, \ensuremath{\left|{v_N}\right\rangle}$</span>
+<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a>Construct the $M \times N$ diagonal matrix $\Sigma$ with singular values</span>
+<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a>$\sigma_1, \sigma_2, \dots, \sigma_{\min(M,N)}$ on the diagonal For each</span>
+<span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a>non-zero singular value $\sigma_i$, compute the left singular vector</span>
+<span id="cb1-690"><a href="#cb1-690" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{u_i}\right\rangle} = \frac{1}{\sigma_i} A \ensuremath{\left|{v_i}\right\rangle}$</span>
+<span id="cb1-691"><a href="#cb1-691" aria-hidden="true" tabindex="-1"></a>Orthonormally complete the set</span>
+<span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a>$<span class="sc">\{</span>\ensuremath{\left|{u_i}\right\rangle}<span class="sc">\}</span>$ if necessary to form a basis</span>
+<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a>for $\mathbb{C}^M$ Form the unitary matrix $U$ with columns as the</span>
+<span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a>vectors</span>
+<span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{u_1}\right\rangle}, \ensuremath{\left|{u_2}\right\rangle}, \dots, \ensuremath{\left|{u_M}\right\rangle}$</span>
+<span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a>**return** $U, \Sigma, V$</span>
+<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a>The complexity of computing the SVD is dominated by the eigenvalue</span>
+<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a>decomposition of $A^\dagger A$, which is typically $O(N^3)$ for an</span>
+<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a>$N \times N$ matrix. The algorithm above is conceptual; in practice,</span>
+<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a>more efficient and numerically stable algorithms such as QR iteration or</span>
+<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a>divide-and-conquer strategies are used.</span>
+<span id="cb1-706"><a href="#cb1-706" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a><span class="fu">### Low-Rank Approximation and Dimensionality Reduction</span></span>
+<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a>One of the most powerful applications of SVD is in low-rank</span>
+<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a>approximation and dimensionality reduction. If we truncate the SVD to</span>
+<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a>keep only the first $k &lt; p = \min(M,N)$ singular values and vectors, we</span>
+<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a>get an approximation:</span>
+<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}A_k = \sum_{i=1}^k \sigma_i \ensuremath{\left|{u_i}\right\rangle}\ensuremath{\left\langle{v_i}\right|} = U_k \Sigma_k V_k^\dagger\end{aligned}$$</span>
+<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a>where $U_k$ consists of the first $k$ columns of $U$, $\Sigma_k$ is a</span>
+<span id="cb1-715"><a href="#cb1-715" aria-hidden="true" tabindex="-1"></a>$k \times k$ diagonal matrix with the top $k$ singular values, and $V_k$</span>
+<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a>consists of the first $k$ columns of $V$.</span>
+<span id="cb1-717"><a href="#cb1-717" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a>::: theorem</span>
+<span id="cb1-719"><a href="#cb1-719" aria-hidden="true" tabindex="-1"></a>**Theorem 5** (Eckart-Young-Mirsky Theorem). *The matrix $A_k$ obtained</span>
+<span id="cb1-720"><a href="#cb1-720" aria-hidden="true" tabindex="-1"></a>by truncating the SVD to the $k$ largest singular values is the best</span>
+<span id="cb1-721"><a href="#cb1-721" aria-hidden="true" tabindex="-1"></a>rank-$k$ approximation to $A$ in both the Frobenius norm and the</span>
+<span id="cb1-722"><a href="#cb1-722" aria-hidden="true" tabindex="-1"></a>spectral norm:</span>
+<span id="cb1-723"><a href="#cb1-723" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}A_k = \arg\min_{rank(B) \leq k} \|A - B\|_F = \arg\min_{rank(B) \leq k} \|A - B\|_2\end{aligned}$$*</span>
+<span id="cb1-724"><a href="#cb1-724" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-725"><a href="#cb1-725" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-726"><a href="#cb1-726" aria-hidden="true" tabindex="-1"></a>This optimal approximation property makes SVD extremely valuable for</span>
+<span id="cb1-727"><a href="#cb1-727" aria-hidden="true" tabindex="-1"></a>dimensionality reduction, data compression, noise filtering, and feature</span>
+<span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a>extraction.</span>
+<span id="cb1-729"><a href="#cb1-729" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-730"><a href="#cb1-730" aria-hidden="true" tabindex="-1"></a>&lt;figure&gt;</span>
+<span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a>&lt;figcaption&gt;Low-rank approximation using truncated SVD&lt;/figcaption&gt;</span>
+<span id="cb1-733"><a href="#cb1-733" aria-hidden="true" tabindex="-1"></a>&lt;/figure&gt;</span>
+<span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-735"><a href="#cb1-735" aria-hidden="true" tabindex="-1"></a><span class="fu">### Applications of SVD in Quantum Information Theory</span></span>
+<span id="cb1-736"><a href="#cb1-736" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-737"><a href="#cb1-737" aria-hidden="true" tabindex="-1"></a>SVD has numerous applications in quantum information theory and quantum</span>
+<span id="cb1-738"><a href="#cb1-738" aria-hidden="true" tabindex="-1"></a>computing:</span>
+<span id="cb1-739"><a href="#cb1-739" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-740"><a href="#cb1-740" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Schmidt Decomposition:** For a pure bipartite quantum state</span>
+<span id="cb1-741"><a href="#cb1-741" aria-hidden="true" tabindex="-1"></a>    $\ensuremath{\left|{\psi}\right\rangle} \in H_A \otimes H_B$, the</span>
+<span id="cb1-742"><a href="#cb1-742" aria-hidden="true" tabindex="-1"></a>    Schmidt decomposition is a direct application of SVD to the</span>
+<span id="cb1-743"><a href="#cb1-743" aria-hidden="true" tabindex="-1"></a>    coefficient matrix of the state. If we write</span>
+<span id="cb1-744"><a href="#cb1-744" aria-hidden="true" tabindex="-1"></a>    $$\ensuremath{\left|{\psi}\right\rangle} = \sum_{i,j} c_{ij} \ensuremath{\left|{i}\right\rangle}_A \otimes \ensuremath{\left|{j}\right\rangle}_B$$</span>
+<span id="cb1-745"><a href="#cb1-745" aria-hidden="true" tabindex="-1"></a>    where $<span class="sc">\{</span>\ensuremath{\left|{i}\right\rangle}_A<span class="sc">\}</span>$ and</span>
+<span id="cb1-746"><a href="#cb1-746" aria-hidden="true" tabindex="-1"></a>    $<span class="sc">\{</span>\ensuremath{\left|{j}\right\rangle}_B<span class="sc">\}</span>$ are orthonormal bases</span>
+<span id="cb1-747"><a href="#cb1-747" aria-hidden="true" tabindex="-1"></a>    for $H_A$ and $H_B$, then the SVD of matrix $C = (c_{ij})$ gives us</span>
+<span id="cb1-748"><a href="#cb1-748" aria-hidden="true" tabindex="-1"></a>    $$\ensuremath{\left|{\psi}\right\rangle} = \sum_{k=1}^r \sigma_k \ensuremath{\left|{u_k}\right\rangle}_A \otimes \ensuremath{\left|{v_k}\right\rangle}_B$$</span>
+<span id="cb1-749"><a href="#cb1-749" aria-hidden="true" tabindex="-1"></a>    where $r$ is the Schmidt rank of</span>
+<span id="cb1-750"><a href="#cb1-750" aria-hidden="true" tabindex="-1"></a>    $\ensuremath{\left|{\psi}\right\rangle}$, $\sigma_k$ are the Schmidt</span>
+<span id="cb1-751"><a href="#cb1-751" aria-hidden="true" tabindex="-1"></a>    coefficients (singular values), and</span>
+<span id="cb1-752"><a href="#cb1-752" aria-hidden="true" tabindex="-1"></a>    $<span class="sc">\{</span>\ensuremath{\left|{u_k}\right\rangle}_A<span class="sc">\}</span>$ and</span>
+<span id="cb1-753"><a href="#cb1-753" aria-hidden="true" tabindex="-1"></a>    $<span class="sc">\{</span>\ensuremath{\left|{v_k}\right\rangle}_B<span class="sc">\}</span>$ are orthonormal bases</span>
+<span id="cb1-754"><a href="#cb1-754" aria-hidden="true" tabindex="-1"></a>    for subsystems $A$ and $B$.</span>
+<span id="cb1-755"><a href="#cb1-755" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-756"><a href="#cb1-756" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Entanglement Detection:** A pure bipartite state is entangled if</span>
+<span id="cb1-757"><a href="#cb1-757" aria-hidden="true" tabindex="-1"></a>    and only if it has Schmidt rank greater than 1 (equivalently, if it</span>
+<span id="cb1-758"><a href="#cb1-758" aria-hidden="true" tabindex="-1"></a>    has more than one non-zero singular value). The degree of</span>
+<span id="cb1-759"><a href="#cb1-759" aria-hidden="true" tabindex="-1"></a>    entanglement can be quantified by measures derived from the singular</span>
+<span id="cb1-760"><a href="#cb1-760" aria-hidden="true" tabindex="-1"></a>    values, such as the entanglement entropy</span>
+<span id="cb1-761"><a href="#cb1-761" aria-hidden="true" tabindex="-1"></a>    $S = -\sum_k \lambda_k \log_2 \lambda_k$ where</span>
+<span id="cb1-762"><a href="#cb1-762" aria-hidden="true" tabindex="-1"></a>    $\lambda_k = \sigma_k^2$ are the eigenvalues of the reduced density</span>
+<span id="cb1-763"><a href="#cb1-763" aria-hidden="true" tabindex="-1"></a>    matrix.</span>
+<span id="cb1-764"><a href="#cb1-764" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-765"><a href="#cb1-765" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Quantum Process Tomography:** SVD is used in process tomography to</span>
+<span id="cb1-766"><a href="#cb1-766" aria-hidden="true" tabindex="-1"></a>    reconstruct quantum operations from experimental data, helping</span>
+<span id="cb1-767"><a href="#cb1-767" aria-hidden="true" tabindex="-1"></a>    identify the principal components of quantum channels.</span>
+<span id="cb1-768"><a href="#cb1-768" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-769"><a href="#cb1-769" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Quantum Machine Learning:** In quantum machine learning</span>
+<span id="cb1-770"><a href="#cb1-770" aria-hidden="true" tabindex="-1"></a>    algorithms, SVD is used for dimensionality reduction, feature</span>
+<span id="cb1-771"><a href="#cb1-771" aria-hidden="true" tabindex="-1"></a>    extraction, and data compression, similar to its role in classical</span>
+<span id="cb1-772"><a href="#cb1-772" aria-hidden="true" tabindex="-1"></a>    machine learning.</span>
+<span id="cb1-773"><a href="#cb1-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-774"><a href="#cb1-774" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Tensor Network Contractions:** SVD is a key component in tensor</span>
+<span id="cb1-775"><a href="#cb1-775" aria-hidden="true" tabindex="-1"></a>    network methods such as Matrix Product States (MPS) and the Density</span>
+<span id="cb1-776"><a href="#cb1-776" aria-hidden="true" tabindex="-1"></a>    Matrix Renormalization Group (DMRG), which are widely used for</span>
+<span id="cb1-777"><a href="#cb1-777" aria-hidden="true" tabindex="-1"></a>    simulating many-body quantum systems.</span>
+<span id="cb1-778"><a href="#cb1-778" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-779"><a href="#cb1-779" aria-hidden="true" tabindex="-1"></a>::: example</span>
+<span id="cb1-780"><a href="#cb1-780" aria-hidden="true" tabindex="-1"></a>**Example 2** (Schmidt Decomposition of an Entangled State). *Consider</span>
+<span id="cb1-781"><a href="#cb1-781" aria-hidden="true" tabindex="-1"></a>the two-qubit Bell state</span>
+<span id="cb1-782"><a href="#cb1-782" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{\psi}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{00}\right\rangle} + \ensuremath{\left|{11}\right\rangle})$.</span>
+<span id="cb1-783"><a href="#cb1-783" aria-hidden="true" tabindex="-1"></a>We can write this as</span>
+<span id="cb1-784"><a href="#cb1-784" aria-hidden="true" tabindex="-1"></a>$$\ensuremath{\left|{\psi}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{0}\right\rangle} \otimes \ensuremath{\left|{0}\right\rangle} + \ensuremath{\left|{1}\right\rangle} \otimes \ensuremath{\left|{1}\right\rangle})$$</span>
+<span id="cb1-785"><a href="#cb1-785" aria-hidden="true" tabindex="-1"></a>The coefficient matrix is</span>
+<span id="cb1-786"><a href="#cb1-786" aria-hidden="true" tabindex="-1"></a>$$C = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; 1 \end{pmatrix}$$</span>
+<span id="cb1-787"><a href="#cb1-787" aria-hidden="true" tabindex="-1"></a>The SVD of $C$ is trivial since it's already diagonal (up to a constant</span>
+<span id="cb1-788"><a href="#cb1-788" aria-hidden="true" tabindex="-1"></a>factor): $C = U \Sigma V^\dagger$ where $U = V = I$ and</span>
+<span id="cb1-789"><a href="#cb1-789" aria-hidden="true" tabindex="-1"></a>$\Sigma = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; 1 \end{pmatrix}$.*</span>
+<span id="cb1-790"><a href="#cb1-790" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-791"><a href="#cb1-791" aria-hidden="true" tabindex="-1"></a>*Thus, the Schmidt decomposition of</span>
+<span id="cb1-792"><a href="#cb1-792" aria-hidden="true" tabindex="-1"></a>$\ensuremath{\left|{\psi}\right\rangle}$ is</span>
+<span id="cb1-793"><a href="#cb1-793" aria-hidden="true" tabindex="-1"></a>$$\ensuremath{\left|{\psi}\right\rangle} = \frac{1}{\sqrt{2}}(\ensuremath{\left|{0}\right\rangle} \otimes \ensuremath{\left|{0}\right\rangle} + \ensuremath{\left|{1}\right\rangle} \otimes \ensuremath{\left|{1}\right\rangle})$$</span>
+<span id="cb1-794"><a href="#cb1-794" aria-hidden="true" tabindex="-1"></a>with Schmidt coefficients $\sigma_1 = \sigma_2 = \frac{1}{\sqrt{2}}$.*</span>
+<span id="cb1-795"><a href="#cb1-795" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-796"><a href="#cb1-796" aria-hidden="true" tabindex="-1"></a>*The fact that there are two non-zero Schmidt coefficients confirms that</span>
+<span id="cb1-797"><a href="#cb1-797" aria-hidden="true" tabindex="-1"></a>this is an entangled state, and since the coefficients are equal, it's</span>
+<span id="cb1-798"><a href="#cb1-798" aria-hidden="true" tabindex="-1"></a>maximally entangled.*</span>
+<span id="cb1-799"><a href="#cb1-799" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-800"><a href="#cb1-800" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-801"><a href="#cb1-801" aria-hidden="true" tabindex="-1"></a>:::: tcolorbox</span>
+<span id="cb1-802"><a href="#cb1-802" aria-hidden="true" tabindex="-1"></a>::: remark</span>
+<span id="cb1-803"><a href="#cb1-803" aria-hidden="true" tabindex="-1"></a>**Remark 1** (Summary of Matrix Decompositions). *We have examined three</span>
+<span id="cb1-804"><a href="#cb1-804" aria-hidden="true" tabindex="-1"></a>fundamental matrix decompositions, each with distinct properties and</span>
+<span id="cb1-805"><a href="#cb1-805" aria-hidden="true" tabindex="-1"></a>applications:*</span>
+<span id="cb1-806"><a href="#cb1-806" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-807"><a href="#cb1-807" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>***Diagonalization (Spectral Decomposition):***</span>
+<span id="cb1-808"><a href="#cb1-808" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-809"><a href="#cb1-809" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Form:** $A = R D R^\dagger$, where $D$ is diagonal, $R$ is</span>
+<span id="cb1-810"><a href="#cb1-810" aria-hidden="true" tabindex="-1"></a>        unitary*</span>
+<span id="cb1-811"><a href="#cb1-811" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-812"><a href="#cb1-812" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applicable to:** Normal matrices (including Hermitian,</span>
+<span id="cb1-813"><a href="#cb1-813" aria-hidden="true" tabindex="-1"></a>        Unitary matrices)*</span>
+<span id="cb1-814"><a href="#cb1-814" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-815"><a href="#cb1-815" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Components:** Eigenvalues (in $D$), Eigenvectors (columns of</span>
+<span id="cb1-816"><a href="#cb1-816" aria-hidden="true" tabindex="-1"></a>        $R$)*</span>
+<span id="cb1-817"><a href="#cb1-817" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-818"><a href="#cb1-818" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Key property:** Expresses an operator in terms of its</span>
+<span id="cb1-819"><a href="#cb1-819" aria-hidden="true" tabindex="-1"></a>        eigenbasis*</span>
+<span id="cb1-820"><a href="#cb1-820" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-821"><a href="#cb1-821" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applications:** Solving the Schrödinger equation, computing</span>
+<span id="cb1-822"><a href="#cb1-822" aria-hidden="true" tabindex="-1"></a>        time evolution, evaluating functions of operators*</span>
+<span id="cb1-823"><a href="#cb1-823" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-824"><a href="#cb1-824" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>***Polar Decomposition:***</span>
+<span id="cb1-825"><a href="#cb1-825" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-826"><a href="#cb1-826" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Form:** $A = UJ$ (left) or $A = KV$ (right), where $U, V$ are</span>
+<span id="cb1-827"><a href="#cb1-827" aria-hidden="true" tabindex="-1"></a>        unitary, $J, K$ are positive semi-definite*</span>
+<span id="cb1-828"><a href="#cb1-828" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-829"><a href="#cb1-829" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applicable to:** Any square matrix*</span>
+<span id="cb1-830"><a href="#cb1-830" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-831"><a href="#cb1-831" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Components:** Unitary part (rotation), Positive semi-definite</span>
+<span id="cb1-832"><a href="#cb1-832" aria-hidden="true" tabindex="-1"></a>        part (magnitude)*</span>
+<span id="cb1-833"><a href="#cb1-833" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-834"><a href="#cb1-834" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Key property:** Separates rotational and scaling aspects of a</span>
+<span id="cb1-835"><a href="#cb1-835" aria-hidden="true" tabindex="-1"></a>        transformation*</span>
+<span id="cb1-836"><a href="#cb1-836" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-837"><a href="#cb1-837" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applications:** Analogous to polar form of complex numbers,</span>
+<span id="cb1-838"><a href="#cb1-838" aria-hidden="true" tabindex="-1"></a>        analyzing quantum channels*</span>
+<span id="cb1-839"><a href="#cb1-839" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-840"><a href="#cb1-840" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>***Singular Value Decomposition (SVD):***</span>
+<span id="cb1-841"><a href="#cb1-841" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-842"><a href="#cb1-842" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Form:** $A = U \Sigma V^\dagger$, where $U, V$ are unitary,</span>
+<span id="cb1-843"><a href="#cb1-843" aria-hidden="true" tabindex="-1"></a>        $\Sigma$ is diagonal with non-negative entries*</span>
+<span id="cb1-844"><a href="#cb1-844" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-845"><a href="#cb1-845" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applicable to:** Any matrix (square or rectangular)*</span>
+<span id="cb1-846"><a href="#cb1-846" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-847"><a href="#cb1-847" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Components:** Singular values (in $\Sigma$), Left singular</span>
+<span id="cb1-848"><a href="#cb1-848" aria-hidden="true" tabindex="-1"></a>        vectors (columns of $U$), Right singular vectors (columns of</span>
+<span id="cb1-849"><a href="#cb1-849" aria-hidden="true" tabindex="-1"></a>        $V$)*</span>
+<span id="cb1-850"><a href="#cb1-850" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-851"><a href="#cb1-851" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Key property:** Provides optimal low-rank approximations*</span>
+<span id="cb1-852"><a href="#cb1-852" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-853"><a href="#cb1-853" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>***Applications:** Dimensionality reduction, Schmidt</span>
+<span id="cb1-854"><a href="#cb1-854" aria-hidden="true" tabindex="-1"></a>        decomposition of quantum states, entanglement detection, quantum</span>
+<span id="cb1-855"><a href="#cb1-855" aria-hidden="true" tabindex="-1"></a>        process tomography*</span>
+<span id="cb1-856"><a href="#cb1-856" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-857"><a href="#cb1-857" aria-hidden="true" tabindex="-1"></a>*These decompositions offer complementary perspectives on linear</span>
+<span id="cb1-858"><a href="#cb1-858" aria-hidden="true" tabindex="-1"></a>transformations and enable a deeper understanding of the structure and</span>
+<span id="cb1-859"><a href="#cb1-859" aria-hidden="true" tabindex="-1"></a>properties of operators, particularly in quantum mechanics and quantum</span>
+<span id="cb1-860"><a href="#cb1-860" aria-hidden="true" tabindex="-1"></a>information theory.*</span>
+<span id="cb1-861"><a href="#cb1-861" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-862"><a href="#cb1-862" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-863"><a href="#cb1-863" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-864"><a href="#cb1-864" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb1-865"><a href="#cb1-865" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-866"><a href="#cb1-866" aria-hidden="true" tabindex="-1"></a>This lecture has provided an overview of essential mathematical tools</span>
+<span id="cb1-867"><a href="#cb1-867" aria-hidden="true" tabindex="-1"></a>and concepts related to operators and matrix decompositions, which are</span>
+<span id="cb1-868"><a href="#cb1-868" aria-hidden="true" tabindex="-1"></a>fundamental in quantum mechanics and quantum computing. We discussed the</span>
+<span id="cb1-869"><a href="#cb1-869" aria-hidden="true" tabindex="-1"></a>trace operator and its cyclic properties, functions of operators defined</span>
+<span id="cb1-870"><a href="#cb1-870" aria-hidden="true" tabindex="-1"></a>through eigenbasis expansion, and the tensor product for composite</span>
+<span id="cb1-871"><a href="#cb1-871" aria-hidden="true" tabindex="-1"></a>systems. Furthermore, we explored matrix decomposition techniques,</span>
+<span id="cb1-872"><a href="#cb1-872" aria-hidden="true" tabindex="-1"></a>including diagonalization, polar decomposition, and singular value</span>
+<span id="cb1-873"><a href="#cb1-873" aria-hidden="true" tabindex="-1"></a>decomposition (SVD). These tools are crucial for understanding and</span>
+<span id="cb1-874"><a href="#cb1-874" aria-hidden="true" tabindex="-1"></a>manipulating quantum systems, analyzing quantum algorithms, and</span>
+<span id="cb1-875"><a href="#cb1-875" aria-hidden="true" tabindex="-1"></a>exploring advanced topics in quantum information theory.</span>
+<span id="cb1-876"><a href="#cb1-876" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-877"><a href="#cb1-877" aria-hidden="true" tabindex="-1"></a>In the next sessions, we will engage in exercises to solidify these</span>
+<span id="cb1-878"><a href="#cb1-878" aria-hidden="true" tabindex="-1"></a>concepts and further explore their applications in quantum mechanics and</span>
+<span id="cb1-879"><a href="#cb1-879" aria-hidden="true" tabindex="-1"></a>quantum computing. We will also delve into how singular value</span>
+<span id="cb1-880"><a href="#cb1-880" aria-hidden="true" tabindex="-1"></a>decomposition can be applied to detect and quantify entanglement in</span>
+<span id="cb1-881"><a href="#cb1-881" aria-hidden="true" tabindex="-1"></a>quantum systems, a key concept in quantum information science.</span>
+<span id="cb1-882"><a href="#cb1-882" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-883"><a href="#cb1-883" aria-hidden="true" tabindex="-1"></a>**Follow-up Questions and Topics for Next Lecture:**</span>
+<span id="cb1-884"><a href="#cb1-884" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-885"><a href="#cb1-885" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How can the trace operator be used to calculate expectation values</span>
+<span id="cb1-886"><a href="#cb1-886" aria-hidden="true" tabindex="-1"></a>    in quantum mechanics?</span>
+<span id="cb1-887"><a href="#cb1-887" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-888"><a href="#cb1-888" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Can we extend the concept of functions of operators to more complex</span>
+<span id="cb1-889"><a href="#cb1-889" aria-hidden="true" tabindex="-1"></a>    functions beyond power series?</span>
+<span id="cb1-890"><a href="#cb1-890" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-891"><a href="#cb1-891" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How does singular value decomposition help in understanding</span>
+<span id="cb1-892"><a href="#cb1-892" aria-hidden="true" tabindex="-1"></a>    entanglement in bipartite quantum states?</span>
+<span id="cb1-893"><a href="#cb1-893" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-894"><a href="#cb1-894" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What are some practical algorithms for computing singular value</span>
+<span id="cb1-895"><a href="#cb1-895" aria-hidden="true" tabindex="-1"></a>    decomposition, and what are their computational complexities?</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
