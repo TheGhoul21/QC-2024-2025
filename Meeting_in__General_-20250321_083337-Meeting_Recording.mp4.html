@@ -277,26 +277,26 @@ window.Quarto = {
 <h1>Linear Algebra Review and Exercises</h1>
 <section id="operator-representation-ket-bra-and-matrix-forms" class="level2">
 <h2 class="anchored" data-anchor-id="operator-representation-ket-bra-and-matrix-forms">Operator Representation: Ket-Bra and Matrix Forms</h2>
-<p>We use the computational basis, where <span class="math inline">\(\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\)</span> and <span class="math inline">\(\ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</span>. Operators can be represented as matrices or in ket-bra notation.</p>
+<p>We use the computational basis, where <span class="math inline">\(\left|{0}\right\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\)</span> and <span class="math inline">\(\left|{1}\right\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</span>. Operators can be represented as matrices or in ket-bra notation.</p>
 <section id="single-qubit-operator-sigma_y" class="level3">
 <h3 class="anchored" data-anchor-id="single-qubit-operator-sigma_y">Single Qubit Operator (<span class="math inline">\(\sigma_y\)</span>)</h3>
 <p>The <span class="math inline">\(\sigma_y\)</span> operator in the computational basis is given by:</p>
 <div class="tcolorbox">
 <p><span class="math display">\[\sigma_y = \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}\]</span></p>
 </div>
-<p>We want to express this operator in ket-bra notation. An operator in ket-bra form is a sum of terms like <span class="math inline">\(\ket{i}\bra{j}\)</span>, which acts on a vector <span class="math inline">\(\ket{\psi} = \alpha\ket{0} + \beta\ket{1}\)</span> as follows: <span class="math inline">\((\ket{i}\bra{j})\ket{\psi} = \braket{j}{\psi}\ket{i}\)</span>. This means the operator <span class="math inline">\(\ket{i}\bra{j}\)</span> projects the input vector onto the basis vector <span class="math inline">\(\ket{j}\)</span> and then outputs the result along the direction of <span class="math inline">\(\ket{i}\)</span>.</p>
+<p>We want to express this operator in ket-bra notation. An operator in ket-bra form is a sum of terms like <span class="math inline">\(\left|{i}\right\rangle\left\langle{j}\right|\)</span>, which acts on a vector <span class="math inline">\(\left|{\psi}\right\rangle = \alpha\left|{0}\right\rangle + \beta\left|{1}\right\rangle\)</span> as follows: <span class="math inline">\((\left|{i}\right\rangle\left\langle{j}\right|)\left|{\psi}\right\rangle = \left\langle{j}\middle|{\psi}\right\rangle\left|{i}\right\rangle\)</span>. This means the operator <span class="math inline">\(\left|{i}\right\rangle\left\langle{j}\right|\)</span> projects the input vector onto the basis vector <span class="math inline">\(\left|{j}\right\rangle\)</span> and then outputs the result along the direction of <span class="math inline">\(\left|{i}\right\rangle\)</span>.</p>
 <p>For <span class="math inline">\(\sigma_y\)</span>, we analyze its action on the basis vectors:</p>
 <ul>
-<li><p>The first row corresponds to the <span class="math inline">\(\ket{0}\)</span> output. The first element (0) multiplies the <span class="math inline">\(\bra{0}\)</span> component, and the second element (<span class="math inline">\(-i\)</span>) multiplies the <span class="math inline">\(\bra{1}\)</span> component.</p></li>
-<li><p>The second row corresponds to the <span class="math inline">\(\ket{1}\)</span> output. The first element (<span class="math inline">\(i\)</span>) multiplies the <span class="math inline">\(\bra{0}\)</span> component, and the second element (0) multiplies the <span class="math inline">\(\bra{1}\)</span> component.</p></li>
+<li><p>The first row corresponds to the <span class="math inline">\(\left|{0}\right\rangle\)</span> output. The first element (0) multiplies the <span class="math inline">\(\left\langle{0}\right|\)</span> component, and the second element (<span class="math inline">\(-i\)</span>) multiplies the <span class="math inline">\(\left\langle{1}\right|\)</span> component.</p></li>
+<li><p>The second row corresponds to the <span class="math inline">\(\left|{1}\right\rangle\)</span> output. The first element (<span class="math inline">\(i\)</span>) multiplies the <span class="math inline">\(\left\langle{0}\right|\)</span> component, and the second element (0) multiplies the <span class="math inline">\(\left\langle{1}\right|\)</span> component.</p></li>
 </ul>
 <p>Therefore, the ket-bra representation is:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[\sigma_y = 0\cdot\ketbra{0}{0} - i\ketbra{0}{1} + i\ketbra{1}{0} + 0\cdot\ketbra{1}{1} = -i\ketbra{0}{1} + i\ketbra{1}{0}\]</span></p>
+<p><span class="math display">\[\sigma_y = 0\cdot\left|{0}\middle\rangle\middle\langle{0}\right| - i\left|{0}\middle\rangle\middle\langle{1}\right| + i\left|{1}\middle\rangle\middle\langle{0}\right| + 0\cdot\left|{1}\middle\rangle\middle\langle{1}\right| = -i\left|{0}\middle\rangle\middle\langle{1}\right| + i\left|{1}\middle\rangle\middle\langle{0}\right|\]</span></p>
 </div>
-<p>Let’s verify this by applying it to a general state <span class="math inline">\(\ket{\psi} = \alpha\ket{0} + \beta\ket{1}\)</span>:</p>
+<p>Let’s verify this by applying it to a general state <span class="math inline">\(\left|{\psi}\right\rangle = \alpha\left|{0}\right\rangle + \beta\left|{1}\right\rangle\)</span>:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[\begin{aligned}\sigma_y \ket{\psi} &amp;= (-i\ketbra{0}{1} + i\ketbra{1}{0})(\alpha\ket{0} + \beta\ket{1}) \\&amp;= -i\alpha\braket{1}{0}\ket{0} - i\beta\braket{1}{1}\ket{0} + i\alpha\braket{0}{0}\ket{1} + i\beta\braket{0}{1}\ket{1} \\&amp;= -i\beta\ket{0} + i\alpha\ket{1}\end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{aligned}\sigma_y \left|{\psi}\right\rangle &amp;= (-i\left|{0}\middle\rangle\middle\langle{1}\right| + i\left|{1}\middle\rangle\middle\langle{0}\right|)(\alpha\left|{0}\right\rangle + \beta\left|{1}\right\rangle) \\&amp;= -i\alpha\left\langle{1}\middle|{0}\right\rangle\left|{0}\right\rangle - i\beta\left\langle{1}\middle|{1}\right\rangle\left|{0}\right\rangle + i\alpha\left\langle{0}\middle|{0}\right\rangle\left|{1}\right\rangle + i\beta\left\langle{0}\middle|{1}\right\rangle\left|{1}\right\rangle \\&amp;= -i\beta\left|{0}\right\rangle + i\alpha\left|{1}\right\rangle\end{aligned}\]</span></p>
 </div>
 <p>In matrix form, this corresponds to:</p>
 <div class="tcolorbox">
@@ -310,18 +310,18 @@ window.Quarto = {
 <div class="tcolorbox">
 <p><span class="math display">\[\sigma_x \otimes \sigma_z = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \otimes \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} = \begin{pmatrix} 0\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} &amp; 1\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \\ 1\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} &amp; 0\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{pmatrix} = \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; -1 \\ 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 0 &amp; 0 \end{pmatrix}\]</span></p>
 </div>
-<p>The basis ordering is <span class="math inline">\(\ket{00}, \ket{01}, \ket{10}, \ket{11}\)</span>. The ket-bra representation is derived by identifying the non-zero matrix elements:</p>
+<p>The basis ordering is <span class="math inline">\(\left|{00}\right\rangle, \left|{01}\right\rangle, \left|{10}\right\rangle, \left|{11}\right\rangle\)</span>. The ket-bra representation is derived by identifying the non-zero matrix elements:</p>
 <ul>
-<li><p>Element (1,3) = 1: This corresponds to taking the input <span class="math inline">\(\ket{10}\)</span> (the third basis vector) and outputting <span class="math inline">\(\ket{00}\)</span> (the first basis vector). So, we have <span class="math inline">\(\ketbra{00}{10}\)</span>.</p></li>
-<li><p>Element (2,4) = -1: This corresponds to taking the input <span class="math inline">\(\ket{11}\)</span> (the fourth basis vector) and outputting <span class="math inline">\(\ket{01}\)</span> (the second basis vector) with a factor of -1. So, we have <span class="math inline">\(-\ketbra{01}{11}\)</span>.</p></li>
-<li><p>Element (3,1) = 1: This corresponds to taking the input <span class="math inline">\(\ket{00}\)</span> (the first basis vector) and outputting <span class="math inline">\(\ket{10}\)</span> (the third basis vector). So, we have <span class="math inline">\(\ketbra{10}{00}\)</span>.</p></li>
-<li><p>Element (4,2) = -1: This corresponds to taking the input <span class="math inline">\(\ket{01}\)</span> (the second basis vector) and outputting <span class="math inline">\(\ket{11}\)</span> (the fourth basis vector) with a factor of -1. So we have <span class="math inline">\(-\ketbra{11}{01}\)</span>.</p></li>
+<li><p>Element (1,3) = 1: This corresponds to taking the input <span class="math inline">\(\left|{10}\right\rangle\)</span> (the third basis vector) and outputting <span class="math inline">\(\left|{00}\right\rangle\)</span> (the first basis vector). So, we have <span class="math inline">\(\left|{00}\middle\rangle\middle\langle{10}\right|\)</span>.</p></li>
+<li><p>Element (2,4) = -1: This corresponds to taking the input <span class="math inline">\(\left|{11}\right\rangle\)</span> (the fourth basis vector) and outputting <span class="math inline">\(\left|{01}\right\rangle\)</span> (the second basis vector) with a factor of -1. So, we have <span class="math inline">\(-\left|{01}\middle\rangle\middle\langle{11}\right|\)</span>.</p></li>
+<li><p>Element (3,1) = 1: This corresponds to taking the input <span class="math inline">\(\left|{00}\right\rangle\)</span> (the first basis vector) and outputting <span class="math inline">\(\left|{10}\right\rangle\)</span> (the third basis vector). So, we have <span class="math inline">\(\left|{10}\middle\rangle\middle\langle{00}\right|\)</span>.</p></li>
+<li><p>Element (4,2) = -1: This corresponds to taking the input <span class="math inline">\(\left|{01}\right\rangle\)</span> (the second basis vector) and outputting <span class="math inline">\(\left|{11}\right\rangle\)</span> (the fourth basis vector) with a factor of -1. So we have <span class="math inline">\(-\left|{11}\middle\rangle\middle\langle{01}\right|\)</span>.</p></li>
 </ul>
 <p>So, the ket-bra representation is:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[\sigma_x \otimes \sigma_z = \ketbra{00}{10} - \ketbra{01}{11} + \ketbra{10}{00} - \ketbra{11}{01}\]</span></p>
+<p><span class="math display">\[\sigma_x \otimes \sigma_z = \left|{00}\middle\rangle\middle\langle{10}\right| - \left|{01}\middle\rangle\middle\langle{11}\right| + \left|{10}\middle\rangle\middle\langle{00}\right| - \left|{11}\middle\rangle\middle\langle{01}\right|\]</span></p>
 </div>
-<p>This is consistent with the general rule that the matrix element <span class="math inline">\(A_{ij}\)</span> corresponds to the ket-bra term <span class="math inline">\(\ket{i}\bra{j}\)</span>. The indices <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> now refer to the composite basis states of the two-qubit system.</p>
+<p>This is consistent with the general rule that the matrix element <span class="math inline">\(A_{ij}\)</span> corresponds to the ket-bra term <span class="math inline">\(\left|{i}\right\rangle\left\langle{j}\right|\)</span>. The indices <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> now refer to the composite basis states of the two-qubit system.</p>
 </section>
 </section>
 <section id="eigenvalues-eigenvectors-and-diagonalization" class="level2">
@@ -332,28 +332,28 @@ window.Quarto = {
 <div class="tcolorbox">
 <p><span class="math display">\[\det(\sigma_y - \lambda I) = 0\]</span></p>
 </div>
-<p>where <span class="math inline">\(I\)</span> is the identity matrix. This equation arises from the eigenvalue equation <span class="math inline">\(A\ket{v} = \lambda\ket{v}\)</span>, which can be rewritten as <span class="math inline">\((A - \lambda I)\ket{v} = 0\)</span>. For non-trivial solutions (<span class="math inline">\(\ket{v} \neq 0\)</span>), the matrix <span class="math inline">\((A - \lambda I)\)</span> must be singular, meaning its determinant is zero.</p>
+<p>where <span class="math inline">\(I\)</span> is the identity matrix. This equation arises from the eigenvalue equation <span class="math inline">\(A\left|{v}\right\rangle = \lambda\left|{v}\right\rangle\)</span>, which can be rewritten as <span class="math inline">\((A - \lambda I)\left|{v}\right\rangle = 0\)</span>. For non-trivial solutions (<span class="math inline">\(\left|{v}\right\rangle \neq 0\)</span>), the matrix <span class="math inline">\((A - \lambda I)\)</span> must be singular, meaning its determinant is zero.</p>
 <div class="tcolorbox">
 <p><span class="math display">\[\det\begin{pmatrix} -\lambda &amp; -i \\ i &amp; -\lambda \end{pmatrix} = \lambda^2 - (-i)(i) = \lambda^2 - 1 = 0\]</span></p>
 </div>
 <p>So, the eigenvalues are <span class="math inline">\(\lambda_1 = 1\)</span> and <span class="math inline">\(\lambda_2 = -1\)</span>.</p>
-<p>For <span class="math inline">\(\lambda_1 = 1\)</span>, we solve <span class="math inline">\((\sigma_y - I)\ket{v} = 0\)</span>:</p>
+<p>For <span class="math inline">\(\lambda_1 = 1\)</span>, we solve <span class="math inline">\((\sigma_y - I)\left|{v}\right\rangle = 0\)</span>:</p>
 <div class="tcolorbox">
 <p><span class="math display">\[\begin{pmatrix} -1 &amp; -i \\ i &amp; -1 \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\]</span></p>
 </div>
 <p>This gives us <span class="math inline">\(- \alpha - i\beta = 0\)</span> and <span class="math inline">\(i\alpha - \beta = 0\)</span>. Both equations imply <span class="math inline">\(\beta = i\alpha\)</span>. Let <span class="math inline">\(\alpha = 1\)</span>, then <span class="math inline">\(\beta = i\)</span>. Normalizing the eigenvector (requiring <span class="math inline">\(|\alpha|^2 + |\beta|^2 = 1\)</span>), we get:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[\ket{v_1} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ i \end{pmatrix}\]</span></p>
+<p><span class="math display">\[\left|{v_1}\right\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ i \end{pmatrix}\]</span></p>
 </div>
-<p>For <span class="math inline">\(\lambda_2 = -1\)</span>, we solve <span class="math inline">\((\sigma_y + I)\ket{v} = 0\)</span>:</p>
+<p>For <span class="math inline">\(\lambda_2 = -1\)</span>, we solve <span class="math inline">\((\sigma_y + I)\left|{v}\right\rangle = 0\)</span>:</p>
 <div class="tcolorbox">
 <p><span class="math display">\[\begin{pmatrix} 1 &amp; -i \\ i &amp; 1 \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\]</span></p>
 </div>
 <p>This gives us <span class="math inline">\(\alpha - i\beta = 0\)</span> and <span class="math inline">\(i\alpha + \beta = 0\)</span>. Both equations imply <span class="math inline">\(\beta = -i\alpha\)</span>. Let <span class="math inline">\(\alpha = 1\)</span>, then <span class="math inline">\(\beta = -i\)</span>. Normalizing the eigenvector, we get:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[\ket{v_2} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -i \end{pmatrix}\]</span></p>
+<p><span class="math display">\[\left|{v_2}\right\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -i \end{pmatrix}\]</span></p>
 </div>
-<p>The eigenvectors <span class="math inline">\(\ket{v_1}\)</span> and <span class="math inline">\(\ket{v_2}\)</span> form an orthonormal basis.</p>
+<p>The eigenvectors <span class="math inline">\(\left|{v_1}\right\rangle\)</span> and <span class="math inline">\(\left|{v_2}\right\rangle\)</span> form an orthonormal basis.</p>
 </section>
 <section id="eigenvalues-of-a-4x4-matrix-example" class="level3">
 <h3 class="anchored" data-anchor-id="eigenvalues-of-a-4x4-matrix-example">Eigenvalues of a 4x4 Matrix: Example</h3>
@@ -391,70 +391,70 @@ window.Quarto = {
 <p>So, <span class="math inline">\(\lambda = 1\)</span> is the only eigenvalue, with multiplicity 2.</p>
 <p>Now we find the eigenvectors:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[(M - I)\ket{v} = \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\]</span></p>
+<p><span class="math display">\[(M - I)\left|{v}\right\rangle = \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\]</span></p>
 </div>
-<p>This gives us <span class="math inline">\(\alpha = 0\)</span>, and <span class="math inline">\(\beta\)</span> can be any value. So, the eigenvector is <span class="math inline">\(\ket{v} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</span> (normalized). We have only one linearly independent eigenvector, so the matrix is not diagonalizable. A diagonalizable matrix must have a complete set of linearly independent eigenvectors that span the entire vector space.</p>
+<p>This gives us <span class="math inline">\(\alpha = 0\)</span>, and <span class="math inline">\(\beta\)</span> can be any value. So, the eigenvector is <span class="math inline">\(\left|{v}\right\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</span> (normalized). We have only one linearly independent eigenvector, so the matrix is not diagonalizable. A diagonalizable matrix must have a complete set of linearly independent eigenvectors that span the entire vector space.</p>
 </section>
 </section>
 <section id="the-dagger-operator-and-matrix-properties" class="level2">
 <h2 class="anchored" data-anchor-id="the-dagger-operator-and-matrix-properties">The Dagger Operator and Matrix Properties</h2>
 <div class="tcolorbox">
-<p><span class="math inline">\(\bra{U}A\ket{W}^\dagger = \bra{W}A^\dagger\ket{U}\)</span></p>
+<p><span class="math inline">\(\left\langle{U}\right|A\left|{W}\right\rangle^\dagger = \left\langle{W}\right|A^\dagger\left|{U}\right\rangle\)</span></p>
 </div>
-<p>We want to show that <span class="math inline">\((\bra{U}A\ket{W})^\dagger = \bra{W}A^\dagger\ket{U}\)</span>. The expression <span class="math inline">\(\bra{U}A\ket{W}\)</span> represents a scalar (a complex number). The dagger operation on a scalar is simply complex conjugation. The dagger operation on a ket turns it into a bra, and vice-versa. The dagger operation on an operator is the conjugate transpose.</p>
-<p>We can express any operator <span class="math inline">\(A\)</span> in an orthonormal basis <span class="math inline">\(\{\ket{i}\}\)</span> as:</p>
+<p>We want to show that <span class="math inline">\((\left\langle{U}\right|A\left|{W}\right\rangle)^\dagger = \left\langle{W}\right|A^\dagger\left|{U}\right\rangle\)</span>. The expression <span class="math inline">\(\left\langle{U}\right|A\left|{W}\right\rangle\)</span> represents a scalar (a complex number). The dagger operation on a scalar is simply complex conjugation. The dagger operation on a ket turns it into a bra, and vice-versa. The dagger operation on an operator is the conjugate transpose.</p>
+<p>We can express any operator <span class="math inline">\(A\)</span> in an orthonormal basis <span class="math inline">\(\{\left|{i}\right\rangle\}\)</span> as:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[A = \sum_{i,j} a_{ij} \ketbra{i}{j}\]</span></p>
+<p><span class="math display">\[A = \sum_{i,j} a_{ij} \left|{i}\middle\rangle\middle\langle{j}\right|\]</span></p>
 </div>
-<p>where <span class="math inline">\(a_{ij} = \bra{i}A\ket{j}\)</span> are the matrix elements of <span class="math inline">\(A\)</span> in this basis.</p>
-<p>Let’s consider the expression <span class="math inline">\(\bra{U}A\ket{W}\)</span>. We can insert a complete set of states, <span class="math inline">\(\sum_k \ketbra{k}{k} = I\)</span> (the identity operator), multiple times:</p>
+<p>where <span class="math inline">\(a_{ij} = \left\langle{i}\right|A\left|{j}\right\rangle\)</span> are the matrix elements of <span class="math inline">\(A\)</span> in this basis.</p>
+<p>Let’s consider the expression <span class="math inline">\(\left\langle{U}\right|A\left|{W}\right\rangle\)</span>. We can insert a complete set of states, <span class="math inline">\(\sum_k \left|{k}\middle\rangle\middle\langle{k}\right| = I\)</span> (the identity operator), multiple times:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[\bra{U}A\ket{W} = \sum_{i,j} \bra{U} (\ketbra{i}{j}) \ket{W} a_{ij} = \sum_{i,j} \braket{U}{i}\braket{j}{W} a_{ij}\]</span></p>
+<p><span class="math display">\[\left\langle{U}\right|A\left|{W}\right\rangle = \sum_{i,j} \left\langle{U}\right| (\left|{i}\middle\rangle\middle\langle{j}\right|) \left|{W}\right\rangle a_{ij} = \sum_{i,j} \left\langle{U}\middle|{i}\right\rangle\left\langle{j}\middle|{W}\right\rangle a_{ij}\]</span></p>
 </div>
 <p>Taking the dagger (complex conjugate transpose) of this scalar:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[\begin{aligned}(\bra{U}A\ket{W})^\dagger &amp;= \left( \sum_{i,j} \braket{U}{i}\braket{j}{W} a_{ij} \right)^* \\&amp;= \sum_{i,j} \braket{U}{i}^*\braket{j}{W}^* a_{ij}^* \\&amp;= \sum_{i,j} \braket{i}{U}\braket{W}{j} a_{ij}^*\end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{aligned}(\left\langle{U}\right|A\left|{W}\right\rangle)^\dagger &amp;= \left( \sum_{i,j} \left\langle{U}\middle|{i}\right\rangle\left\langle{j}\middle|{W}\right\rangle a_{ij} \right)^* \\&amp;= \sum_{i,j} \left\langle{U}\middle|{i}\right\rangle^*\left\langle{j}\middle|{W}\right\rangle^* a_{ij}^* \\&amp;= \sum_{i,j} \left\langle{i}\middle|{U}\right\rangle\left\langle{W}\middle|{j}\right\rangle a_{ij}^*\end{aligned}\]</span></p>
 </div>
-<p>Now consider <span class="math inline">\(\bra{W}A^\dagger\ket{U}\)</span>. First, we find the dagger of <span class="math inline">\(A\)</span>:</p>
+<p>Now consider <span class="math inline">\(\left\langle{W}\right|A^\dagger\left|{U}\right\rangle\)</span>. First, we find the dagger of <span class="math inline">\(A\)</span>:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[A^\dagger = \sum_{i,j} a_{ij}^* (\ketbra{i}{j})^\dagger = \sum_{i,j} a_{ij}^* \ketbra{j}{i}\]</span></p>
+<p><span class="math display">\[A^\dagger = \sum_{i,j} a_{ij}^* (\left|{i}\middle\rangle\middle\langle{j}\right|)^\dagger = \sum_{i,j} a_{ij}^* \left|{j}\middle\rangle\middle\langle{i}\right|\]</span></p>
 </div>
 <p>So,</p>
 <div class="tcolorbox">
-<p><span class="math display">\[\bra{W}A^\dagger\ket{U} = \sum_{i,j} \bra{W} (a_{ij}^* \ketbra{j}{i}) \ket{U} = \sum_{i,j} a_{ij}^* \braket{W}{j}\braket{i}{U}\]</span></p>
+<p><span class="math display">\[\left\langle{W}\right|A^\dagger\left|{U}\right\rangle = \sum_{i,j} \left\langle{W}\right| (a_{ij}^* \left|{j}\middle\rangle\middle\langle{i}\right|) \left|{U}\right\rangle = \sum_{i,j} a_{ij}^* \left\langle{W}\middle|{j}\right\rangle\left\langle{i}\middle|{U}\right\rangle\]</span></p>
 </div>
-<p>This is the same as the expression we derived for <span class="math inline">\((\bra{U}A\ket{W})^\dagger\)</span>. Therefore, <span class="math inline">\((\bra{U}A\ket{W})^\dagger = \bra{W}A^\dagger\ket{U}\)</span>. This property is fundamental in quantum mechanics, as it relates the matrix elements of an operator to the matrix elements of its adjoint.</p>
+<p>This is the same as the expression we derived for <span class="math inline">\((\left\langle{U}\right|A\left|{W}\right\rangle)^\dagger\)</span>. Therefore, <span class="math inline">\((\left\langle{U}\right|A\left|{W}\right\rangle)^\dagger = \left\langle{W}\right|A^\dagger\left|{U}\right\rangle\)</span>. This property is fundamental in quantum mechanics, as it relates the matrix elements of an operator to the matrix elements of its adjoint.</p>
 <section id="normal-and-hermitian-matrices-relationship-via-eigenvalues" class="level3">
 <h3 class="anchored" data-anchor-id="normal-and-hermitian-matrices-relationship-via-eigenvalues">Normal and Hermitian Matrices: Relationship via Eigenvalues</h3>
-<div class="definition">
-<p><strong>Definition 1</strong> (Normal Matrix, colback=green!5, colframe=green!75!black). <em>A matrix is normal if <span class="math inline">\(AA^\dagger = A^\dagger A\)</span>.</em></p>
+<div class="tcolorbox">
+<p>A matrix is normal if <span class="math inline">\(AA^\dagger = A^\dagger A\)</span>.</p>
 </div>
-<div class="definition">
-<p><strong>Definition 2</strong> (Hermitian Matrix, colback=green!5, colframe=green!75!black). <em>A matrix is Hermitian if <span class="math inline">\(A = A^\dagger\)</span>.</em></p>
+<div class="tcolorbox">
+<p>A matrix is Hermitian if <span class="math inline">\(A = A^\dagger\)</span>.</p>
 </div>
-<div class="theorem">
-<p><strong>Theorem 3</strong> (Normal and Hermitian Matrices, colback=red!5, colframe=red!75!black). <em>A normal matrix is Hermitian if and only if its eigenvalues are real.</em></p>
+<div class="tcolorbox">
+<p>A normal matrix is Hermitian if and only if its eigenvalues are real.</p>
 </div>
 <p>**Part 1: Hermitian implies real eigenvalues.**</p>
-<p>Suppose <span class="math inline">\(A\)</span> is Hermitian (<span class="math inline">\(A = A^\dagger\)</span>). Let <span class="math inline">\(\ket{v}\)</span> be an eigenvector of <span class="math inline">\(A\)</span> with eigenvalue <span class="math inline">\(\lambda\)</span>: <span class="math inline">\(A\ket{v} = \lambda\ket{v}\)</span>. Then:</p>
+<p>Suppose <span class="math inline">\(A\)</span> is Hermitian (<span class="math inline">\(A = A^\dagger\)</span>). Let <span class="math inline">\(\left|{v}\right\rangle\)</span> be an eigenvector of <span class="math inline">\(A\)</span> with eigenvalue <span class="math inline">\(\lambda\)</span>: <span class="math inline">\(A\left|{v}\right\rangle = \lambda\left|{v}\right\rangle\)</span>. Then:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[\bra{v}A\ket{v} = \lambda\braket{v}{v}\]</span></p>
+<p><span class="math display">\[\left\langle{v}\right|A\left|{v}\right\rangle = \lambda\left\langle{v}\middle|{v}\right\rangle\]</span></p>
 </div>
 <p>Taking the dagger:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[(\bra{v}A\ket{v})^\dagger = \bra{v}A^\dagger\ket{v} = \bra{v}A\ket{v} = \lambda^*\braket{v}{v}\]</span></p>
+<p><span class="math display">\[(\left\langle{v}\right|A\left|{v}\right\rangle)^\dagger = \left\langle{v}\right|A^\dagger\left|{v}\right\rangle = \left\langle{v}\right|A\left|{v}\right\rangle = \lambda^*\left\langle{v}\middle|{v}\right\rangle\]</span></p>
 </div>
-<p>Since <span class="math inline">\(\bra{v}A\ket{v} = \lambda\braket{v}{v}\)</span>, we have <span class="math inline">\(\lambda\braket{v}{v} = \lambda^*\braket{v}{v}\)</span>. Since <span class="math inline">\(\braket{v}{v} \neq 0\)</span> (because <span class="math inline">\(\ket{v}\)</span> is a non-zero eigenvector), we must have <span class="math inline">\(\lambda = \lambda^*\)</span>, which means <span class="math inline">\(\lambda\)</span> is real.</p>
+<p>Since <span class="math inline">\(\left\langle{v}\right|A\left|{v}\right\rangle = \lambda\left\langle{v}\middle|{v}\right\rangle\)</span>, we have <span class="math inline">\(\lambda\left\langle{v}\middle|{v}\right\rangle = \lambda^*\left\langle{v}\middle|{v}\right\rangle\)</span>. Since <span class="math inline">\(\left\langle{v}\middle|{v}\right\rangle \neq 0\)</span> (because <span class="math inline">\(\left|{v}\right\rangle\)</span> is a non-zero eigenvector), we must have <span class="math inline">\(\lambda = \lambda^*\)</span>, which means <span class="math inline">\(\lambda\)</span> is real.</p>
 <p>**Part 2: Real eigenvalues and normal imply Hermitian.**</p>
 <p>Suppose <span class="math inline">\(A\)</span> is normal (<span class="math inline">\(AA^\dagger = A^\dagger A\)</span>) and has real eigenvalues. Since <span class="math inline">\(A\)</span> is normal, it has a spectral decomposition:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[A = \sum_i \lambda_i \ketbra{v_i}{v_i}\]</span></p>
+<p><span class="math display">\[A = \sum_i \lambda_i \left|{v_i}\middle\rangle\middle\langle{v_i}\right|\]</span></p>
 </div>
-<p>where <span class="math inline">\(\lambda_i\)</span> are the eigenvalues and <span class="math inline">\(\ket{v_i}\)</span> are the orthonormal eigenvectors. This means that a normal matrix can be diagonalized by a unitary transformation. Taking the dagger:</p>
+<p>where <span class="math inline">\(\lambda_i\)</span> are the eigenvalues and <span class="math inline">\(\left|{v_i}\right\rangle\)</span> are the orthonormal eigenvectors. This means that a normal matrix can be diagonalized by a unitary transformation. Taking the dagger:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[A^\dagger = \sum_i \lambda_i^* (\ketbra{v_i}{v_i})^\dagger = \sum_i \lambda_i^* \ketbra{v_i}{v_i}\]</span></p>
+<p><span class="math display">\[A^\dagger = \sum_i \lambda_i^* (\left|{v_i}\middle\rangle\middle\langle{v_i}\right|)^\dagger = \sum_i \lambda_i^* \left|{v_i}\middle\rangle\middle\langle{v_i}\right|\]</span></p>
 </div>
-<p>Since the eigenvalues are real, <span class="math inline">\(\lambda_i = \lambda_i^*\)</span>, so <span class="math inline">\(A^\dagger = \sum_i \lambda_i \ketbra{v_i}{v_i} = A\)</span>. Thus, <span class="math inline">\(A\)</span> is Hermitian. This shows that for normal matrices, the property of having real eigenvalues is equivalent to being Hermitian.</p>
+<p>Since the eigenvalues are real, <span class="math inline">\(\lambda_i = \lambda_i^*\)</span>, so <span class="math inline">\(A^\dagger = \sum_i \lambda_i \left|{v_i}\middle\rangle\middle\langle{v_i}\right| = A\)</span>. Thus, <span class="math inline">\(A\)</span> is Hermitian. This shows that for normal matrices, the property of having real eigenvalues is equivalent to being Hermitian.</p>
 </section>
 </section>
 </section>
@@ -477,7 +477,11 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="transpose-and-adjoint-of-a-matrix-product">Transpose and Adjoint of a Matrix Product</h3>
 <p>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be matrices. The matrix product <span class="math inline">\(AB\)</span> is defined only if the number of columns of <span class="math inline">\(A\)</span> equals the number of rows of <span class="math inline">\(B\)</span>.</p>
 <p>* **Transpose:** <span class="math inline">\((AB)^T = B^T A^T\)</span> * **Adjoint:** <span class="math inline">\((AB)^\dagger = B^\dagger A^\dagger\)</span></p>
-<p>The transpose property can be shown by considering the matrix elements: <span class="math display">\[\begin{aligned}((AB)^T)_{ij} &amp;= (AB)_{ji}  \quad \text{(Definition of transpose)}\\&amp;= \sum_k A_{jk}B_{ki} \quad \text{(Definition of matrix product)} \\&amp;= \sum_k B_{ki}A_{jk} \quad \text{(Commutativity of scalar multiplication)} \\&amp;= \sum_k (B^T)_{ik}(A^T)_{kj} \quad \text{(Definition of transpose)} \\&amp;= (B^T A^T)_{ij} \quad \text{(Definition of matrix product)}\end{aligned}\]</span> The adjoint property follows from the transpose and conjugate properties: <span class="math inline">\((AB)^\dagger = ((AB)^T)^* = (B^T A^T)^* = (B^T)^* (A^T)^* = B^\dagger A^\dagger\)</span>. The key difference from the tensor product is the *reversal* of the order of the matrices when taking the transpose or adjoint of a matrix product. This is crucial for maintaining consistency in calculations.</p>
+<p>The transpose property can be shown by considering the matrix elements:</p>
+<div class="tcolorbox">
+<p><span class="math display">\[\begin{aligned}((AB)^T)_{ij} &amp;= (AB)_{ji}  \quad \text{(Definition of transpose)}\\&amp;= \sum_k A_{jk}B_{ki} \quad \text{(Definition of matrix product)} \\&amp;= \sum_k B_{ki}A_{jk} \quad \text{(Commutativity of scalar multiplication)} \\&amp;= \sum_k (B^T)_{ik}(A^T)_{kj} \quad \text{(Definition of transpose)} \\&amp;= (B^T A^T)_{ij} \quad \text{(Definition of matrix product)}\end{aligned}\]</span></p>
+</div>
+<p>The adjoint property follows from the transpose and conjugate properties: <span class="math inline">\((AB)^\dagger = ((AB)^T)^* = (B^T A^T)^* = (B^T)^* (A^T)^* = B^\dagger A^\dagger\)</span>. The key difference from the tensor product is the *reversal* of the order of the matrices when taking the transpose or adjoint of a matrix product. This is crucial for maintaining consistency in calculations.</p>
 </section>
 </section>
 </section>
@@ -489,16 +493,16 @@ window.Quarto = {
 <div class="tcolorbox">
 <p><span class="math display">\[H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}\]</span></p>
 </div>
-<p>It maps the computational basis states as follows: <span class="math inline">\(H\ket{0} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \ket{+}\)</span> and <span class="math inline">\(H\ket{1} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \ket{-}\)</span>.</p>
+<p>It maps the computational basis states as follows: <span class="math inline">\(H\left|{0}\right\rangle = \frac{1}{\sqrt{2}}(\left|{0}\right\rangle + \left|{1}\right\rangle) = \left|{+}\right\rangle\)</span> and <span class="math inline">\(H\left|{1}\right\rangle = \frac{1}{\sqrt{2}}(\left|{0}\right\rangle - \left|{1}\right\rangle) = \left|{-}\right\rangle\)</span>.</p>
 <section id="ket-bra-notation" class="level3">
 <h3 class="anchored" data-anchor-id="ket-bra-notation">Ket-Bra Notation</h3>
 <p>The ket-bra representation is obtained by directly mapping the matrix elements:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[H = \frac{1}{\sqrt{2}}(\ketbra{0}{0} + \ketbra{0}{1} + \ketbra{1}{0} - \ketbra{1}{1})\]</span></p>
+<p><span class="math display">\[H = \frac{1}{\sqrt{2}}(\left|{0}\middle\rangle\middle\langle{0}\right| + \left|{0}\middle\rangle\middle\langle{1}\right| + \left|{1}\middle\rangle\middle\langle{0}\right| - \left|{1}\middle\rangle\middle\langle{1}\right|)\]</span></p>
 </div>
 <p>This can be written compactly as:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[H = \frac{1}{\sqrt{2}} \sum_{x,y \in \{0,1\}} (-1)^{xy} \ketbra{x}{y}\]</span></p>
+<p><span class="math display">\[H = \frac{1}{\sqrt{2}} \sum_{x,y \in \{0,1\}} (-1)^{xy} \left|{x}\middle\rangle\middle\langle{y}\right|\]</span></p>
 </div>
 <p>Here, the summation iterates over all possible combinations of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> (00, 01, 10, 11). The term <span class="math inline">\((-1)^{xy}\)</span> generates the correct sign for each term:</p>
 <ul>
@@ -511,17 +515,17 @@ window.Quarto = {
 </section>
 <section id="n-qubit-hadamard-gate" class="level2">
 <h2 class="anchored" data-anchor-id="n-qubit-hadamard-gate">N-Qubit Hadamard Gate</h2>
-<p>The N-qubit Hadamard gate is the tensor product of <span class="math inline">\(N\)</span> single-qubit Hadamard gates, denoted as <span class="math inline">\(H^{\otimes N}\)</span>. This gate is crucial for creating superposition states across multiple qubits. Applying <span class="math inline">\(H^{\otimes N}\)</span> to the state <span class="math inline">\(\ket{00\dots0}\)</span> creates an equal superposition of all <span class="math inline">\(2^N\)</span> computational basis states.</p>
+<p>The N-qubit Hadamard gate is the tensor product of <span class="math inline">\(N\)</span> single-qubit Hadamard gates, denoted as <span class="math inline">\(H^{\otimes N}\)</span>. This gate is crucial for creating superposition states across multiple qubits. Applying <span class="math inline">\(H^{\otimes N}\)</span> to the state <span class="math inline">\(\left|{00\dots 0}\right\rangle\)</span> creates an equal superposition of all <span class="math inline">\(2^N\)</span> computational basis states.</p>
 <section id="compact-representation-with-summation-and-dot-product" class="level3">
 <h3 class="anchored" data-anchor-id="compact-representation-with-summation-and-dot-product">Compact Representation with Summation and Dot Product</h3>
 <p>The N-qubit Hadamard gate can be represented as:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[H^{\otimes N} = \frac{1}{\sqrt{2}^N} \sum_{x_1, \dots, x_N \in \{0,1\}} \sum_{y_1, \dots, y_N \in \{0,1\}} (-1)^{\sum_{i=1}^N x_i y_i} \ketbra{x_1\dots x_N}{y_1\dots y_N}\]</span></p>
+<p><span class="math display">\[H^{\otimes N} = \frac{1}{\sqrt{2}^N} \sum_{x_1, \dots, x_N \in \{0,1\}} \sum_{y_1, \dots, y_N \in \{0,1\}} (-1)^{\sum_{i=1}^N x_i y_i} \left|{x_1\dots x_N}\middle\rangle\middle\langle{y_1\dots y_N}\right|\]</span></p>
 </div>
 <p>This expands on the single-qubit representation. We now have <span class="math inline">\(N\)</span> indices <span class="math inline">\(x_i\)</span> and <span class="math inline">\(N\)</span> indices <span class="math inline">\(y_i\)</span>, each ranging from 0 to 1. The exponent in <span class="math inline">\((-1)^{\sum_{i=1}^N x_i y_i}\)</span> determines the sign of each term in the expansion.</p>
 <p>This can also be written using vector notation <span class="math inline">\(\mathbf{x} = (x_1, \dots, x_N)\)</span> and <span class="math inline">\(\mathbf{y} = (y_1, \dots, y_N)\)</span>, which are binary strings of length <span class="math inline">\(N\)</span>:</p>
 <div class="tcolorbox">
-<p><span class="math display">\[H^{\otimes N} = \frac{1}{\sqrt{2}^N} \sum_{\mathbf{x}, \mathbf{y} \in \{0,1\}^N} (-1)^{\mathbf{x} \cdot \mathbf{y}} \ketbra{\mathbf{x}}{\mathbf{y}}\]</span></p>
+<p><span class="math display">\[H^{\otimes N} = \frac{1}{\sqrt{2}^N} \sum_{\mathbf{x}, \mathbf{y} \in \{0,1\}^N} (-1)^{\mathbf{x} \cdot \mathbf{y}} \left|{\mathbf{x}}\middle\rangle\middle\langle{\mathbf{y}}\right|\]</span></p>
 </div>
 <p>where <span class="math inline">\(\mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^N x_i y_i\)</span> is the dot product (modulo 2). This compact notation is particularly useful in analyzing quantum algorithms that utilize the Hadamard transform, such as the Deutsch-Jozsa algorithm and Grover’s algorithm. The dot product in the exponent effectively controls the interference pattern created by the Hadamard gates. The factor <span class="math inline">\(1/\sqrt{2}^N\)</span> ensures the resulting operator is unitary.</p>
 </section>
@@ -1051,9 +1055,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Operator Representation: Ket-Bra and Matrix Forms</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>We use the computational basis, where</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>$\ket{0} = \begin{pmatrix} 1 <span class="sc">\\</span> 0 \end{pmatrix}$ and</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>$\ket{1} = \begin{pmatrix} 0 <span class="sc">\\</span> 1 \end{pmatrix}$. Operators can be</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>represented as matrices or in ket-bra notation.</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>$\left|{0}\right\rangle = \begin{pmatrix} 1 <span class="sc">\\</span> 0 \end{pmatrix}$ and</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>$\left|{1}\right\rangle = \begin{pmatrix} 0 <span class="sc">\\</span> 1 \end{pmatrix}$.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>Operators can be represented as matrices or in ket-bra notation.</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### Single Qubit Operator ($\sigma_y$)</span></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
@@ -1064,496 +1068,518 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>We want to express this operator in ket-bra notation. An operator in</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>ket-bra form is a sum of terms like $\ket{i}\bra{j}$, which acts on a</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>vector $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$ as follows:</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>$(\ket{i}\bra{j})\ket{\psi} = \braket{j}{\psi}\ket{i}$. This means the</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>operator $\ket{i}\bra{j}$ projects the input vector onto the basis</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>vector $\ket{j}$ and then outputs the result along the direction of</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>$\ket{i}$.</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>For $\sigma_y$, we analyze its action on the basis vectors:</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The first row corresponds to the $\ket{0}$ output. The first</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    element (0) multiplies the $\bra{0}$ component, and the second</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    element ($-i$) multiplies the $\bra{1}$ component.</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The second row corresponds to the $\ket{1}$ output. The first</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    element ($i$) multiplies the $\bra{0}$ component, and the second</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    element (0) multiplies the $\bra{1}$ component.</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>ket-bra form is a sum of terms like</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>$\left|{i}\right\rangle\left\langle{j}\right|$, which acts on a vector</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>$\left|{\psi}\right\rangle = \alpha\left|{0}\right\rangle + \beta\left|{1}\right\rangle$</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>as follows:</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>$(\left|{i}\right\rangle\left\langle{j}\right|)\left|{\psi}\right\rangle = \left\langle{j}\middle|{\psi}\right\rangle\left|{i}\right\rangle$.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>This means the operator $\left|{i}\right\rangle\left\langle{j}\right|$</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>projects the input vector onto the basis vector $\left|{j}\right\rangle$</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>and then outputs the result along the direction of</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>$\left|{i}\right\rangle$.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>For $\sigma_y$, we analyze its action on the basis vectors:</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The first row corresponds to the $\left|{0}\right\rangle$ output.</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    The first element (0) multiplies the $\left\langle{0}\right|$</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    component, and the second element ($-i$) multiplies the</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    $\left\langle{1}\right|$ component.</span>
 <span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>Therefore, the ket-bra representation is:</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>$$\sigma_y = 0\cdot\ketbra{0}{0} - i\ketbra{0}{1} + i\ketbra{1}{0} + 0\cdot\ketbra{1}{1} = -i\ketbra{0}{1} + i\ketbra{1}{0}$$</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>Let's verify this by applying it to a general state</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>$\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$:</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}\sigma_y \ket{\psi} &amp;= (-i\ketbra{0}{1} + i\ketbra{1}{0})(\alpha\ket{0} + \beta\ket{1}) <span class="sc">\\</span>&amp;= -i\alpha\braket{1}{0}\ket{0} - i\beta\braket{1}{1}\ket{0} + i\alpha\braket{0}{0}\ket{1} + i\beta\braket{0}{1}\ket{1} <span class="sc">\\</span>&amp;= -i\beta\ket{0} + i\alpha\ket{1}\end{aligned}$$</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>In matrix form, this corresponds to:</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>$$\begin{pmatrix} 0 &amp; -i <span class="sc">\\</span> i &amp; 0 \end{pmatrix} \begin{pmatrix} \alpha <span class="sc">\\</span> \beta \end{pmatrix} = \begin{pmatrix} -i\beta <span class="sc">\\</span> i\alpha \end{pmatrix}$$</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>which is consistent. The ket-bra representation provides an alternative,</span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>and sometimes more intuitive, way to understand the action of the</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>operator.</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="fu">### Two-Qubit Operator ($\sigma_x \otimes \sigma_z$)</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>The two-qubit operator $\sigma_x \otimes \sigma_z$ is given by:</span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>$$\sigma_x \otimes \sigma_z = \begin{pmatrix} 0 &amp; 1 <span class="sc">\\</span> 1 &amp; 0 \end{pmatrix} \otimes \begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} = \begin{pmatrix} 0\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} &amp; 1\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} <span class="sc">\\</span> 1\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} &amp; 0\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} \end{pmatrix} = \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 <span class="sc">\\</span> 0 &amp; 0 &amp; 0 &amp; -1 <span class="sc">\\</span> 1 &amp; 0 &amp; 0 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 &amp; 0 &amp; 0 \end{pmatrix}$$</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>The basis ordering is $\ket{00}, \ket{01}, \ket{10}, \ket{11}$. The</span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>ket-bra representation is derived by identifying the non-zero matrix</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>elements:</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Element (1,3) = 1: This corresponds to taking the input $\ket{10}$</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    (the third basis vector) and outputting $\ket{00}$ (the first basis</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    vector). So, we have $\ketbra{00}{10}$.</span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Element (2,4) = -1: This corresponds to taking the input $\ket{11}$</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>    (the fourth basis vector) and outputting $\ket{01}$ (the second</span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>    basis vector) with a factor of -1. So, we have $-\ketbra{01}{11}$.</span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Element (3,1) = 1: This corresponds to taking the input $\ket{00}$</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>    (the first basis vector) and outputting $\ket{10}$ (the third basis</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>    vector). So, we have $\ketbra{10}{00}$.</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Element (4,2) = -1: This corresponds to taking the input $\ket{01}$</span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>    (the second basis vector) and outputting $\ket{11}$ (the fourth</span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>    basis vector) with a factor of -1. So we have $-\ketbra{11}{01}$.</span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>So, the ket-bra representation is:</span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>$$\sigma_x \otimes \sigma_z = \ketbra{00}{10} - \ketbra{01}{11} + \ketbra{10}{00} - \ketbra{11}{01}$$</span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The second row corresponds to the $\left|{1}\right\rangle$ output.</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    The first element ($i$) multiplies the $\left\langle{0}\right|$</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    component, and the second element (0) multiplies the</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    $\left\langle{1}\right|$ component.</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>Therefore, the ket-bra representation is:</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>$$\sigma_y = 0\cdot\left|{0}\middle\rangle\middle\langle{0}\right| - i\left|{0}\middle\rangle\middle\langle{1}\right| + i\left|{1}\middle\rangle\middle\langle{0}\right| + 0\cdot\left|{1}\middle\rangle\middle\langle{1}\right| = -i\left|{0}\middle\rangle\middle\langle{1}\right| + i\left|{1}\middle\rangle\middle\langle{0}\right|$$</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>Let's verify this by applying it to a general state</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>$\left|{\psi}\right\rangle = \alpha\left|{0}\right\rangle + \beta\left|{1}\right\rangle$:</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}\sigma_y \left|{\psi}\right\rangle &amp;= (-i\left|{0}\middle\rangle\middle\langle{1}\right| + i\left|{1}\middle\rangle\middle\langle{0}\right|)(\alpha\left|{0}\right\rangle + \beta\left|{1}\right\rangle) <span class="sc">\\</span>&amp;= -i\alpha\left\langle{1}\middle|{0}\right\rangle\left|{0}\right\rangle - i\beta\left\langle{1}\middle|{1}\right\rangle\left|{0}\right\rangle + i\alpha\left\langle{0}\middle|{0}\right\rangle\left|{1}\right\rangle + i\beta\left\langle{0}\middle|{1}\right\rangle\left|{1}\right\rangle <span class="sc">\\</span>&amp;= -i\beta\left|{0}\right\rangle + i\alpha\left|{1}\right\rangle\end{aligned}$$</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>In matrix form, this corresponds to:</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>$$\begin{pmatrix} 0 &amp; -i <span class="sc">\\</span> i &amp; 0 \end{pmatrix} \begin{pmatrix} \alpha <span class="sc">\\</span> \beta \end{pmatrix} = \begin{pmatrix} -i\beta <span class="sc">\\</span> i\alpha \end{pmatrix}$$</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>which is consistent. The ket-bra representation provides an alternative,</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>and sometimes more intuitive, way to understand the action of the</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>operator.</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="fu">### Two-Qubit Operator ($\sigma_x \otimes \sigma_z$)</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>The two-qubit operator $\sigma_x \otimes \sigma_z$ is given by:</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>$$\sigma_x \otimes \sigma_z = \begin{pmatrix} 0 &amp; 1 <span class="sc">\\</span> 1 &amp; 0 \end{pmatrix} \otimes \begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} = \begin{pmatrix} 0\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} &amp; 1\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} <span class="sc">\\</span> 1\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} &amp; 0\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 \end{pmatrix} \end{pmatrix} = \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 <span class="sc">\\</span> 0 &amp; 0 &amp; 0 &amp; -1 <span class="sc">\\</span> 1 &amp; 0 &amp; 0 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 &amp; 0 &amp; 0 \end{pmatrix}$$</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>The basis ordering is</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>$\left|{00}\right\rangle, \left|{01}\right\rangle, \left|{10}\right\rangle, \left|{11}\right\rangle$.</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>The ket-bra representation is derived by identifying the non-zero matrix</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>elements:</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Element (1,3) = 1: This corresponds to taking the input</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    $\left|{10}\right\rangle$ (the third basis vector) and outputting</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>    $\left|{00}\right\rangle$ (the first basis vector). So, we have</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>    $\left|{00}\middle\rangle\middle\langle{10}\right|$.</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Element (2,4) = -1: This corresponds to taking the input</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>    $\left|{11}\right\rangle$ (the fourth basis vector) and outputting</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>    $\left|{01}\right\rangle$ (the second basis vector) with a factor of</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>    -1. So, we have</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>    $-\left|{01}\middle\rangle\middle\langle{11}\right|$.</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Element (3,1) = 1: This corresponds to taking the input</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>    $\left|{00}\right\rangle$ (the first basis vector) and outputting</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>    $\left|{10}\right\rangle$ (the third basis vector). So, we have</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>    $\left|{10}\middle\rangle\middle\langle{00}\right|$.</span>
 <span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>This is consistent with the general rule that the matrix element</span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>$A_{ij}$ corresponds to the ket-bra term $\ket{i}\bra{j}$. The indices</span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>$i$ and $j$ now refer to the composite basis states of the two-qubit</span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>system.</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Element (4,2) = -1: This corresponds to taking the input</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>    $\left|{01}\right\rangle$ (the second basis vector) and outputting</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>    $\left|{11}\right\rangle$ (the fourth basis vector) with a factor of</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>    -1. So we have $-\left|{11}\middle\rangle\middle\langle{01}\right|$.</span>
 <span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eigenvalues, Eigenvectors, and Diagonalization</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>So, the ket-bra representation is:</span>
 <span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### Finding Eigenvalues and Eigenvectors of $\sigma_y$</span></span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>To find the eigenvalues of $\sigma_y$, we solve the characteristic</span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>equation:</span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>$$\det(\sigma_y - \lambda I) = 0$$</span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>$$\sigma_x \otimes \sigma_z = \left|{00}\middle\rangle\middle\langle{10}\right| - \left|{01}\middle\rangle\middle\langle{11}\right| + \left|{10}\middle\rangle\middle\langle{00}\right| - \left|{11}\middle\rangle\middle\langle{01}\right|$$</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>This is consistent with the general rule that the matrix element</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>$A_{ij}$ corresponds to the ket-bra term</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>$\left|{i}\right\rangle\left\langle{j}\right|$. The indices $i$ and $j$</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>now refer to the composite basis states of the two-qubit system.</span>
 <span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>where $I$ is the identity matrix. This equation arises from the</span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>eigenvalue equation $A\ket{v} = \lambda\ket{v}$, which can be rewritten</span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>as $(A - \lambda I)\ket{v} = 0$. For non-trivial solutions</span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>($\ket{v} \neq 0$), the matrix $(A - \lambda I)$ must be singular,</span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>meaning its determinant is zero.</span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>$$\det\begin{pmatrix} -\lambda &amp; -i <span class="sc">\\</span> i &amp; -\lambda \end{pmatrix} = \lambda^2 - (-i)(i) = \lambda^2 - 1 = 0$$</span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>So, the eigenvalues are $\lambda_1 = 1$ and $\lambda_2 = -1$.</span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>For $\lambda_1 = 1$, we solve $(\sigma_y - I)\ket{v} = 0$:</span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>$$\begin{pmatrix} -1 &amp; -i <span class="sc">\\</span> i &amp; -1 \end{pmatrix} \begin{pmatrix} \alpha <span class="sc">\\</span> \beta \end{pmatrix} = \begin{pmatrix} 0 <span class="sc">\\</span> 0 \end{pmatrix}$$</span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eigenvalues, Eigenvectors, and Diagonalization</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="fu">### Finding Eigenvalues and Eigenvectors of $\sigma_y$</span></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>To find the eigenvalues of $\sigma_y$, we solve the characteristic</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>equation:</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>$$\det(\sigma_y - \lambda I) = 0$$</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>where $I$ is the identity matrix. This equation arises from the</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>eigenvalue equation</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>$A\left|{v}\right\rangle = \lambda\left|{v}\right\rangle$, which can be</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>rewritten as $(A - \lambda I)\left|{v}\right\rangle = 0$. For</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>non-trivial solutions ($\left|{v}\right\rangle \neq 0$), the matrix</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>$(A - \lambda I)$ must be singular, meaning its determinant is zero.</span>
 <span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>This gives us $- \alpha - i\beta = 0$ and $i\alpha - \beta = 0$. Both</span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>equations imply $\beta = i\alpha$. Let $\alpha = 1$, then $\beta = i$.</span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>Normalizing the eigenvector (requiring $|\alpha|^2 + |\beta|^2 = 1$), we</span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>get:</span>
-<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>$$\ket{v_1} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 <span class="sc">\\</span> i \end{pmatrix}$$</span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>$$\det\begin{pmatrix} -\lambda &amp; -i <span class="sc">\\</span> i &amp; -\lambda \end{pmatrix} = \lambda^2 - (-i)(i) = \lambda^2 - 1 = 0$$</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>So, the eigenvalues are $\lambda_1 = 1$ and $\lambda_2 = -1$.</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>For $\lambda_1 = 1$, we solve</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>$(\sigma_y - I)\left|{v}\right\rangle = 0$:</span>
 <span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>For $\lambda_2 = -1$, we solve $(\sigma_y + I)\ket{v} = 0$:</span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>$$\begin{pmatrix} 1 &amp; -i <span class="sc">\\</span> i &amp; 1 \end{pmatrix} \begin{pmatrix} \alpha <span class="sc">\\</span> \beta \end{pmatrix} = \begin{pmatrix} 0 <span class="sc">\\</span> 0 \end{pmatrix}$$</span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>This gives us $\alpha - i\beta = 0$ and $i\alpha + \beta = 0$. Both</span>
-<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>equations imply $\beta = -i\alpha$. Let $\alpha = 1$, then $\beta = -i$.</span>
-<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>Normalizing the eigenvector, we get:</span>
-<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>$$\ket{v_2} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 <span class="sc">\\</span> -i \end{pmatrix}$$</span>
-<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>The eigenvectors $\ket{v_1}$ and $\ket{v_2}$ form an orthonormal basis.</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>$$\begin{pmatrix} -1 &amp; -i <span class="sc">\\</span> i &amp; -1 \end{pmatrix} \begin{pmatrix} \alpha <span class="sc">\\</span> \beta \end{pmatrix} = \begin{pmatrix} 0 <span class="sc">\\</span> 0 \end{pmatrix}$$</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>This gives us $- \alpha - i\beta = 0$ and $i\alpha - \beta = 0$. Both</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>equations imply $\beta = i\alpha$. Let $\alpha = 1$, then $\beta = i$.</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>Normalizing the eigenvector (requiring $|\alpha|^2 + |\beta|^2 = 1$), we</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>get:</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>$$\left|{v_1}\right\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 <span class="sc">\\</span> i \end{pmatrix}$$</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>For $\lambda_2 = -1$, we solve</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>$(\sigma_y + I)\left|{v}\right\rangle = 0$:</span>
 <span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="fu">### Eigenvalues of a 4x4 Matrix: Example</span></span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>Consider the matrix from the previous example,</span>
-<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>$\sigma_x \otimes \sigma_z$, with $-\lambda$ along the diagonal:</span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>$$A = \begin{pmatrix} -\lambda &amp; 0 &amp; 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -\lambda &amp; 0 &amp; -1 <span class="sc">\\</span> 1 &amp; 0 &amp; -\lambda &amp; 0 <span class="sc">\\</span> 0 &amp; -1 &amp; 0 &amp; -\lambda \end{pmatrix}$$</span>
-<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>We compute the determinant by expanding along the first row. This is a</span>
-<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>recursive process where we reduce the determinant of a larger matrix to</span>
-<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>a sum of determinants of smaller matrices.</span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}\det(A) &amp;= -\lambda \det\begin{pmatrix} -\lambda &amp; 0 &amp; -1 <span class="sc">\\</span> 0 &amp; -\lambda &amp; 0 <span class="sc">\\</span> -1 &amp; 0 &amp; -\lambda \end{pmatrix} + 1 \cdot \det\begin{pmatrix} 0 &amp; -\lambda &amp; -1 <span class="sc">\\</span> 1 &amp; 0 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 &amp; -\lambda \end{pmatrix} <span class="sc">\\</span>&amp;= -\lambda(-\lambda(\lambda^2 - 0) - 1(0 - \lambda)) + 1(1(\lambda - 0)) <span class="sc">\\</span>&amp;= -\lambda(-\lambda^3 + \lambda) + \lambda <span class="sc">\\</span>&amp;= \lambda^4 - \lambda^2 - \lambda^2 + 1<span class="sc">\\</span>&amp;= \lambda^4 - 2\lambda^2 + 1 = (\lambda^2 - 1)^2\end{aligned}$$</span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>$$\begin{pmatrix} 1 &amp; -i <span class="sc">\\</span> i &amp; 1 \end{pmatrix} \begin{pmatrix} \alpha <span class="sc">\\</span> \beta \end{pmatrix} = \begin{pmatrix} 0 <span class="sc">\\</span> 0 \end{pmatrix}$$</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>This gives us $\alpha - i\beta = 0$ and $i\alpha + \beta = 0$. Both</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>equations imply $\beta = -i\alpha$. Let $\alpha = 1$, then $\beta = -i$.</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>Normalizing the eigenvector, we get:</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>$$\left|{v_2}\right\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 <span class="sc">\\</span> -i \end{pmatrix}$$</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>The eigenvectors $\left|{v_1}\right\rangle$ and</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>$\left|{v_2}\right\rangle$ form an orthonormal basis.</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="fu">### Eigenvalues of a 4x4 Matrix: Example</span></span>
 <span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>Setting $\det(A) = 0$, we get $(\lambda^2 - 1)^2 = 0$, which means</span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>$\lambda^2 = 1$, so $\lambda = \pm 1$. Both eigenvalues have</span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>multiplicity 2. This means each eigenvalue has two linearly independent</span>
-<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>eigenvectors associated with it.</span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a><span class="fu">### Non-Diagonalizable Matrix: Example</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>Consider the matrix from the previous example,</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>$\sigma_x \otimes \sigma_z$, with $-\lambda$ along the diagonal:</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>$$A = \begin{pmatrix} -\lambda &amp; 0 &amp; 1 &amp; 0 <span class="sc">\\</span> 0 &amp; -\lambda &amp; 0 &amp; -1 <span class="sc">\\</span> 1 &amp; 0 &amp; -\lambda &amp; 0 <span class="sc">\\</span> 0 &amp; -1 &amp; 0 &amp; -\lambda \end{pmatrix}$$</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>Consider the matrix:</span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>$$M = \begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 1 &amp; 1 \end{pmatrix}$$</span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>First, we check if it's normal: $MM^\dagger = M^\dagger M$. A matrix is</span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>normal if it commutes with its conjugate transpose. This is a necessary</span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>condition for diagonalizability.</span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>$$M^\dagger = \begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 0 &amp; 1 \end{pmatrix}$$</span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>$$MM^\dagger = \begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 1 &amp; 1 \end{pmatrix}\begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 0 &amp; 1 \end{pmatrix} = \begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 1 &amp; 2 \end{pmatrix}$$</span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>$$M^\dagger M = \begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 0 &amp; 1 \end{pmatrix}\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 1 &amp; 1 \end{pmatrix} = \begin{pmatrix} 2 &amp; 1 <span class="sc">\\</span> 1 &amp; 1 \end{pmatrix}$$</span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>Since $MM^\dagger \neq M^\dagger M$, the matrix is not normal, and thus</span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>not necessarily diagonalizable.</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>We compute the determinant by expanding along the first row. This is a</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>recursive process where we reduce the determinant of a larger matrix to</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>a sum of determinants of smaller matrices.</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}\det(A) &amp;= -\lambda \det\begin{pmatrix} -\lambda &amp; 0 &amp; -1 <span class="sc">\\</span> 0 &amp; -\lambda &amp; 0 <span class="sc">\\</span> -1 &amp; 0 &amp; -\lambda \end{pmatrix} + 1 \cdot \det\begin{pmatrix} 0 &amp; -\lambda &amp; -1 <span class="sc">\\</span> 1 &amp; 0 &amp; 0 <span class="sc">\\</span> 0 &amp; -1 &amp; -\lambda \end{pmatrix} <span class="sc">\\</span>&amp;= -\lambda(-\lambda(\lambda^2 - 0) - 1(0 - \lambda)) + 1(1(\lambda - 0)) <span class="sc">\\</span>&amp;= -\lambda(-\lambda^3 + \lambda) + \lambda <span class="sc">\\</span>&amp;= \lambda^4 - \lambda^2 - \lambda^2 + 1<span class="sc">\\</span>&amp;= \lambda^4 - 2\lambda^2 + 1 = (\lambda^2 - 1)^2\end{aligned}$$</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>Setting $\det(A) = 0$, we get $(\lambda^2 - 1)^2 = 0$, which means</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>$\lambda^2 = 1$, so $\lambda = \pm 1$. Both eigenvalues have</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>multiplicity 2. This means each eigenvalue has two linearly independent</span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>eigenvectors associated with it.</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a><span class="fu">### Non-Diagonalizable Matrix: Example</span></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>Consider the matrix:</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>$$M = \begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 1 &amp; 1 \end{pmatrix}$$</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>First, we check if it's normal: $MM^\dagger = M^\dagger M$. A matrix is</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>normal if it commutes with its conjugate transpose. This is a necessary</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>condition for diagonalizability.</span>
 <span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>To find eigenvalues, we solve $\det(M - \lambda I) = 0$:</span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>$$\det\begin{pmatrix} 1-\lambda &amp; 0 <span class="sc">\\</span> 1 &amp; 1-\lambda \end{pmatrix} = (1-\lambda)^2 = 0$$</span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>So, $\lambda = 1$ is the only eigenvalue, with multiplicity 2.</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>$$M^\dagger = \begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 0 &amp; 1 \end{pmatrix}$$</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>$$MM^\dagger = \begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 1 &amp; 1 \end{pmatrix}\begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 0 &amp; 1 \end{pmatrix} = \begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 1 &amp; 2 \end{pmatrix}$$</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>Now we find the eigenvectors:</span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>$$(M - I)\ket{v} = \begin{pmatrix} 0 &amp; 0 <span class="sc">\\</span> 1 &amp; 0 \end{pmatrix} \begin{pmatrix} \alpha <span class="sc">\\</span> \beta \end{pmatrix} = \begin{pmatrix} 0 <span class="sc">\\</span> 0 \end{pmatrix}$$</span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>This gives us $\alpha = 0$, and $\beta$ can be any value. So, the</span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>eigenvector is $\ket{v} = \begin{pmatrix} 0 <span class="sc">\\</span> 1 \end{pmatrix}$</span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>(normalized). We have only one linearly independent eigenvector, so the</span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>matrix is not diagonalizable. A diagonalizable matrix must have a</span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>complete set of linearly independent eigenvectors that span the entire</span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>vector space.</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>$$M^\dagger M = \begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 0 &amp; 1 \end{pmatrix}\begin{pmatrix} 1 &amp; 0 <span class="sc">\\</span> 1 &amp; 1 \end{pmatrix} = \begin{pmatrix} 2 &amp; 1 <span class="sc">\\</span> 1 &amp; 1 \end{pmatrix}$$</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>Since $MM^\dagger \neq M^\dagger M$, the matrix is not normal, and thus</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>not necessarily diagonalizable.</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>To find eigenvalues, we solve $\det(M - \lambda I) = 0$:</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>$$\det\begin{pmatrix} 1-\lambda &amp; 0 <span class="sc">\\</span> 1 &amp; 1-\lambda \end{pmatrix} = (1-\lambda)^2 = 0$$</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Dagger Operator and Matrix Properties</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>So, $\lambda = 1$ is the only eigenvalue, with multiplicity 2.</span>
 <span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>$\bra{U}A\ket{W}^\dagger = \bra{W}A^\dagger\ket{U}$</span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>We want to show that</span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>$(\bra{U}A\ket{W})^\dagger = \bra{W}A^\dagger\ket{U}$. The expression</span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>$\bra{U}A\ket{W}$ represents a scalar (a complex number). The dagger</span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>operation on a scalar is simply complex conjugation. The dagger</span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>operation on a ket turns it into a bra, and vice-versa. The dagger</span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>operation on an operator is the conjugate transpose.</span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>We can express any operator $A$ in an orthonormal basis $<span class="sc">\{</span>\ket{i}<span class="sc">\}</span>$</span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>as:</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>Now we find the eigenvectors:</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>$$(M - I)\left|{v}\right\rangle = \begin{pmatrix} 0 &amp; 0 <span class="sc">\\</span> 1 &amp; 0 \end{pmatrix} \begin{pmatrix} \alpha <span class="sc">\\</span> \beta \end{pmatrix} = \begin{pmatrix} 0 <span class="sc">\\</span> 0 \end{pmatrix}$$</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>This gives us $\alpha = 0$, and $\beta$ can be any value. So, the</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>eigenvector is</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>$\left|{v}\right\rangle = \begin{pmatrix} 0 <span class="sc">\\</span> 1 \end{pmatrix}$</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>(normalized). We have only one linearly independent eigenvector, so the</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>matrix is not diagonalizable. A diagonalizable matrix must have a</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>complete set of linearly independent eigenvectors that span the entire</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>vector space.</span>
 <span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>$$A = \sum_{i,j} a_{ij} \ketbra{i}{j}$$</span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>where $a_{ij} = \bra{i}A\ket{j}$ are the matrix elements of $A$ in this</span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>basis.</span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>Let's consider the expression $\bra{U}A\ket{W}$. We can insert a</span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>complete set of states, $\sum_k \ketbra{k}{k} = I$ (the identity</span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>operator), multiple times:</span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>$$\bra{U}A\ket{W} = \sum_{i,j} \bra{U} (\ketbra{i}{j}) \ket{W} a_{ij} = \sum_{i,j} \braket{U}{i}\braket{j}{W} a_{ij}$$</span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>Taking the dagger (complex conjugate transpose) of this scalar:</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Dagger Operator and Matrix Properties</span></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>$\left\langle{U}\right|A\left|{W}\right\rangle^\dagger = \left\langle{W}\right|A^\dagger\left|{U}\right\rangle$</span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>We want to show that</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>$(\left\langle{U}\right|A\left|{W}\right\rangle)^\dagger = \left\langle{W}\right|A^\dagger\left|{U}\right\rangle$.</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>The expression $\left\langle{U}\right|A\left|{W}\right\rangle$</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>represents a scalar (a complex number). The dagger operation on a scalar</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>is simply complex conjugation. The dagger operation on a ket turns it</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>into a bra, and vice-versa. The dagger operation on an operator is the</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>conjugate transpose.</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>We can express any operator $A$ in an orthonormal basis</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>$<span class="sc">\{</span>\left|{i}\right\rangle<span class="sc">\}</span>$ as:</span>
 <span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}(\bra{U}A\ket{W})^\dagger &amp;= \left( \sum_{i,j} \braket{U}{i}\braket{j}{W} a_{ij} \right)^* <span class="sc">\\</span>&amp;= \sum_{i,j} \braket{U}{i}^*\braket{j}{W}^* a_{ij}^* \\&amp;= \sum_{i,j} \braket{i}{U}\braket{W}{j} a_{ij}^*\end{aligned}$$</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>$$A = \sum_{i,j} a_{ij} \left|{i}\middle\rangle\middle\langle{j}\right|$$</span>
 <span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>Now consider $\bra{W}A^\dagger\ket{U}$. First, we find the dagger of</span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>$A$:</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>where $a_{ij} = \left\langle{i}\right|A\left|{j}\right\rangle$ are the</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>matrix elements of $A$ in this basis.</span>
 <span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>$$A^\dagger = \sum_{i,j} a_{ij}^* (\ketbra{i}{j})^\dagger = \sum_{i,j} a_{ij}^* \ketbra{j}{i}$$</span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>So,</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>Let's consider the expression</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>$\left\langle{U}\right|A\left|{W}\right\rangle$. We can insert a</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>complete set of states,</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>$\sum_k \left|{k}\middle\rangle\middle\langle{k}\right| = I$ (the</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>identity operator), multiple times:</span>
 <span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>$$\bra{W}A^\dagger\ket{U} = \sum_{i,j} \bra{W} (a_{ij}^* \ketbra{j}{i}) \ket{U} = \sum_{i,j} a_{ij}^* \braket{W}{j}\braket{i}{U}$$</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>$$\left\langle{U}\right|A\left|{W}\right\rangle = \sum_{i,j} \left\langle{U}\right| (\left|{i}\middle\rangle\middle\langle{j}\right|) \left|{W}\right\rangle a_{ij} = \sum_{i,j} \left\langle{U}\middle|{i}\right\rangle\left\langle{j}\middle|{W}\right\rangle a_{ij}$$</span>
 <span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>This is the same as the expression we derived for</span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>$(\bra{U}A\ket{W})^\dagger$. Therefore,</span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>$(\bra{U}A\ket{W})^\dagger = \bra{W}A^\dagger\ket{U}$. This property is</span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>fundamental in quantum mechanics, as it relates the matrix elements of</span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>an operator to the matrix elements of its adjoint.</span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>Taking the dagger (complex conjugate transpose) of this scalar:</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}(\left\langle{U}\right|A\left|{W}\right\rangle)^\dagger &amp;= \left( \sum_{i,j} \left\langle{U}\middle|{i}\right\rangle\left\langle{j}\middle|{W}\right\rangle a_{ij} \right)^* <span class="sc">\\</span>&amp;= \sum_{i,j} \left\langle{U}\middle|{i}\right\rangle^*\left\langle{j}\middle|{W}\right\rangle^* a_{ij}^* \\&amp;= \sum_{i,j} \left\langle{i}\middle|{U}\right\rangle\left\langle{W}\middle|{j}\right\rangle a_{ij}^*\end{aligned}$$</span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="fu">### Normal and Hermitian Matrices: Relationship via Eigenvalues</span></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>::: definition</span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>**Definition 1** (Normal Matrix, colback=green!5,</span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>colframe=green!75!black). *A matrix is normal if</span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>$AA^\dagger = A^\dagger A$.*</span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>::: definition</span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>**Definition 2** (Hermitian Matrix, colback=green!5,</span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>colframe=green!75!black). *A matrix is Hermitian if $A = A^\dagger$.*</span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>Now consider $\left\langle{W}\right|A^\dagger\left|{U}\right\rangle$.</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>First, we find the dagger of $A$:</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>$$A^\dagger = \sum_{i,j} a_{ij}^* (\left|{i}\middle\rangle\middle\langle{j}\right|)^\dagger = \sum_{i,j} a_{ij}^* \left|{j}\middle\rangle\middle\langle{i}\right|$$</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>So,</span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>$$\left\langle{W}\right|A^\dagger\left|{U}\right\rangle = \sum_{i,j} \left\langle{W}\right| (a_{ij}^* \left|{j}\middle\rangle\middle\langle{i}\right|) \left|{U}\right\rangle = \sum_{i,j} a_{ij}^* \left\langle{W}\middle|{j}\right\rangle\left\langle{i}\middle|{U}\right\rangle$$</span>
 <span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>::: theorem</span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>**Theorem 3** (Normal and Hermitian Matrices, colback=red!5,</span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>colframe=red!75!black). *A normal matrix is Hermitian if and only if its</span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>eigenvalues are real.*</span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>This is the same as the expression we derived for</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>$(\left\langle{U}\right|A\left|{W}\right\rangle)^\dagger$. Therefore,</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>$(\left\langle{U}\right|A\left|{W}\right\rangle)^\dagger = \left\langle{W}\right|A^\dagger\left|{U}\right\rangle$.</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>This property is fundamental in quantum mechanics, as it relates the</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>matrix elements of an operator to the matrix elements of its adjoint.</span>
 <span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="sc">\*\*</span>Part 1: Hermitian implies real eigenvalues.<span class="sc">\*\*</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="fu">### Normal and Hermitian Matrices: Relationship via Eigenvalues</span></span>
 <span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>Suppose $A$ is Hermitian ($A = A^\dagger$). Let $\ket{v}$ be an</span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>eigenvector of $A$ with eigenvalue $\lambda$:</span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>$A\ket{v} = \lambda\ket{v}$. Then:</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>A matrix is normal if $AA^\dagger = A^\dagger A$.</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>$$\bra{v}A\ket{v} = \lambda\braket{v}{v}$$</span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>A matrix is Hermitian if $A = A^\dagger$.</span>
 <span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>Taking the dagger:</span>
-<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>$$(\bra{v}A\ket{v})^\dagger = \bra{v}A^\dagger\ket{v} = \bra{v}A\ket{v} = \lambda^*\braket{v}{v}$$</span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>A normal matrix is Hermitian if and only if its eigenvalues are real.</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="sc">\*\*</span>Part 1: Hermitian implies real eigenvalues.<span class="sc">\*\*</span></span>
 <span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>Since $\bra{v}A\ket{v} = \lambda\braket{v}{v}$, we have</span>
-<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>$\lambda\braket{v}{v} = \lambda^*\braket{v}{v}$. Since</span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>$\braket{v}{v} \neq 0$ (because $\ket{v}$ is a non-zero eigenvector), we</span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>must have $\lambda = \lambda^*$, which means $\lambda$ is real.</span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a><span class="sc">\*\*</span>Part 2: Real eigenvalues and normal imply Hermitian.<span class="sc">\*\*</span></span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>Suppose $A$ is normal ($AA^\dagger = A^\dagger A$) and has real</span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>eigenvalues. Since $A$ is normal, it has a spectral decomposition:</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>Suppose $A$ is Hermitian ($A = A^\dagger$). Let $\left|{v}\right\rangle$</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>be an eigenvector of $A$ with eigenvalue $\lambda$:</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>$A\left|{v}\right\rangle = \lambda\left|{v}\right\rangle$. Then:</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>$$\left\langle{v}\right|A\left|{v}\right\rangle = \lambda\left\langle{v}\middle|{v}\right\rangle$$</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>Taking the dagger:</span>
 <span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>$$A = \sum_i \lambda_i \ketbra{v_i}{v_i}$$</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>$$(\left\langle{v}\right|A\left|{v}\right\rangle)^\dagger = \left\langle{v}\right|A^\dagger\left|{v}\right\rangle = \left\langle{v}\right|A\left|{v}\right\rangle = \lambda^*\left\langle{v}\middle|{v}\right\rangle$$</span>
 <span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>where $\lambda_i$ are the eigenvalues and $\ket{v_i}$ are the</span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>orthonormal eigenvectors. This means that a normal matrix can be</span>
-<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>diagonalized by a unitary transformation. Taking the dagger:</span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>$$A^\dagger = \sum_i \lambda_i^* (\ketbra{v_i}{v_i})^\dagger = \sum_i \lambda_i^* \ketbra{v_i}{v_i}$$</span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>Since</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>$\left\langle{v}\right|A\left|{v}\right\rangle = \lambda\left\langle{v}\middle|{v}\right\rangle$,</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>we have</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>$\lambda\left\langle{v}\middle|{v}\right\rangle = \lambda^*\left\langle{v}\middle|{v}\right\rangle$.</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>Since $\left\langle{v}\middle|{v}\right\rangle \neq 0$ (because</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>$\left|{v}\right\rangle$ is a non-zero eigenvector), we must have</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>$\lambda = \lambda^*$, which means $\lambda$ is real.</span>
 <span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>Since the eigenvalues are real, $\lambda_i = \lambda_i^*$, so</span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>$A^\dagger = \sum_i \lambda_i \ketbra{v_i}{v_i} = A$. Thus, $A$ is</span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>Hermitian. This shows that for normal matrices, the property of having</span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>real eigenvalues is equivalent to being Hermitian.</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="sc">\*\*</span>Part 2: Real eigenvalues and normal imply Hermitian.<span class="sc">\*\*</span></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>Suppose $A$ is normal ($AA^\dagger = A^\dagger A$) and has real</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>eigenvalues. Since $A$ is normal, it has a spectral decomposition:</span>
 <span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="fu"># Tensor and Matrix Products</span></span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tensor Product Operations</span></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>$$A = \sum_i \lambda_i \left|{v_i}\middle\rangle\middle\langle{v_i}\right|$$</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transpose, Conjugate, and Adjoint of a Tensor Product</span></span>
-<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>Let $A$ and $B$ be matrices, with elements $A_{ij}$ and $B_{kl}$</span>
-<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>respectively. The tensor product $A \otimes B$ creates a larger matrix</span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>where each element of $A$ is multiplied by the entire matrix $B$.</span>
-<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> <span class="sc">\*\*</span>Transpose:<span class="sc">\*\*</span> $(A \otimes B)^T = A^T \otimes B^T$ To see this,</span>
-<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>consider the elements of the tensor product. The element in row</span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>$(i-1)m + k$ and column $(j-1)n + l$ of $A \otimes B$ (where $B$ is</span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>$m \times n$) is $A_{ij}B_{kl}$. The transpose swaps rows and columns.</span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>So, the element in row $(j-1)n + l$ and column $(i-1)m + k$ of</span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>$(A \otimes B)^T$ is $A_{ji}B_{lk}$. This is precisely the element in</span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>the same position in $A^T \otimes B^T$.</span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> <span class="sc">\*\*</span>Conjugate:<span class="sc">\*\*</span> $(A \otimes B)^* = A^* \otimes B^*$ The complex</span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>conjugate simply takes the complex conjugate of each element. The</span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>element in row $(i-1)m + k$ and column $(j-1)n + l$ of $(A \otimes B)^*$</span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>is $(A_{ij}B_{kl})^* = A_{ij}^* B_{kl}^*$, which is the same as the</span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>corresponding element in $A^* \otimes B^*$.</span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> <span class="sc">\*\*</span>Adjoint:<span class="sc">\*\*</span></span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>$(A \otimes B)^\dagger = A^\dagger \otimes B^\dagger$ The adjoint is the</span>
-<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>conjugate transpose. Combining the previous two results, we have</span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>$(A \otimes B)^\dagger = ((A \otimes B)^T)^* = (A^T \otimes B^T)^* = A^{T*} \otimes B^{T*} = A^\dagger \otimes B^\dagger$.</span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>These properties are straightforward because the tensor product</span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>distributes over these operations.</span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matrix Product Operations</span></span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transpose and Adjoint of a Matrix Product</span></span>
-<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>Let $A$ and $B$ be matrices. The matrix product $AB$ is defined only if</span>
-<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>the number of columns of $A$ equals the number of rows of $B$.</span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> <span class="sc">\*\*</span>Transpose:<span class="sc">\*\*</span> $(AB)^T = B^T A^T$ <span class="sc">\*</span> <span class="sc">\*\*</span>Adjoint:<span class="sc">\*\*</span></span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>$(AB)^\dagger = B^\dagger A^\dagger$</span>
-<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>The transpose property can be shown by considering the matrix elements:</span>
-<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}((AB)^T)_{ij} &amp;= (AB)_{ji}  \quad \text{(Definition of transpose)}\\&amp;= \sum_k A_{jk}B_{ki} \quad \text{(Definition of matrix product)} \\&amp;= \sum_k B_{ki}A_{jk} \quad \text{(Commutativity of scalar multiplication)} \\&amp;= \sum_k (B^T)_{ik}(A^T)_{kj} \quad \text{(Definition of transpose)} \\&amp;= (B^T A^T)_{ij} \quad \text{(Definition of matrix product)}\end{aligned}$$</span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>The adjoint property follows from the transpose and conjugate</span>
-<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>properties:</span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>$(AB)^\dagger = ((AB)^T)^* = (B^T A^T)^* = (B^T)^* (A^T)^* = B^\dagger A^\dagger$.</span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>The key difference from the tensor product is the <span class="sc">\*</span>reversal<span class="sc">\*</span> of the</span>
-<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>order of the matrices when taking the transpose or adjoint of a matrix</span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>product. This is crucial for maintaining consistency in calculations.</span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>where $\lambda_i$ are the eigenvalues and $\left|{v_i}\right\rangle$ are</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>the orthonormal eigenvectors. This means that a normal matrix can be</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>diagonalized by a unitary transformation. Taking the dagger:</span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>$$A^\dagger = \sum_i \lambda_i^* (\left|{v_i}\middle\rangle\middle\langle{v_i}\right|)^\dagger = \sum_i \lambda_i^* \left|{v_i}\middle\rangle\middle\langle{v_i}\right|$$</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>Since the eigenvalues are real, $\lambda_i = \lambda_i^*$, so</span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>$A^\dagger = \sum_i \lambda_i \left|{v_i}\middle\rangle\middle\langle{v_i}\right| = A$.</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>Thus, $A$ is Hermitian. This shows that for normal matrices, the</span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>property of having real eigenvalues is equivalent to being Hermitian.</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a><span class="fu"># Tensor and Matrix Products</span></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tensor Product Operations</span></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transpose, Conjugate, and Adjoint of a Tensor Product</span></span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>Let $A$ and $B$ be matrices, with elements $A_{ij}$ and $B_{kl}$</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>respectively. The tensor product $A \otimes B$ creates a larger matrix</span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>where each element of $A$ is multiplied by the entire matrix $B$.</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> <span class="sc">\*\*</span>Transpose:<span class="sc">\*\*</span> $(A \otimes B)^T = A^T \otimes B^T$ To see this,</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>consider the elements of the tensor product. The element in row</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>$(i-1)m + k$ and column $(j-1)n + l$ of $A \otimes B$ (where $B$ is</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>$m \times n$) is $A_{ij}B_{kl}$. The transpose swaps rows and columns.</span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>So, the element in row $(j-1)n + l$ and column $(i-1)m + k$ of</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>$(A \otimes B)^T$ is $A_{ji}B_{lk}$. This is precisely the element in</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>the same position in $A^T \otimes B^T$.</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> <span class="sc">\*\*</span>Conjugate:<span class="sc">\*\*</span> $(A \otimes B)^* = A^* \otimes B^*$ The complex</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>conjugate simply takes the complex conjugate of each element. The</span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>element in row $(i-1)m + k$ and column $(j-1)n + l$ of $(A \otimes B)^*$</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>is $(A_{ij}B_{kl})^* = A_{ij}^* B_{kl}^*$, which is the same as the</span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>corresponding element in $A^* \otimes B^*$.</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> <span class="sc">\*\*</span>Adjoint:<span class="sc">\*\*</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>$(A \otimes B)^\dagger = A^\dagger \otimes B^\dagger$ The adjoint is the</span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>conjugate transpose. Combining the previous two results, we have</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>$(A \otimes B)^\dagger = ((A \otimes B)^T)^* = (A^T \otimes B^T)^* = A^{T*} \otimes B^{T*} = A^\dagger \otimes B^\dagger$.</span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>These properties are straightforward because the tensor product</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>distributes over these operations.</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matrix Product Operations</span></span>
 <span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a><span class="fu"># Hadamard Operator Representations</span></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transpose and Adjoint of a Matrix Product</span></span>
 <span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a><span class="fu">## Single Qubit Hadamard Gate</span></span>
-<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>The Hadamard gate is a fundamental single-qubit gate in quantum</span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>computing, given by:</span>
-<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>$$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 1 &amp; -1 \end{pmatrix}$$</span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>It maps the computational basis states as follows:</span>
-<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>$H\ket{0} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \ket{+}$ and</span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>$H\ket{1} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \ket{-}$.</span>
-<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ket-Bra Notation</span></span>
-<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>The ket-bra representation is obtained by directly mapping the matrix</span>
-<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>elements:</span>
-<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>$$H = \frac{1}{\sqrt{2}}(\ketbra{0}{0} + \ketbra{0}{1} + \ketbra{1}{0} - \ketbra{1}{1})$$</span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>This can be written compactly as:</span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>$$H = \frac{1}{\sqrt{2}} \sum_{x,y \in <span class="sc">\{</span>0,1<span class="sc">\}</span>} (-1)^{xy} \ketbra{x}{y}$$</span>
-<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>Here, the summation iterates over all possible combinations of $x$ and</span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>$y$ (00, 01, 10, 11). The term $(-1)^{xy}$ generates the correct sign</span>
-<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>for each term:</span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$x=0, y=0$: $(-1)^{0\cdot0} = 1$</span>
-<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$x=0, y=1$: $(-1)^{0\cdot1} = 1$</span>
-<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$x=1, y=0$: $(-1)^{1\cdot0} = 1$</span>
-<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$x=1, y=1$: $(-1)^{1\cdot1} = -1$</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>Let $A$ and $B$ be matrices. The matrix product $AB$ is defined only if</span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a>the number of columns of $A$ equals the number of rows of $B$.</span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> <span class="sc">\*\*</span>Transpose:<span class="sc">\*\*</span> $(AB)^T = B^T A^T$ <span class="sc">\*</span> <span class="sc">\*\*</span>Adjoint:<span class="sc">\*\*</span></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>$(AB)^\dagger = B^\dagger A^\dagger$</span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>The transpose property can be shown by considering the matrix elements:</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>$$\begin{aligned}((AB)^T)_{ij} &amp;= (AB)_{ji}  \quad \text{(Definition of transpose)}\\&amp;= \sum_k A_{jk}B_{ki} \quad \text{(Definition of matrix product)} \\&amp;= \sum_k B_{ki}A_{jk} \quad \text{(Commutativity of scalar multiplication)} \\&amp;= \sum_k (B^T)_{ik}(A^T)_{kj} \quad \text{(Definition of transpose)} \\&amp;= (B^T A^T)_{ij} \quad \text{(Definition of matrix product)}\end{aligned}$$</span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>The adjoint property follows from the transpose and conjugate</span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>properties:</span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>$(AB)^\dagger = ((AB)^T)^* = (B^T A^T)^* = (B^T)^* (A^T)^* = B^\dagger A^\dagger$.</span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>The key difference from the tensor product is the <span class="sc">\*</span>reversal<span class="sc">\*</span> of the</span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>order of the matrices when taking the transpose or adjoint of a matrix</span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>product. This is crucial for maintaining consistency in calculations.</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a><span class="fu"># Hadamard Operator Representations</span></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a><span class="fu">## Single Qubit Hadamard Gate</span></span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>The Hadamard gate is a fundamental single-qubit gate in quantum</span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>computing, given by:</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>$$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 <span class="sc">\\</span> 1 &amp; -1 \end{pmatrix}$$</span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>It maps the computational basis states as follows:</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>$H\left|{0}\right\rangle = \frac{1}{\sqrt{2}}(\left|{0}\right\rangle + \left|{1}\right\rangle) = \left|{+}\right\rangle$</span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>and</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>$H\left|{1}\right\rangle = \frac{1}{\sqrt{2}}(\left|{0}\right\rangle - \left|{1}\right\rangle) = \left|{-}\right\rangle$.</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ket-Bra Notation</span></span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>The ket-bra representation is obtained by directly mapping the matrix</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>elements:</span>
 <span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a><span class="fu">## N-Qubit Hadamard Gate</span></span>
-<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>The N-qubit Hadamard gate is the tensor product of $N$ single-qubit</span>
-<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>Hadamard gates, denoted as $H^{\otimes N}$. This gate is crucial for</span>
-<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>creating superposition states across multiple qubits. Applying</span>
-<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>$H^{\otimes N}$ to the state $\ket{00\dots0}$ creates an equal</span>
-<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>superposition of all $2^N$ computational basis states.</span>
-<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compact Representation with Summation and Dot Product</span></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>$$H = \frac{1}{\sqrt{2}}(\left|{0}\middle\rangle\middle\langle{0}\right| + \left|{0}\middle\rangle\middle\langle{1}\right| + \left|{1}\middle\rangle\middle\langle{0}\right| - \left|{1}\middle\rangle\middle\langle{1}\right|)$$</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>This can be written compactly as:</span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>$$H = \frac{1}{\sqrt{2}} \sum_{x,y \in <span class="sc">\{</span>0,1<span class="sc">\}</span>} (-1)^{xy} \left|{x}\middle\rangle\middle\langle{y}\right|$$</span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>The N-qubit Hadamard gate can be represented as:</span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a>$$H^{\otimes N} = \frac{1}{\sqrt{2}^N} \sum_{x_1, \dots, x_N \in <span class="sc">\{</span>0,1<span class="sc">\}</span>} \sum_{y_1, \dots, y_N \in <span class="sc">\{</span>0,1<span class="sc">\}</span>} (-1)^{\sum_{i=1}^N x_i y_i} \ketbra{x_1\dots x_N}{y_1\dots y_N}$$</span>
-<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>Here, the summation iterates over all possible combinations of $x$ and</span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>$y$ (00, 01, 10, 11). The term $(-1)^{xy}$ generates the correct sign</span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>for each term:</span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$x=0, y=0$: $(-1)^{0\cdot0} = 1$</span>
 <span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>This expands on the single-qubit representation. We now have $N$ indices</span>
-<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>$x_i$ and $N$ indices $y_i$, each ranging from 0 to 1. The exponent in</span>
-<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>$(-1)^{\sum_{i=1}^N x_i y_i}$ determines the sign of each term in the</span>
-<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>expansion.</span>
-<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>This can also be written using vector notation</span>
-<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>$\mathbf{x} = (x_1, \dots, x_N)$ and $\mathbf{y} = (y_1, \dots, y_N)$,</span>
-<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>which are binary strings of length $N$:</span>
-<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
-<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>$$H^{\otimes N} = \frac{1}{\sqrt{2}^N} \sum_{\mathbf{x}, \mathbf{y} \in <span class="sc">\{</span>0,1<span class="sc">\}</span>^N} (-1)^{\mathbf{x} \cdot \mathbf{y}} \ketbra{\mathbf{x}}{\mathbf{y}}$$</span>
-<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>where $\mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^N x_i y_i$ is the dot</span>
-<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>product (modulo 2). This compact notation is particularly useful in</span>
-<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>analyzing quantum algorithms that utilize the Hadamard transform, such</span>
-<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>as the Deutsch-Jozsa algorithm and Grover's algorithm. The dot product</span>
-<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a>in the exponent effectively controls the interference pattern created by</span>
-<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>the Hadamard gates. The factor $1/\sqrt{2}^N$ ensures the resulting</span>
-<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a>operator is unitary.</span>
-<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
-<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>This lecture reviewed several key concepts in linear algebra, including</span>
-<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>operator representations, eigenvalue problems, properties of the dagger</span>
-<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>operator, tensor and matrix products, and representations of the</span>
-<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>Hadamard operator. We performed several exercises to solidify these</span>
-<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>concepts, demonstrating how to express operators in ket-bra notation,</span>
-<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>calculate eigenvalues and eigenvectors, and understand the properties of</span>
-<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>various matrix operations. These concepts are crucial for understanding</span>
-<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>quantum computing and quantum algorithms.</span>
-<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>Key takeaways:</span>
-<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> Operators can be represented both as matrices and in ket-bra</span>
-<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>notation, and converting between these representations is a useful</span>
-<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>skill. The ket-bra notation often provides a more intuitive</span>
-<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>understanding of an operator's action. <span class="sc">\*</span> The dagger operator is</span>
-<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>essential for understanding Hermitian and normal matrices and their</span>
-<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>properties. Hermitian operators have real eigenvalues and represent</span>
-<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>physical observables in quantum mechanics. <span class="sc">\*</span> Tensor and matrix products</span>
-<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>have distinct properties, especially regarding transpose and adjoint</span>
-<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>operations. The order reversal in matrix products ($(AB)^T = B^T A^T$)</span>
-<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>is a critical distinction. <span class="sc">\*</span> The Hadamard operator can be represented</span>
-<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a>compactly using summation and dot product notation, which is useful for</span>
-<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>analyzing quantum algorithms. This compact form highlights the</span>
-<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>superposition-creating nature of the Hadamard gate.</span>
-<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>For the next lecture, we will transition into quantum mechanics. Some</span>
-<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>topics to think about in preparation are:</span>
-<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What makes quantum mechanics different from classical mechanics?</span>
-<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a>    (Consider concepts like superposition, entanglement, and</span>
-<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>    measurement.)</span>
-<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What are the postulates of quantum mechanics? (How do we</span>
-<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>    mathematically describe states, observables, and evolution?)</span>
-<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How do we describe the state of a quantum system? (What is a quantum</span>
-<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>    state vector, and how does it relate to probabilities?)</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$x=0, y=1$: $(-1)^{0\cdot1} = 1$</span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$x=1, y=0$: $(-1)^{1\cdot0} = 1$</span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$x=1, y=1$: $(-1)^{1\cdot1} = -1$</span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a><span class="fu">## N-Qubit Hadamard Gate</span></span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>The N-qubit Hadamard gate is the tensor product of $N$ single-qubit</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>Hadamard gates, denoted as $H^{\otimes N}$. This gate is crucial for</span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>creating superposition states across multiple qubits. Applying</span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>$H^{\otimes N}$ to the state $\left|{00\dots 0}\right\rangle$ creates an</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>equal superposition of all $2^N$ computational basis states.</span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compact Representation with Summation and Dot Product</span></span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>The N-qubit Hadamard gate can be represented as:</span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a>$$H^{\otimes N} = \frac{1}{\sqrt{2}^N} \sum_{x_1, \dots, x_N \in <span class="sc">\{</span>0,1<span class="sc">\}</span>} \sum_{y_1, \dots, y_N \in <span class="sc">\{</span>0,1<span class="sc">\}</span>} (-1)^{\sum_{i=1}^N x_i y_i} \left|{x_1\dots x_N}\middle\rangle\middle\langle{y_1\dots y_N}\right|$$</span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>This expands on the single-qubit representation. We now have $N$ indices</span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>$x_i$ and $N$ indices $y_i$, each ranging from 0 to 1. The exponent in</span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>$(-1)^{\sum_{i=1}^N x_i y_i}$ determines the sign of each term in the</span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>expansion.</span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>This can also be written using vector notation</span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>$\mathbf{x} = (x_1, \dots, x_N)$ and $\mathbf{y} = (y_1, \dots, y_N)$,</span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>which are binary strings of length $N$:</span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>::: tcolorbox</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>$$H^{\otimes N} = \frac{1}{\sqrt{2}^N} \sum_{\mathbf{x}, \mathbf{y} \in <span class="sc">\{</span>0,1<span class="sc">\}</span>^N} (-1)^{\mathbf{x} \cdot \mathbf{y}} \left|{\mathbf{x}}\middle\rangle\middle\langle{\mathbf{y}}\right|$$</span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>where $\mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^N x_i y_i$ is the dot</span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>product (modulo 2). This compact notation is particularly useful in</span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>analyzing quantum algorithms that utilize the Hadamard transform, such</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>as the Deutsch-Jozsa algorithm and Grover's algorithm. The dot product</span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>in the exponent effectively controls the interference pattern created by</span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>the Hadamard gates. The factor $1/\sqrt{2}^N$ ensures the resulting</span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>operator is unitary.</span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>This lecture reviewed several key concepts in linear algebra, including</span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>operator representations, eigenvalue problems, properties of the dagger</span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>operator, tensor and matrix products, and representations of the</span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>Hadamard operator. We performed several exercises to solidify these</span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>concepts, demonstrating how to express operators in ket-bra notation,</span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>calculate eigenvalues and eigenvectors, and understand the properties of</span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>various matrix operations. These concepts are crucial for understanding</span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a>quantum computing and quantum algorithms.</span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>Key takeaways:</span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span> Operators can be represented both as matrices and in ket-bra</span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>notation, and converting between these representations is a useful</span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>skill. The ket-bra notation often provides a more intuitive</span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>understanding of an operator's action. <span class="sc">\*</span> The dagger operator is</span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>essential for understanding Hermitian and normal matrices and their</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>properties. Hermitian operators have real eigenvalues and represent</span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>physical observables in quantum mechanics. <span class="sc">\*</span> Tensor and matrix products</span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>have distinct properties, especially regarding transpose and adjoint</span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a>operations. The order reversal in matrix products ($(AB)^T = B^T A^T$)</span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a>is a critical distinction. <span class="sc">\*</span> The Hadamard operator can be represented</span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a>compactly using summation and dot product notation, which is useful for</span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a>analyzing quantum algorithms. This compact form highlights the</span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a>superposition-creating nature of the Hadamard gate.</span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>For the next lecture, we will transition into quantum mechanics. Some</span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a>topics to think about in preparation are:</span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What makes quantum mechanics different from classical mechanics?</span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a>    (Consider concepts like superposition, entanglement, and</span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a>    measurement.)</span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What are the postulates of quantum mechanics? (How do we</span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a>    mathematically describe states, observables, and evolution?)</span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How do we describe the state of a quantum system? (What is a quantum</span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>    state vector, and how does it relate to probabilities?)</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
